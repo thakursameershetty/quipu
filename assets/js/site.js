@@ -259,11 +259,11 @@
     root.style.setProperty('--dur', DUR + 'ms');
 
     tabsEl.innerHTML = ERRORS.map((e, k) =>
-      `<button class="ex-tab" type="button" role="tab" aria-selected="false" data-k="${k}"><i data-lucide="${e.icon}" width="17" height="17"></i>${e.name}<span class="bar"><i></i></span></button>`).join('');
+      `<button class="ex-tab" type="button" role="tab" aria-selected="false" data-k="${k}"><span class="pf" aria-hidden="true"></span><span class="ring"><i data-lucide="${e.icon}" width="16" height="16"></i></span>${e.name}</button>`).join('');
     if (window.lucide) lucide.createIcons({ attrs: { 'stroke-width': 1.75 } });
     const tabs = $$('.ex-tab', tabsEl);
 
-    let i = 0, run = 0, timer = null, paused = false, started = false;
+    let i = 0, run = 0, timer = null, paused = false, started = false, inView = false;
     function fill(e, k) {
       $('#exOrg').textContent = e.org; $('#exMeta').textContent = e.meta;
       rowsEl.innerHTML = e.rows.map(([c, d, a, f]) =>
@@ -288,7 +288,7 @@
       const id = ++run; i = k;
       tabs.forEach((t, j) => {
         t.setAttribute('aria-selected', j === k);
-        const b = $('.bar i', t); b.style.animation = 'none'; void b.offsetWidth; b.style.animation = '';
+        const b = $('.pf', t); b.style.animation = 'none'; void b.getBoundingClientRect(); b.style.animation = '';
       });
       playIcons(tabs[k]);
       const parts = [body, info];
@@ -307,7 +307,7 @@
       await wait(500); if (id !== run) return;
       doc.classList.add('done'); countTo($('#exTot'), before, after);
     }
-    function schedule() { clearTimeout(timer); if (!paused && !reduce) timer = setTimeout(() => { show((i + 1) % ERRORS.length); schedule(); }, DUR); }
+    function schedule() { clearTimeout(timer); if (!paused && inView && !reduce) timer = setTimeout(() => { show((i + 1) % ERRORS.length); schedule(); }, DUR); }
     tabs.forEach((t, k) => t.addEventListener('click', () => { show(k); schedule(); }));
     tabsEl.addEventListener('keydown', e => {
       if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
@@ -315,9 +315,20 @@
       tabs[n].focus(); show(n); schedule();
     });
     root.addEventListener('mouseenter', () => { paused = true; clearTimeout(timer); root.classList.add('paused'); });
-    root.addEventListener('mouseleave', () => { paused = false; root.classList.remove('paused'); schedule(); });
+    root.addEventListener('mouseleave', () => { paused = false; if (inView) { root.classList.remove('paused'); schedule(); } });
     fill(ERRORS[0], 0); tabs[0].setAttribute('aria-selected', 'true');
-    new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting && !started) { started = true; show(0, true); schedule(); } }), { threshold: .35 }).observe(root);
+    root.classList.add('paused');
+    function restartRing() { const b = $('.pf', tabs[i]); b.style.animation = 'none'; void b.getBoundingClientRect(); b.style.animation = ''; }
+    new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) {
+        inView = true;
+        if (!paused) root.classList.remove('paused');
+        if (!started) { started = true; show(0, true); } else restartRing();
+        schedule();
+      } else if (started) {
+        inView = false; clearTimeout(timer); root.classList.add('paused');
+      }
+    }), { threshold: .3 }).observe(root);
   })();
 
   /* ---------- Workspace: tilt on scroll + Nia prepares, Rosa approves ---------- */
@@ -459,7 +470,7 @@
     const stack = $('#stack'); if (!stack) return;
     const cards = $$('.sc', stack), steps = $$('#steps .step'), n = cards.length, DUR = 4400;
     const wrap = $('#how');
-    let i = 0, timer = null, paused = false, started = false;
+    let i = 0, timer = null, paused = false, started = false, inView = false;
     const posOf = k => { const r = (k - i + n) % n; return r === 0 ? 'active' : r === 1 ? 'next' : r === n - 1 ? 'prev' : 'hidden'; };
     function layout(first) {
       cards.forEach((c, k) => {
@@ -475,7 +486,7 @@
       });
       $('#steps').style.setProperty('--dur', DUR + 'ms');
     }
-    function schedule() { clearTimeout(timer); if (!paused && !reduce) timer = setTimeout(() => { i = (i + 1) % n; layout(); schedule(); }, DUR); }
+    function schedule() { clearTimeout(timer); if (!paused && inView && !reduce) timer = setTimeout(() => { i = (i + 1) % n; layout(); schedule(); }, DUR); }
     function go(k) { i = k; layout(); schedule(); }
     layout(true);
     const list = $('#steps');
@@ -492,8 +503,19 @@
     steps.forEach((s, k) => s.addEventListener('click', () => go(k)));
     cards.forEach((c, k) => c.addEventListener('click', () => { if (c.dataset.pos !== 'active') go(k); }));
     stack.addEventListener('mouseenter', () => { paused = true; clearTimeout(timer); wrap.classList.add('paused'); });
-    stack.addEventListener('mouseleave', () => { paused = false; wrap.classList.remove('paused'); schedule(); });
-    new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting && !started) { started = true; go(0); } }), { threshold: .3 }).observe(stack);
+    stack.addEventListener('mouseleave', () => { paused = false; if (inView) { wrap.classList.remove('paused'); schedule(); } });
+    // Idle until the section is on screen; when it leaves, let the current card finish and hold there
+    wrap.classList.add('paused'); stack.classList.add('idle');
+    new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) {
+        inView = true;
+        stack.classList.remove('idle');
+        if (!paused) wrap.classList.remove('paused');
+        if (!started) { started = true; go(0); } else { layout(); schedule(); }
+      } else if (started) {
+        inView = false; clearTimeout(timer); wrap.classList.add('paused');
+      }
+    }), { threshold: .3 }).observe(stack);
   })();
 
   /* ---------- Reading an EOB: column headers are the controls ---------- */
@@ -607,19 +629,51 @@
     });
   })();
 
-  /* ---------- Demo request form ---------- */
+  /* ---------- Contact form: inline validation + eased thank-you state ---------- */
   (function () {
-    const form = $('#demo'); if (!form) return;
-    const input = $('#demoEmail'), msg = $('#demoMsg');
-    form.addEventListener('submit', e => {
+    const form = $('#contactForm'); if (!form) return;
+    const done = $('#cfDone'), card = $('.contact-card');
+    const fields = {
+      name: { el: $('#cfName'), err: $('#cfNameErr'), test: v => v.trim().length >= 2, msg: 'Enter your name.' },
+      email: { el: $('#cfEmail'), err: $('#cfEmailErr'), test: v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()), msg: 'Enter a work email, like you@company.com.' },
+      org: { el: $('#cfOrg'), err: $('#cfOrgErr'), test: v => v.trim().length >= 2, msg: 'Enter your organization.' },
+      role: { el: $('#cfRole'), err: $('#cfRoleErr'), test: v => !!v, msg: 'Choose your role.' }
+    };
+    function check(k) {
+      const f = fields[k], ok = f.test(f.el.value);
+      f.el.closest('.cf-field').classList.toggle('bad', !ok);
+      f.el.setAttribute('aria-invalid', !ok);
+      f.err.textContent = ok ? '' : f.msg;
+      return ok;
+    }
+    Object.keys(fields).forEach(k => {
+      const f = fields[k];
+      f.el.addEventListener('blur', () => { if (f.el.value) check(k); });
+      f.el.addEventListener('input', () => { if (f.el.closest('.cf-field').classList.contains('bad')) check(k); });
+      f.el.addEventListener('change', () => { if (k === 'role') check(k); });
+    });
+    form.addEventListener('submit', async e => {
       e.preventDefault();
-      const v = input.value.trim();
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) {
-        msg.className = 'demo-msg err'; msg.textContent = 'Enter a valid work email, like you@company.com.';
-        input.focus(); return;
-      }
-      msg.className = 'demo-msg ok'; msg.textContent = `Thanks. We'll email ${v} to set up your demo.`;
-      form.reset();
+      const results = Object.keys(fields).map(check);
+      const firstBad = Object.keys(fields).find((k, i) => !results[i]);
+      if (firstBad) { fields[firstBad].el.focus(); return; }
+      const btn = $('.cf-submit', form); btn.classList.add('sending'); $('span', btn).textContent = 'Sending…';
+      await wait(900);
+      const first = fields.name.el.value.trim().split(/\s+/)[0];
+      $('#cfDoneTitle').textContent = `Thanks, ${first}.`;
+      $('#cfDoneText').textContent = `We'll reply to ${fields.email.el.value.trim()} to set up your walkthrough.`;
+      const h0 = card.offsetHeight;
+      form.classList.add('out'); await wait(reduce ? 0 : 380);
+      form.hidden = true; done.hidden = false;
+      const h1 = card.offsetHeight;
+      if (!reduce) card.animate([{ height: h0 + 'px' }, { height: h1 + 'px' }], { duration: 700, easing: 'cubic-bezier(.25,.9,.3,1)' });
+      requestAnimationFrame(() => done.classList.add('in'));
+      btn.classList.remove('sending'); $('span', btn).textContent = 'Request a demo';
+    });
+    $('#cfAgain').addEventListener('click', () => {
+      form.reset(); Object.keys(fields).forEach(k => { const f = fields[k]; f.el.closest('.cf-field').classList.remove('bad'); f.err.textContent = ''; });
+      done.classList.remove('in'); done.hidden = true; form.hidden = false; form.classList.remove('out');
+      fields.name.el.focus();
     });
   })();
 })();

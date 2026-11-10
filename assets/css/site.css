@@ -952,3 +952,98 @@ h3,.mtext h3,.err h3,.tile h3,.bc.blue h3,.ex-info h3{font-weight:300}
 .qa summary{font-weight:400}
 .term-cap b,.sum{font-weight:400}
 .bigpct,.pair b,.fx,.ex-info .saved b,.ex-tot b,.sheet .tot b,.due .was,.due .now,.co-1 .big{font-weight:400}
+
+/* ========== CONTACT ========== */
+.contact{position:relative;overflow:hidden;isolation:isolate;padding-block:clamp(90px,10vw,140px);background:linear-gradient(180deg,#F3F6FD 0%,#E8EEFB 100%);border-top:1px solid var(--line)}
+.contact .cb1{width:560px;height:560px;left:-180px;top:-120px;background:#BFD0FF;opacity:.55;animation:drift2 20s var(--ease-soft) infinite alternate}
+.contact .cb2{width:480px;height:480px;right:-160px;bottom:-200px;background:#D6CCFF;opacity:.4;animation:drift1 18s var(--ease-soft) infinite alternate}
+.contact-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:72px;align-items:start}
+.contact h2{font-family:var(--serif);font-weight:300;font-size:clamp(42px,5vw,76px);line-height:.98;letter-spacing:-.025em;max-width:9em}
+.contact .lede{margin-top:24px;font-size:17.5px;color:var(--ink-2);max-width:30em}
+.next{list-style:none;margin:40px 0 0;padding:0;display:grid;gap:4px}
+.next li{display:grid;grid-template-columns:40px 1fr;gap:14px;padding:18px 0;border-top:1px solid rgba(13,20,36,.08)}
+.next .n{font-family:var(--mono);font-size:12px;color:var(--blue);padding-top:4px}
+.next b{display:block;font-weight:500;font-size:17px;letter-spacing:-.02em}
+.next p{font-size:14.5px;color:var(--ink-2);margin-top:4px}
+.contact-card{position:relative;background:rgba(255,255,255,.88);border:1px solid #fff;border-radius:28px;padding:34px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 2px 4px rgba(13,20,36,.03),0 50px 90px -46px rgba(26,59,168,.45);overflow:hidden}
+.cf-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 16px}
+.cf-field{display:flex;flex-direction:column;gap:8px;min-width:0}
+.cf-field.full{grid-column:1/-1}
+.cf-field label,.cf-label{font-size:13px;font-weight:500;color:var(--ink)}
+.cf-field label em{font-style:normal;font-weight:400;color:var(--ink-3);margin-left:4px}
+.cf-field input:not([type=radio]),.cf-field select,.cf-field textarea{width:100%;border:1px solid var(--line);background:#fff;border-radius:14px;padding:13px 15px;font-size:15px;color:var(--ink);outline:none;transition:border-color .5s var(--ease-out),box-shadow .5s var(--ease-out),background .4s}
+.cf-field textarea{resize:vertical;min-height:110px;line-height:1.5}
+.cf-field input::placeholder,.cf-field textarea::placeholder{color:#A6AEBD}
+.cf-field input:hover,.cf-field select:hover,.cf-field textarea:hover{border-color:var(--tint-2)}
+.cf-field input:focus,.cf-field select:focus,.cf-field textarea:focus{border-color:var(--blue);box-shadow:0 0 0 4px var(--tint)}
+.cf-select{position:relative}
+.cf-select select{appearance:none;-webkit-appearance:none;padding-right:40px;cursor:pointer}
+.cf-select select:invalid,.cf-select select option[value=""]{color:#A6AEBD}
+.cf-select .lucide{position:absolute;right:14px;top:50%;translate:0 -50%;color:var(--ink-3);pointer-events:none}
+.cf-chips{display:flex;flex-wrap:wrap;gap:8px}
+.cf-chips label{cursor:pointer}
+.cf-chips input{position:absolute;opacity:0;pointer-events:none}
+.cf-chips span{display:inline-flex;align-items:center;height:42px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:#fff;font-size:14px;font-weight:400;color:var(--ink-2);transition:background .5s var(--ease-out),color .4s,border-color .5s,box-shadow .5s var(--ease-out)}
+.cf-chips label:hover span{border-color:var(--tint-2);color:var(--ink)}
+.cf-chips input:checked+span{background:#0D1424;border-color:#0D1424;color:#fff;box-shadow:0 10px 22px -12px rgba(13,20,36,.6)}
+.cf-chips input:focus-visible+span{outline:2px solid var(--blue);outline-offset:2px}
+.cf-err{font-size:12.5px;color:var(--red);min-height:0;max-height:0;opacity:0;overflow:hidden;transition:max-height .5s var(--ease-io),opacity .4s var(--ease-io)}
+.cf-field.bad .cf-err{max-height:24px;opacity:1}
+.cf-field.bad input,.cf-field.bad select{border-color:color-mix(in srgb,var(--red) 60%,transparent);box-shadow:0 0 0 4px color-mix(in srgb,var(--red) 10%,transparent)}
+.cf-submit{width:100%;justify-content:center;margin-top:24px;height:54px}
+.cf-submit.sending{opacity:.75;pointer-events:none}
+.cf-note{text-align:center;font-size:12.5px;color:var(--ink-3);margin-top:12px}
+#contactForm{transition:opacity .4s var(--ease-io),transform .45s var(--ease-io),filter .4s var(--ease-io)}
+#contactForm.out{opacity:0;transform:translateY(8px);filter:blur(4px)}
+.cf-done{display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;padding:46px 10px 36px;opacity:0;transform:translateY(10px);transition:opacity .7s var(--ease-out),transform .8s var(--ease-out)}
+.cf-done.in{opacity:1;transform:none}
+.cf-done h3{font-family:var(--serif);font-weight:300;font-size:42px;letter-spacing:-.02em;line-height:1}
+.cf-done p{color:var(--ink-2);max-width:26em}
+.cf-done .cta{margin-top:10px}
+.cf-check{width:64px;height:64px}
+.cf-check svg{width:100%;height:100%;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.cf-check circle{stroke:var(--green);stroke-width:2.5;stroke-dasharray:151;stroke-dashoffset:151;transition:stroke-dashoffset 1s var(--ease-io) .1s}
+.cf-check path{stroke:var(--green);stroke-width:3.5;stroke-dasharray:40;stroke-dashoffset:40;transition:stroke-dashoffset .7s var(--ease-out) .8s}
+.cf-done.in .cf-check circle,.cf-done.in .cf-check path{stroke-dashoffset:0}
+@media (max-width:1000px){.contact-grid{grid-template-columns:1fr;gap:48px}}
+@media (max-width:600px){.contact-card{padding:22px 18px}.cf-grid{grid-template-columns:1fr}}
+[hidden]{display:none!important}
+.cf-select select:has(option[value=""]:checked){color:#A6AEBD}
+
+/* How it works: idle (collapsed, quiet) until the section scrolls into view */
+.stack.idle .sc-body{opacity:0!important}
+.stack.idle .sc-body>*{opacity:0!important;transform:translateY(10px)!important;filter:blur(4px)!important}
+.stack.idle .bx .trk i,.stack.idle .fax .ln{width:0!important}
+.stack.idle .chart .ln{stroke-dashoffset:700!important}
+
+/* Explorer tabs: progress ring around the icon replaces the bottom bar (scoped to .rs so the Lucide icon is untouched) */
+.ex-tab{padding-left:8px;gap:10px}
+.ex-tab .bar{display:none}
+.ex-tab .ring{position:relative;width:32px;height:32px;flex:none;display:grid;place-items:center;border-radius:50%;background:var(--tint);transition:background .6s var(--ease-out)}
+.ex-tab .ring .rs{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg);overflow:visible;pointer-events:none}
+.ex-tab .ring .rs circle{fill:none;stroke-width:2.2}
+.ex-tab .ring .rs .trk{stroke:transparent;transition:stroke .5s var(--ease-out)}
+.ex-tab .ring .rs .fill{stroke:#9DB6FF;stroke-linecap:round;stroke-dasharray:100.6;stroke-dashoffset:100.6;opacity:0;transition:opacity .4s var(--ease-out)}
+.ex-tab .ring .lucide{position:relative;width:16px;height:16px}
+.ex-tab[aria-selected="true"] .ring{background:rgba(255,255,255,.08)}
+.ex-tab[aria-selected="true"] .ring .rs .trk{stroke:rgba(255,255,255,.14)}
+.ex-tab[aria-selected="true"] .ring .rs .fill{opacity:1;animation:ringfill var(--dur,5600ms) linear forwards}
+.paused .ex-tab .ring .rs .fill{animation-play-state:paused}
+@keyframes ringfill{to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){.ex-tab[aria-selected="true"] .ring .rs .fill{animation:none;stroke-dashoffset:0}}
+
+/* Explorer tabs: the active pill itself is the progress bar */
+.ex-tab{isolation:isolate}
+.ex-tab .pf{position:absolute;inset:0;z-index:-1;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(90deg,rgba(110,149,255,.18) 0%,rgba(110,149,255,.34) 100%);
+  transform:scaleX(0);transform-origin:left center;opacity:0;transition:opacity .45s var(--ease-out)}
+.ex-tab .pf::after{content:"";position:absolute;right:0;top:18%;bottom:18%;width:2px;border-radius:2px;background:rgba(157,182,255,.9);box-shadow:0 0 12px rgba(157,182,255,.8)}
+.ex-tab[aria-selected="true"] .pf{opacity:1;animation:pillfill var(--dur,5600ms) linear forwards}
+.paused .ex-tab .pf{animation-play-state:paused}
+@keyframes pillfill{to{transform:scaleX(1)}}
+@media (prefers-reduced-motion:reduce){.ex-tab[aria-selected="true"] .pf{animation:none;transform:scaleX(1)}}
+.ex-tab .pf{inset:0 auto 0 0;width:0;transform:none}
+@keyframes pillfill{from{width:0}to{width:100%}}
+@media (prefers-reduced-motion:reduce){.ex-tab[aria-selected="true"] .pf{width:100%}}
+.ex-tab .pf::after{display:none}
+.ex-tab .pf{border-radius:0}

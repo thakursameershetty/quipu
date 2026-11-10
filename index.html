@@ -267,7 +267,6 @@
           <div class="docrow" style="--i:1"><span class="t">FAX</span><div><b>Itemized statement</b><span>St. Brennan Medical · 4 pages</span></div><span class="chip b">Parsed</span></div>
           <div class="docrow" style="--i:2"><span class="t">@</span><div><b>"Why do I owe $3,482?"</b><span>Email from Maria A. · tagged hardship</span></div><span class="chip a">Needs reply</span></div>
           <div class="docrow" style="--i:3"><span class="t">PDF</span><div><b>Anesthesia invoice</b><span>Dallas Anesthesia Assoc. · out of network</span></div><span class="chip r">Flagged</span></div>
-          <div class="docrow" style="--i:4"><span class="t">IMG</span><div><b>Insurance card</b><span>Member ID verified</span></div><span class="chip g">Verified</span></div>
         </div>
       </div>
       <div class="sc">
@@ -504,19 +503,51 @@
   </div>
 </section>
 
-<!-- ================= CLOSING ================= -->
-<section class="closing" id="contact">
-  <span class="blob b1" style="opacity:.6"></span><span class="blob b2" style="opacity:.6"></span>
-  <span class="cap z1"></span><span class="cap z2"></span><span class="cap z3"></span>
-  <div class="container">
-    <div data-r><span class="kicker">Get started</span><h2>Healthcare costs, settled fairly.</h2></div>
-    <p data-r style="--d:1">We're onboarding advocate teams now. Leave your work email and we'll walk you through Quipu on a real case.</p>
-    <form class="demo" id="demo" data-r style="--d:2" novalidate>
-      <label class="sr" for="demoEmail">Work email</label>
-      <input id="demoEmail" type="email" placeholder="you@company.com" autocomplete="email">
-      <button class="cta" type="submit">Request a demo <i data-lucide="arrow-right" class="arr" width="14" height="14"></i></button>
-    </form>
-    <p class="demo-msg" id="demoMsg" aria-live="polite"></p>
+<!-- ================= CONTACT ================= -->
+<section class="contact" id="contact">
+  <span class="blob cb1" aria-hidden="true"></span><span class="blob cb2" aria-hidden="true"></span>
+  <div class="container contact-grid">
+    <div class="contact-copy">
+      <div data-r><span class="kicker">Contact</span><h2>Healthcare costs, settled fairly.</h2></div>
+      <p class="lede" data-r style="--d:1">We're onboarding advocate teams now. Tell us a little about your caseload and we'll show you Quipu working on a real case.</p>
+      <ol class="next" data-r style="--d:2">
+        <li><span class="n">01</span><div><b>We get back to you</b><p>Someone from the team replies to set up a time that works.</p></div></li>
+        <li><span class="n">02</span><div><b>A walkthrough on your case</b><p>Bring a redacted bill and EOB, and watch the agents and Nia work it end to end.</p></div></li>
+        <li><span class="n">03</span><div><b>A pilot on part of your queue</b><p>Start with a slice of your caseload and see the time saved before rolling out.</p></div></li>
+      </ol>
+    </div>
+
+    <div class="contact-card" data-r style="--d:1">
+      <form id="contactForm" novalidate>
+        <div class="cf-grid">
+          <div class="cf-field"><label for="cfName">Full name</label><input id="cfName" name="name" autocomplete="name" placeholder="Rosa Martinez"><span class="cf-err" id="cfNameErr"></span></div>
+          <div class="cf-field"><label for="cfEmail">Work email</label><input id="cfEmail" name="email" type="email" autocomplete="email" placeholder="you@company.com"><span class="cf-err" id="cfEmailErr"></span></div>
+          <div class="cf-field"><label for="cfOrg">Organization</label><input id="cfOrg" name="organization" autocomplete="organization" placeholder="Your advocacy team"><span class="cf-err" id="cfOrgErr"></span></div>
+          <div class="cf-field"><label for="cfRole">Your role</label>
+            <div class="cf-select"><select id="cfRole" name="role">
+              <option value="" selected disabled>Choose one</option>
+              <option>Patient advocate</option><option>Advocacy team lead</option><option>Benefits or HR team</option><option>Patient or family member</option><option>Other</option>
+            </select><i data-lucide="chevron-down" width="16" height="16"></i></div>
+            <span class="cf-err" id="cfRoleErr"></span></div>
+          <div class="cf-field full"><span class="cf-label" id="cfVolLabel">Cases per month</span>
+            <div class="cf-chips" role="radiogroup" aria-labelledby="cfVolLabel">
+              <label><input type="radio" name="volume" value="Under 50"><span>Under 50</span></label>
+              <label><input type="radio" name="volume" value="50–200"><span>50–200</span></label>
+              <label><input type="radio" name="volume" value="200–1,000"><span>200–1,000</span></label>
+              <label><input type="radio" name="volume" value="1,000+"><span>1,000+</span></label>
+            </div></div>
+          <div class="cf-field full"><label for="cfMsg">What would you like to see? <em>Optional</em></label><textarea id="cfMsg" name="message" rows="4" placeholder="e.g. how Quipu handles balance billing and charity-care deadlines"></textarea></div>
+        </div>
+        <button class="cta solid lg cf-submit" type="submit"><span>Request a demo</span><i data-lucide="arrow-right" class="arr" width="16" height="16"></i></button>
+        <p class="cf-note">We'll only use these details to reply to you.</p>
+      </form>
+      <div class="cf-done" id="cfDone" hidden>
+        <span class="cf-check"><svg viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="24"/><path d="M15 27l7 7 15-16"/></svg></span>
+        <h3 id="cfDoneTitle">Thanks.</h3>
+        <p id="cfDoneText">We'll be in touch soon.</p>
+        <button class="cta ghost" type="button" id="cfAgain">Send another request</button>
+      </div>
+    </div>
   </div>
 </section>
 </main>
@@ -534,7 +565,7 @@
       <div class="f-col"><h4>Company</h4><a href="#contact">Contact</a><a href="#contact">Request a demo</a></div>
     </div>
     <div class="f-big" aria-hidden="true">Quipu</div>
-    <div class="f-bot"><span>© 2026 Quipu. All rights reserved.</span><span>Quipu is not an insurance company.</span></div>
+    <div class="f-bot"><span>© 2026 Quipu. All rights reserved.</span></div>
   </div>
 </footer>
 
