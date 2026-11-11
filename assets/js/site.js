@@ -1,4 +1,4 @@
-/* Quipu site interactions. Every motion uses eased curves; only timers/progress run linear. */
+/* Quipus site interactions. Every motion uses eased curves; only timers/progress run linear. */
 (function () {
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -115,7 +115,7 @@
   function makeCursor(el, box, scaleOf) {
     const body = $('.ncb', el), msg = $('.msg', el);
     const fit = () => {
-      const prev = body.offsetWidth; body.style.width = 'auto';
+      const prev = body.offsetWidth; body.style.width = 'max-content';
       const next = body.offsetWidth; body.style.width = prev + 'px'; void body.offsetWidth; body.style.width = next + 'px';
     };
     return {
@@ -186,7 +186,7 @@
       await wait(1300);
       await cur.say('Found 3 errors on this bill');
       await wait(2600);
-      await cur.say('$2,870.80 removed for Maria');
+      await cur.say('Dispute drafted for your advocate');
     }
     intro();
   })();
@@ -218,13 +218,13 @@
         rule: 'Billing error', fix: 'Asks the hospital for a corrected bill without the repeat line.',
         org: 'St. Brennan Medical Center', meta: 'Itemized statement · 09/18', msg: 'Same test, same time stamp (07:42)',
         rows: [['85025', 'Complete blood count', 142], ['85025', 'Complete blood count', 142, 0], ['80048', 'Basic metabolic panel', 12.9]] },
-      { icon: 'scale', name: 'Balance billing', desc: 'An in-network provider charging more than the amount your plan allowed.',
-        rule: 'Network contract with your plan', fix: 'Disputes the balance and cites the allowed amount on the EOB.',
+      { icon: 'scale', name: 'Balance billing', desc: 'An in-network provider billing the member more than the amount the plan allowed.',
+        rule: 'Network contract with the plan', fix: 'Disputes the balance and cites the allowed amount on the EOB.',
         org: 'St. Brennan Medical Center', meta: 'Statement · allowed $2,274.80', msg: 'Billed above the allowed amount',
         rows: [['29881', 'Arthroscopy, knee', 412], ['—', 'Facility fee balance', 1675.2, 0]] },
-      { icon: 'shield-check', name: 'Surprise bills', desc: 'An out-of-network doctor at an in-network hospital that you never chose.',
+      { icon: 'shield-check', name: 'Surprise bills', desc: 'An out-of-network doctor at an in-network hospital that the member never chose.',
         rule: 'No Surprises Act', fix: 'Asks the insurer to reprocess the claim at in-network cost sharing.',
-        org: 'Dallas Anesthesia Associates', meta: 'Out-of-network invoice', msg: 'You had no choice of anesthesiologist',
+        org: 'Dallas Anesthesia Associates', meta: 'Out-of-network invoice', msg: 'Member had no choice of anesthesiologist',
         rows: [['01400', 'Anesthesia, knee procedure', 1240, 186.4], ['99100', 'Anesthesia modifier', 0]] },
       { icon: 'trending-up', name: 'Upcoding', desc: 'A visit billed at a more complex level than the medical record supports.',
         rule: 'Codes must match the record', fix: 'Requests the visit notes and asks for the correct level.',
@@ -242,7 +242,7 @@
         rule: 'Corrected claim to the insurer', fix: 'Fixes the member ID and resubmits the claim to the insurer.',
         org: 'Cedar Ridge Emergency', meta: 'Claim denied 08/27', msg: 'Member ID had one digit wrong', chip: 'Denied: coverage not found',
         rows: [['99283', 'Emergency visit, level 3', 2290.5, 310]] },
-      { icon: 'heart-handshake', name: 'Missed assistance', desc: 'Hospital financial-assistance programs the patient qualifies for but never applied to.',
+      { icon: 'heart-handshake', name: 'Missed assistance', desc: 'Hospital financial-assistance programs the member qualifies for but never applied to.',
         rule: 'Hospital financial-assistance policy', fix: 'Fills in the charity-care application and sends it with proof of income.',
         org: 'St. Brennan Medical Center', meta: 'Household of 3 · $58k', msg: 'Under 300% of the poverty line: qualifies',
         rows: [['—', 'Balance after insurance', 3100, 0]] },
@@ -298,19 +298,43 @@
       if (reduce) { $$('.xr[data-f]', rowsEl).forEach(r => r.classList.add('hl', 'struck')); doc.classList.add('done'); $('#exTot').textContent = fmt(after); return; }
       await wait(450); if (id !== run) return;
       const flagged = $$('.xr[data-f]', rowsEl);
-      cur.to(flagged[0], .45, .7, true); cur.show(); $('.msg', $('#exCursor')).textContent = 'Checking';
+      const fx = innerWidth < 600 ? .22 : .5; // leave room for the label on phones
+      cur.to(flagged[0], fx - .05, .7, true); cur.show(); $('.msg', $('#exCursor')).textContent = 'Checking';
       await wait(60);
-      for (const r of flagged) { r.classList.add('hl'); cur.to(r, .5, .75); await wait(260); }
+      for (const r of flagged) { r.classList.add('hl'); cur.to(r, fx, .75); await wait(260); }
       await cur.say(ERRORS[k].msg);
       await wait(700); if (id !== run) return;
       flagged.forEach(r => r.classList.add('struck'));
       await wait(500); if (id !== run) return;
       doc.classList.add('done'); countTo($('#exTot'), before, after);
     }
-    function schedule() { clearTimeout(timer); if (!paused && inView && !reduce) timer = setTimeout(() => { show((i + 1) % ERRORS.length); schedule(); }, DUR); }
-    tabs.forEach((t, k) => t.addEventListener('click', () => { show(k); schedule(); }));
+    // Phones: the checks are a grid, and tapping one opens the statement in a bottom sheet
+    const mq = matchMedia('(max-width:600px)'), card = $('#exCard'), scrim = $('#exScrim'), closeBtn = $('#exClose');
+    let opener = null;
+    function openSheet(btn) {
+      opener = btn; clearTimeout(timer);
+      card.setAttribute('role', 'dialog'); card.setAttribute('aria-modal', 'true'); card.setAttribute('aria-labelledby', 'exName');
+      root.classList.add('sheet-open'); document.documentElement.classList.add('sheet-lock');
+      setTimeout(() => closeBtn.focus({ preventScroll: true }), 50);
+    }
+    function closeSheet() {
+      if (!root.classList.contains('sheet-open')) return;
+      root.classList.remove('sheet-open'); document.documentElement.classList.remove('sheet-lock');
+      ['role', 'aria-modal', 'aria-labelledby'].forEach(a => card.removeAttribute(a));
+      run++; cur.show(false);
+      opener && opener.focus({ preventScroll: true });
+    }
+    closeBtn.addEventListener('click', closeSheet);
+    scrim.addEventListener('click', closeSheet);
+    addEventListener('keydown', e => { if (e.key === 'Escape') closeSheet(); });
+    mq.addEventListener('change', () => { if (!mq.matches) closeSheet(); });
+    function schedule() { clearTimeout(timer); if (!paused && inView && !reduce && !mq.matches) timer = setTimeout(() => { show((i + 1) % ERRORS.length); schedule(); }, DUR); }
+    tabs.forEach((t, k) => t.addEventListener('click', () => {
+      if (mq.matches) { openSheet(t); show(k, true); return; }
+      show(k); schedule();
+    }));
     tabsEl.addEventListener('keydown', e => {
-      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      if (mq.matches || (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft')) return;
       const n = (i + (e.key === 'ArrowRight' ? 1 : -1) + ERRORS.length) % ERRORS.length;
       tabs[n].focus(); show(n); schedule();
     });
@@ -351,6 +375,17 @@
     if (reduce) { rx = 0; sc = 1; apply(); }
     else { addEventListener('scroll', target, { passive: true }); addEventListener('resize', target); target(); }
 
+    // Tablets (761–1100px): the desktop layout is kept and scaled down to the stage width; phones get their own layout (see site.css)
+    const DESIGN_W = 1120, fitMq = matchMedia('(min-width:761px) and (max-width:1100px)');
+    function fit() {
+      if (!fitMq.matches) { app.style.removeProperty('--fit'); stage.style.height = ''; return; }
+      const k = Math.min(1, stage.clientWidth / DESIGN_W);
+      app.style.setProperty('--fit', k.toFixed(4));
+      stage.style.height = Math.ceil(app.offsetHeight * k) + 'px';
+    }
+    fit(); addEventListener('resize', fit);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+
     const scale = () => app.getBoundingClientRect().width / app.offsetWidth || 1;
     const nia = makeCursor($('#niaCursor'), app, scale), jordan = makeCursor($('#advCursor'), app, scale);
     const tasks = $$('[data-t]', app), draft = $('#draft'), st = $('#draftSt'), btn = $('#approveBtn'), log = $('#npLog');
@@ -372,15 +407,16 @@
       for (;;) {
         reset();
         await wait(700);
-        nia.to(tasks[0], .9, .5, true); nia.show();
+        const ph = innerWidth <= 760; // phones: keep Nia's label inside the card
+        nia.to(tasks[0], ph ? .4 : .9, .5, true); nia.show();
         for (let k = 0; k < tasks.length; k++) {
-          nia.to(tasks[k], .78, .55);
+          nia.to(tasks[k], ph ? .35 : .78, .55);
           await nia.say(NIA_MSGS[k]);
           tasks[k].className = 'task run'; await wait(1100);
           tasks[k].className = 'task done'; await wait(200);
           if (k === 3) draft.classList.add('written');
         }
-        nia.to(draft, .55, .3);
+        nia.to(draft, ph ? .3 : .55, ph ? .02 : .3); // phones: point at the title so the label clears the buttons
         await nia.say('Ready for you, Rosa');
         draft.classList.add('ready'); st.className = 'chip a st'; st.textContent = 'Needs approval';
         post('n', 'Should the duplicate CBC go in this letter, or wait for round two?');
@@ -391,14 +427,14 @@
         await wait(1100);
 
         if (btn.offsetParent) {
-          jordan.to(btn, 1.8, 2.6, true); jordan.show();
+          jordan.to(btn, ph ? .85 : 1.8, 2.6, true); jordan.show();
           await wait(120); jordan.to(btn, .5, .55);
           await wait(1350);
           await jordan.click();
           btn.classList.add('press'); await wait(160); btn.classList.remove('press');
           draft.classList.remove('ready'); draft.classList.add('sent'); st.className = 'chip g st'; st.textContent = 'Sent';
           await wait(700);
-          jordan.to(btn, 2.2, 3.2);
+          jordan.to(btn, ph ? .75 : 2.2, 3.2);
           post('u', "Remind me if they don't reply.");
           await wait(1100);
           await nia.say("I'll follow up on Nov 20");
@@ -482,6 +518,7 @@
       });
       steps.forEach((s, k) => {
         s.classList.toggle('on', k === i);
+        s.classList.toggle('done', k < i); // phones: earlier segments of the progress bar stay filled
         const bar = $('.prog i', s); bar.style.animation = 'none'; void bar.offsetWidth; bar.style.animation = '';
       });
       $('#steps').style.setProperty('--dur', DUR + 'ms');
@@ -522,10 +559,10 @@
   (function () {
     const root = $('#eobv'), table = $('#eobTable'); if (!root || !table) return;
     const TERMS = {
-      billed: { name: 'Billed', c: '#8E97A8', desc: "The provider's full list price. Almost nobody should pay this number." },
-      allowed: { name: 'Allowed', c: '#2F63F0', desc: 'The rate your insurer agreed to. An in-network provider can\'t charge you more than this.' },
-      paid: { name: 'Plan paid', c: '#18A574', desc: 'What the insurer actually paid the provider for each service.' },
-      owe: { name: 'You owe', c: '#E5484D', desc: 'Your share after insurance. It should equal allowed minus plan paid. If the bill asks for more, something is wrong.' }
+      billed: { name: 'Billed', c: '#8E97A8', desc: "The provider's full list price. Almost no member should pay this number." },
+      allowed: { name: 'Allowed', c: '#2F63F0', desc: 'The rate the plan agreed to. An in-network provider can\'t bill the member more than this.' },
+      paid: { name: 'Plan paid', c: '#18A574', desc: 'What the plan actually paid the provider for each service.' },
+      owe: { name: 'Member owes', c: '#E5484D', desc: 'The member\'s share after the plan pays. It should equal allowed minus plan paid. If the bill asks for more, something is wrong.' }
     };
     const ORDER = ['billed', 'allowed', 'paid', 'owe'];
     const cap = $('#termCap'), dot = $('#termDot'), nm = $('#termName'), ds = $('#termDesc');

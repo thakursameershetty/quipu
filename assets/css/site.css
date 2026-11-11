@@ -1,4 +1,4 @@
-/* Quipu — marketing site
+/* Quipus — marketing site
    Layout: full-bleed bands (hero gradient, white, tinted, navy) with content in a 1280px container.
    Fixed glass navbar. Glass widgets + glossy objects for depth. Motion is eased everywhere. */
 :root{
@@ -912,7 +912,7 @@ th.hl .colbtn{background:#fff;border-color:color-mix(in srgb,var(--c) 40%,transp
 .eobv [data-col="owe"]{--c:#E5484D}
 .eobv tbody tr:last-child td[data-col].hl{border-bottom-left-radius:10px;border-bottom-right-radius:10px}
 
-/* Who Quipu contacts: keep the orbit inside the card */
+/* Who Quipus contacts: keep the orbit inside the card */
 .parties{overflow:hidden;border-radius:16px;margin:0 -6px -6px}
 
 /* How it works: steps open with their real height, list height locked by JS */
@@ -1047,3 +1047,245 @@ h3,.mtext h3,.err h3,.tile h3,.bc.blue h3,.ex-info h3{font-weight:300}
 @media (prefers-reduced-motion:reduce){.ex-tab[aria-selected="true"] .pf{width:100%}}
 .ex-tab .pf::after{display:none}
 .ex-tab .pf{border-radius:0}
+
+/* ========== WHO IT'S FOR (TPAs + advocacy companies) ========== */
+.chain{display:flex;align-items:stretch;gap:10px;margin:-16px 0 28px;padding:14px;border-radius:24px;background:var(--band);border:1px solid var(--line)}
+.link-n{flex:1 1 0;min-width:0;display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:16px;background:var(--bg);box-shadow:var(--shadow-s)}
+.link-n .ic{width:38px;height:38px;flex:none;border-radius:12px;display:grid;place-items:center;background:var(--tint);color:var(--blue)}
+.link-n b{display:block;font-weight:500;font-size:15px;letter-spacing:-.02em}
+.link-n span:not(.ic){display:block;font-size:12.5px;line-height:1.35;color:var(--ink-3);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.link-n>div{min-width:0}
+.link-n.hi{background:linear-gradient(165deg,#2C55E6,#1A36B8);color:#fff;box-shadow:0 14px 30px -14px var(--royal)}
+.link-n.hi .ic{background:rgba(255,255,255,.14);color:#fff}
+.link-n.hi span:not(.ic){color:rgba(255,255,255,.72)}
+.chain .arrow{flex:none;align-self:center;position:relative;width:22px;height:1.5px;background:var(--ink-3);opacity:.55}
+.chain .arrow::after{content:"";position:absolute;right:-1px;top:50%;width:7px;height:7px;border-top:1.5px solid currentColor;border-right:1.5px solid currentColor;color:var(--ink-3);transform:translateY(-50%) rotate(45deg)}
+.aud{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.aud-card{position:relative;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;gap:14px;padding:34px;border-radius:28px;background:var(--bg);border:1px solid var(--line);transition:transform 1.04s var(--ease-out),box-shadow 1.04s var(--ease-out)}
+.aud-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-l)}
+.aud-card.dark{border:0;color:#fff;background:radial-gradient(80% 60% at 90% 100%,#5C86FA,transparent 70%),linear-gradient(165deg,#2C55E6,#1A36B8 70%,#142A8F)}
+.aud-ic{width:50px;height:50px;border-radius:16px;display:grid;place-items:center;background:var(--tint);color:var(--blue)}
+.aud-card.dark .aud-ic{background:rgba(255,255,255,.12);color:#fff}
+.aud-k{font-family:var(--mono);font-size:11.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);margin-top:8px}
+.aud-card.dark .aud-k{color:rgba(255,255,255,.65)}
+.aud-card h3{font-size:clamp(28px,2.6vw,38px);line-height:1.05;letter-spacing:-.015em}
+.aud-card p{color:var(--ink-2);font-size:15.5px;max-width:34em}
+.aud-card.dark p{color:rgba(255,255,255,.78)}
+.aud-card ul{list-style:none;padding:0;margin:auto 0 0;padding-top:10px;display:flex;flex-wrap:wrap;gap:6px}
+.aud-card li{font-size:12.5px;padding:7px 12px;border-radius:999px;background:var(--soft);color:var(--ink-2)}
+.aud-card.dark li{background:rgba(255,255,255,.12);color:#fff}
+@media (max-width:1000px){
+  .chain{flex-direction:column;align-items:stretch;gap:6px;margin-top:-8px}
+  .chain .arrow{width:1.5px;height:16px;align-self:center}
+  .chain .arrow::after{right:auto;left:50%;top:auto;bottom:-1px;transform:translateX(-50%) rotate(135deg)}
+}
+@media (max-width:900px){.aud{grid-template-columns:1fr}.aud-card{padding:26px 22px}}
+
+/* Retail teaser + small bits */
+.soon-link{color:var(--blue);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;white-space:nowrap}
+.soon-tag{display:inline-block;margin-left:6px;padding:1px 7px;border-radius:999px;font-size:10.5px;letter-spacing:.04em;vertical-align:2px;background:var(--tint);color:var(--blue)}
+.cf-note a{color:var(--blue)}
+.swipe{display:none;align-items:center;gap:6px;margin-top:8px;font-size:12.5px;color:var(--ink-3)}
+
+/* ========== MOBILE FIXES ========== */
+/* nothing may push the page wider than the screen */
+html,body{overflow-x:clip}
+.ex-doc{overflow:hidden}
+
+@media (max-width:760px){
+  /* workspace mock: keep the browser bar on one line */
+  .app-top .me{display:none}
+  .url{justify-content:flex-start;padding:0 10px;font-size:11.5px;white-space:nowrap;overflow:hidden;min-width:0}
+}
+
+@media (max-width:700px){
+  /* EOB table: service column stays put while the numbers scroll */
+  .swipe{display:flex}
+  .eobv table{min-width:600px;font-size:14px}
+  .eobv td{padding:13px 10px}
+  .eobv td .cd{display:none}
+  .eobv th:first-child,.eobv td:first-child{position:sticky;left:0;z-index:1;background:var(--bg);box-shadow:8px 0 12px -10px rgba(13,20,36,.25)}
+  .colbtn{height:34px;padding:0 10px;font-size:12px}
+  /* "Who Quipus contacts": pull the outer nodes inside the card */
+  .parties .node[style*="--k:0"]{left:22%!important}
+  .parties .node[style*="--k:1"]{left:28%!important}
+  .parties .node[style*="--k:3"]{left:76%!important}
+  .parties .node[style*="--k:4"]{left:78%!important}
+}
+
+@media (max-width:600px){
+  /* Nia's cursor labels wrap instead of running off the card */
+  .ncb{white-space:normal;max-width:170px}
+  /* bill review rows: drop the code column so descriptions aren't cut off */
+  .xr{grid-template-columns:minmax(0,1fr) auto;gap:10px}
+  .xr .c{display:none}
+  .xr .d{white-space:normal}
+  /* how it works: no ghost card above the active one */
+  #how .stack{height:470px}
+  #how .sc[data-pos="prev"]{top:0;opacity:0;pointer-events:none}
+  #how .sc[data-pos="gone"]{top:-40px}
+  #how .sc[data-pos="active"]{top:0;height:400px}
+  #how .sc[data-pos="next"]{top:412px}
+  #how .sc[data-pos="hidden"]{top:470px}
+  .bars{grid-template-columns:1fr;gap:12px}
+  .sum{font-size:21px}
+}
+
+@media (max-width:560px){
+  /* hero: both statements visible side by side, no clutter */
+  .sky .sub .br{display:none}
+  .sky h1{font-size:clamp(48px,13vw,64px)}
+  .scene{height:330px;margin-top:40px}
+  .sheet{width:182px;padding:14px 11px 14px;font-size:11px}
+  .sheet .h{font-size:10px}
+  .sheet .h b{font-size:11.5px}
+  .sheet .r{font-size:11px;padding:5px 0}
+  .sheet .r span:last-child{font-size:10.5px}
+  .sheet .tot b{font-size:22px}
+  .sheet .tag{height:34px;padding:0 13px;font-size:13.5px;top:-17px}
+  .sheet.before{left:calc(50% - 189px);bottom:64px;transform:rotate(-4deg)}
+  .sheet.before .tag{left:50%}
+  .sheet.after{left:calc(50% + 2px);bottom:40px;transform:rotate(3deg)}
+  .sheet.after .saved{font-size:10.5px}
+  .scene .ncursor{display:none}
+}
+
+/* ========== BILL REVIEW on phones: grid of checks + bottom sheet ========== */
+.ex-scrim,.ex-close{display:none}
+@media (max-width:600px){
+  .ex-tabs{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:0;padding:0;overflow:visible}
+  .ex-tab{flex-direction:column;justify-content:center;align-items:center;gap:10px;height:auto;min-height:108px;padding:14px 6px;border-radius:20px;white-space:normal;text-align:center;font-size:13px;line-height:1.25;color:var(--ink)}
+  .ex-tab .ring{width:40px;height:40px}
+  .ex-tab .pf{display:none}
+  .ex-tab[aria-selected="true"]{background:var(--bg);border-color:var(--line);color:var(--ink);box-shadow:none}
+  .ex-tab[aria-selected="true"] .ring{background:var(--tint)}
+  .ex-tab[aria-selected="true"] .lucide{color:var(--blue)}
+  .ex-tab:active{transform:scale(.96);background:var(--soft)}
+
+  .ex-scrim{display:block;position:fixed;inset:0;z-index:120;background:rgba(10,18,38,.45);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:opacity .5s var(--ease-out)}
+  .sheet-open .ex-scrim{opacity:1;pointer-events:auto}
+  .ex-card{position:fixed;left:0;right:0;bottom:0;z-index:121;max-height:90vh;max-height:90dvh;overflow-y:auto;overscroll-behavior:contain;
+    border:0;border-radius:28px 28px 0 0;padding:52px 12px calc(12px + env(safe-area-inset-bottom,0px));
+    box-shadow:0 -20px 60px -20px rgba(10,18,38,.45);transform:translateY(105%);visibility:hidden;
+    transition:transform .6s var(--ease-io),visibility 0s linear .6s}
+  .sheet-open .ex-card{transform:none;visibility:visible;transition:transform .7s var(--ease-out)}
+  .ex-card::before{content:"";position:absolute;top:10px;left:50%;width:40px;height:5px;margin-left:-20px;border-radius:999px;background:rgba(13,20,36,.15)}
+  .ex-close{display:grid;place-items:center;position:absolute;top:10px;right:12px;width:36px;height:36px;border-radius:50%;border:0;background:var(--bg);color:var(--ink);cursor:pointer;box-shadow:var(--shadow-s)}
+  .ex-tot span{white-space:nowrap}
+  .ex-tot b{font-size:30px}
+  .ex-doc .dh{flex-wrap:wrap;gap:2px 12px}
+}
+html.sheet-lock,html.sheet-lock body{overflow:hidden}
+
+/* ========== WORKSPACE below 1100px: the real desktop layout, scaled to fit ==========
+   The app keeps a fixed 1120px design width and JS sets --fit (stage width / 1120). */
+@media (min-width:761px) and (max-width:1100px){
+  .stage{height:var(--stage-h,auto)}
+  .app{position:absolute;top:0;left:50%;width:1120px;margin-left:-560px;
+    transform:rotateX(var(--rx,16deg)) scale(calc(var(--sc,.94) * var(--fit,1)))}
+  .app-body{grid-template-columns:230px minmax(0,1fr) 270px;height:600px}
+  .q,.np{display:flex}
+  .cv-grid{grid-template-columns:1.25fr 1fr}
+  .app-top .me{display:flex}
+  .url{justify-content:center;padding:0;font-size:12.5px}
+  .ws-legend{margin-top:20px}
+}
+
+/* ========== WORKSPACE on phones: a real mobile layout of the same app ========== */
+.m-title{display:none}
+@media (max-width:760px){
+  .app{transform:none;border-radius:26px;box-shadow:0 2px 4px rgba(13,20,36,.04),0 40px 80px -36px rgba(26,59,168,.45),0 0 0 6px rgba(255,255,255,.7)}
+  .app-top{height:56px;padding:0 14px 0 10px;background:#fff}
+  .app-top .dots3,.app-top .url{display:none}
+  .m-title{display:flex;align-items:center;gap:4px;flex:1;font-size:14.5px;font-weight:500;color:var(--ink)}
+  .m-title .lucide{color:var(--ink-3)}
+  .m-title small{margin-left:6px;font-size:11px;font-weight:400;padding:2px 8px;border-radius:999px;background:var(--soft);color:var(--ink-2)}
+  .app-top .me{display:flex;font-size:0;gap:0}
+  .app-top .me i{width:30px;height:30px;font-size:10.5px}
+
+  .app-body{grid-template-columns:1fr;height:auto}
+  .q{display:none}
+  .cv{padding:18px 16px 16px;gap:12px}
+  .cv-h{align-items:center}
+  .cv-h h4{font-size:21px;line-height:1.2}
+  .cv-h h4 .sep{display:none}
+  .cv-h h4 .org{display:block;font-size:14px;font-weight:400;letter-spacing:-.01em;color:var(--ink-2);margin-top:2px}
+  .facts{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding-bottom:0;border-bottom:0}
+  .facts>div{padding:10px 12px;border-radius:12px;background:var(--soft);font-size:11.5px}
+  .facts b{font-size:15px;margin-top:2px}
+  .facts .f-ins{display:none}
+  .facts .dl{display:flex;width:auto}
+  .cv-grid{grid-template-columns:1fr;gap:10px}
+  .draft .row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .draft .btn-s{justify-content:center;height:38px}
+  .draft #approveBtn{grid-column:1/-1}
+  .draft .btn-s .long{display:none}
+  .draft .sentmsg{grid-column:1/-1}
+
+  .np{display:flex;border-left:0;border-top:1px solid var(--line);padding:14px 16px 16px}
+  .np-log{flex:none;height:230px}
+  .ws-legend{gap:8px 18px;font-size:12.5px}
+}
+@media (max-width:760px){
+  .draft .top{flex-direction:column;align-items:flex-start;gap:10px}
+  .draft .kind{align-items:flex-start}
+  .draft .kind b{line-height:1.35}
+  .np-log{height:190px}
+}
+
+/* Workspace on phones: shorter card, two-line heading */
+@media (max-width:760px){
+  .cv-grid>.box:first-child{display:none}
+  .cv{gap:10px;padding:16px 14px 14px}
+  .facts>div{padding:8px 11px}
+  .facts b{font-size:14.5px}
+  .task{padding:6px 0}
+  .np{padding:12px 14px 14px}
+  .np-h{padding-bottom:10px}
+  .np-log{height:150px;padding-top:10px}
+}
+@media (max-width:600px){
+  #workspace .sec-head h2{font-size:clamp(28px,8.4vw,36px);line-height:1.05}
+  #workspace .sec-head{margin-bottom:28px}
+}
+@media (max-width:760px){
+  .facts>div:nth-child(n+4){display:none}
+  .draft .lines{display:none}
+  .draft{gap:12px;padding:12px}
+  .box{padding:12px 14px}
+  .task{padding:5px 0;font-size:12.5px}
+  .np-h .orb{width:24px;height:24px}
+  .np-h div{display:flex;align-items:baseline;gap:8px}
+  .np-log{height:140px;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 34px);mask-image:linear-gradient(to bottom,transparent 0,#000 34px)}
+}
+
+/* ========== HOW IT WORKS on phones: segmented progress + current step + card ========== */
+@media (max-width:760px){
+  #how .case-grid{gap:16px}
+  #how .steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));column-gap:6px;row-gap:0;align-content:start;
+    margin-top:22px;padding:6px 16px 16px;border-radius:20px;background:var(--bg);box-shadow:var(--shadow-s)}
+  #how .step{display:contents}
+  #how .step .n,#how .step b,#how .step p{display:none}
+  #how .step .prog{display:block;grid-row:1;opacity:1;margin:0;height:24px;border-block:10px solid transparent;background-clip:padding-box;border-radius:999px;cursor:pointer}
+  #how .step:nth-child(1) .prog{grid-column:1}
+  #how .step:nth-child(2) .prog{grid-column:2}
+  #how .step:nth-child(3) .prog{grid-column:3}
+  #how .step:nth-child(4) .prog{grid-column:4}
+  #how .step:nth-child(5) .prog{grid-column:5}
+  #how .step.done .prog i{width:100%}
+  #how .step.on .n{display:block;grid-row:2;grid-column:1/-1;padding:6px 0 0;font-size:11.5px;color:var(--blue)}
+  #how .step.on .n::before{content:"Step "}
+  #how .step.on .n::after{content:" / 05";color:var(--ink-3)}
+  #how .step.on b{display:block;grid-row:3;grid-column:1/-1;margin-top:4px;font-size:18px;color:var(--ink)}
+  #how .step.on p{display:block;grid-row:4;grid-column:1/-1;margin-top:4px;font-size:14.5px}
+  #how .step.on p>span{overflow:visible}
+
+  /* one card at a time, directly under the step text */
+  #how .stack{height:400px}
+  #how .sc[data-pos="prev"],#how .sc[data-pos="next"],#how .sc[data-pos="hidden"]{opacity:0;pointer-events:none}
+  #how .sc[data-pos="prev"]{top:0}
+  #how .sc[data-pos="active"]{top:0;height:400px}
+  #how .sc[data-pos="next"]{top:400px}
+  #how .sc[data-pos="hidden"]{top:420px}
+  #how .sc[data-pos="gone"]{top:-40px}
+}

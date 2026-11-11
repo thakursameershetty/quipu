@@ -1,8 +1,8 @@
-# Quipu
+# Quipus
 
-Marketing site for Quipu: fair prices before the visit, fair bills after it.
+Product site for Quipus (the final S is silent), the AI workspace for TPAs and healthcare advocacy companies.
 
-Quipu's agents read every medical bill, EOB and fax, find what's wrong and draft the dispute. Patient advocates review and approve, with Nia, the built-in assistant, doing the legwork.
+Quipus agents read every medical bill, EOB and fax on a member's case, find what's wrong and draft the dispute. Advocates review and approve, with Nia, the built-in assistant, doing the legwork. The page is written for B2B buyers (TPAs and advocacy companies); the retail version for individuals is shown only as a "coming soon" teaser.
 
 ## Run it
 
