@@ -1459,3 +1459,5 @@ button,summary,.ex-tab,.cta,.cf-seg span,.burger,.replay{-webkit-user-select:non
 .ex-doc .ex-find .chip.b{color:var(--blue)}
 @media (max-width:600px){.ex-doc .ex-find b{font-size:14px}}
 .ex-doc .ex-find .ef-r{font-size:inherit;letter-spacing:0;text-transform:none;color:var(--ink)}
+/* hero: Nia's cursor visible on phones too (it points at the first member's name there) */
+@media (max-width:560px){.scene .ncursor{display:block}}

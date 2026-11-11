@@ -208,8 +208,10 @@
       requestAnimationFrame(f);
     }
     async function intro() {
-      const btn = $('.btn-s', rows[0]);
-      if (reduce) { await wait(120); cur.to(btn, .4, .9, true); cur.show(); return; }
+      // phones hide the Review buttons, so Nia points at the member's name there (room for its label inside the screen)
+      const phone = innerWidth <= 760, btn = phone ? $('.who b', rows[0]) : $('.btn-s', rows[0]);
+      const fx = phone ? .7 : .4, fy = phone ? .85 : .9;
+      if (reduce) { await wait(120); cur.to(btn, fx, fy, true); cur.show(); return; }
       rows.forEach(r => { r.classList.remove('ready'); const ch = $('.chip', r); ch.className = 'chip st'; ch.textContent = 'Preparing'; });
       $$('[data-hq]', scene).forEach(el => el.textContent = '0');
       await wait(2300);
@@ -218,7 +220,7 @@
       $$('.hq-row', scene).forEach(r => r.classList.add('idle'));
       const sr = scene.getBoundingClientRect();
       cur.at(sr.width * .9, sr.height * .98, true); cur.show();
-      await wait(100); cur.to(btn, .4, .9);
+      await wait(100); cur.to(btn, fx, fy);
       await wait(1300);
       await cur.say('4 cases ready for you');
       await wait(2600);
