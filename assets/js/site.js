@@ -5,6 +5,37 @@
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const wait = ms => new Promise(r => setTimeout(r, ms));
   const easeOut = t => 1 - Math.pow(1 - t, 3);
+  const onScreen = el => { const r = el.getBoundingClientRect(); return r.bottom > 0 && r.top < innerHeight; };
+
+  /* ---------- Haptics: short, light taps on phones ----------
+     Android: navigator.vibrate. iPhone (Safari 17.4+): toggling a hidden switch input inside a tap gives a system haptic.
+     Never before the visitor has touched the page, never with reduced motion, and rate-limited so it stays subtle. */
+  const haptic = (() => {
+    if (reduce || !matchMedia('(pointer: coarse)').matches) return () => {};
+    const canVibrate = typeof navigator.vibrate === 'function';
+    let sw = null;
+    if (!canVibrate) {
+      sw = document.createElement('label');
+      sw.setAttribute('aria-hidden', 'true');
+      sw.style.cssText = 'position:fixed;left:-200px;top:0;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none';
+      sw.innerHTML = '<input type="checkbox" switch tabindex="-1">';
+      document.body.appendChild(sw);
+    }
+    const PATTERN = { tick: 6, soft: 8, tap: 12, success: [12, 50, 18], error: [14, 40, 14] };
+    let last = 0;
+    return (kind = 'soft') => {
+      const ua = navigator.userActivation;
+      if (ua && !ua.hasBeenActive) return;
+      const now = performance.now(); if (now - last < 60) return; last = now;
+      if (canVibrate) { try { navigator.vibrate(PATTERN[kind] || 8); } catch (e) {} }
+      else if (sw && (!ua || ua.isActive)) sw.click();
+    };
+  })();
+  // Taps on anything interactive get a light tick
+  document.addEventListener('pointerdown', e => {
+    if (e.pointerType === 'mouse') return;
+    if (e.target.closest('a.cta, button, .ex-tab, .et, summary, .cf-seg label, .mobile-menu a, .step .prog, .links a')) haptic('soft');
+  }, { passive: true });
 
   /* ---------- Lucide icons (animated in CSS on hover / reveal) ---------- */
   if (window.lucide) lucide.createIcons({ attrs: { 'stroke-width': 1.75 } });
@@ -80,7 +111,6 @@
   };
   burger && burger.addEventListener('click', () => setMenu(!document.body.classList.contains('menu-open')));
   $$('#mobileMenu a').forEach(a => a.addEventListener('click', () => setMenu(false)));
-  addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
 
   /* ---------- Reveal on scroll + bento counters ---------- */
   function countUp(el) {
@@ -276,7 +306,9 @@
         `<div class="xr"${f !== undefined ? ' data-f' : ''}><span class="c">${c}</span><span class="d">${d}</span><span class="a"><span class="old">${fmt(a)}</span>${f !== undefined ? `<span class="fix">${fmt(f)}</span>` : ''}</span></div>`).join('');
       $('#exChip').textContent = e.chip || '';
       const before = e.rows.reduce((s, r) => s + r[2], 0), after = e.rows.reduce((s, r) => s + (r[3] !== undefined ? r[3] : r[2]), 0);
-      $('#exWas').textContent = fmt(before); $('#exTot').textContent = fmt(before);
+      const nFlag = e.rows.filter(r => r[3] !== undefined).length;
+      $('#exFindL').textContent = `Checking ${e.rows.length} line${e.rows.length > 1 ? 's' : ''}`;
+      $('#exFindAmt').textContent = ''; const st = $('#exFindSt'); st.className = 'chip st'; st.textContent = 'Reviewing';
       $('#exN').textContent = String(k + 1).padStart(2, '0') + ' / ' + String(ERRORS.length).padStart(2, '0');
       $('#exName').textContent = e.name; $('#exDesc').textContent = e.desc;
       $('#exRule').textContent = e.rule; $('#exFix').textContent = e.fix;
@@ -284,12 +316,13 @@
       $('#exSavedL').textContent = e.saved ? 'Refund owed' : 'Flagged';
       $('#exNext').textContent = e.next;
       doc.classList.remove('done');
-      return { before, after };
+      return { before, after, nFlag, refund: !!e.saved };
     }
-    function countTo(el, from, to) {
-      const t0 = performance.now(), D = 900;
-      const f = t => { const q = Math.min(1, (t - t0) / D); el.textContent = fmt(from + (to - from) * easeOut(q)); if (q < 1) requestAnimationFrame(f); };
-      requestAnimationFrame(f);
+    // when Nia is done: how many lines were flagged, the amount in question, and that it's ready for the advocate
+    function findings({ before, after, nFlag, refund }) {
+      $('#exFindL').textContent = `${nFlag} line${nFlag > 1 ? 's' : ''} flagged`;
+      $('#exFindAmt').textContent = fmt(before - after) + (refund ? ' refund owed' : ' in question');
+      const st = $('#exFindSt'); st.className = 'chip st b'; st.textContent = 'Ready for review';
     }
     async function show(k, first) {
       const id = ++run; i = k;
@@ -300,9 +333,9 @@
       playIcons(tabs[k]);
       const parts = [body, info];
       if (!first) { parts.forEach(p => { p.classList.remove('swap-in'); p.classList.add('swap-out'); }); cur.show(false); await wait(360); if (id !== run) return; }
-      const { before, after } = fill(ERRORS[k], k);
+      const result = fill(ERRORS[k], k);
       parts.forEach(p => { p.classList.add('swap-in'); p.classList.remove('swap-out'); });
-      if (reduce) { $$('.xr[data-f]', rowsEl).forEach(r => r.classList.add('hl', 'struck')); doc.classList.add('done'); $('#exTot').textContent = fmt(after); return; }
+      if (reduce) { $$('.xr[data-f]', rowsEl).forEach(r => r.classList.add('hl', 'struck')); doc.classList.add('done'); findings(result); return; }
       await wait(450); if (id !== run) return;
       const flagged = $$('.xr[data-f]', rowsEl);
       const fx = innerWidth < 600 ? .22 : .5; // leave room for the label on phones
@@ -312,39 +345,31 @@
       await cur.say(ERRORS[k].msg);
       await wait(700); if (id !== run) return;
       flagged.forEach(r => r.classList.add('struck'));
+      if (root.classList.contains('sheet-open')) haptic('tick'); // Nia strikes the charge
       await wait(500); if (id !== run) return;
-      doc.classList.add('done'); countTo($('#exTot'), before, after);
+      doc.classList.add('done'); findings(result);
     }
     // Phones: the checks are a grid, and tapping one opens the statement in a bottom sheet
     const mq = matchMedia('(max-width:600px)'), card = $('#exCard'), scrim = $('#exScrim'), closeBtn = $('#exClose');
-    let opener = null;
     function openSheet(btn) {
-      opener = btn; clearTimeout(timer);
+      clearTimeout(timer);
       card.setAttribute('role', 'dialog'); card.setAttribute('aria-modal', 'true'); card.setAttribute('aria-labelledby', 'exName');
       root.classList.add('sheet-open'); document.documentElement.classList.add('sheet-lock');
-      setTimeout(() => closeBtn.focus({ preventScroll: true }), 50);
     }
     function closeSheet() {
       if (!root.classList.contains('sheet-open')) return;
       root.classList.remove('sheet-open'); document.documentElement.classList.remove('sheet-lock');
       ['role', 'aria-modal', 'aria-labelledby'].forEach(a => card.removeAttribute(a));
       run++; cur.show(false);
-      opener && opener.focus({ preventScroll: true });
     }
     closeBtn.addEventListener('click', closeSheet);
     scrim.addEventListener('click', closeSheet);
-    addEventListener('keydown', e => { if (e.key === 'Escape') closeSheet(); });
     mq.addEventListener('change', () => { if (!mq.matches) closeSheet(); });
     function schedule() { clearTimeout(timer); if (!paused && inView && !reduce && !mq.matches) timer = setTimeout(() => { show((i + 1) % ERRORS.length); schedule(); }, DUR); }
     tabs.forEach((t, k) => t.addEventListener('click', () => {
       if (mq.matches) { openSheet(t); show(k, true); return; }
       show(k); schedule();
     }));
-    tabsEl.addEventListener('keydown', e => {
-      if (mq.matches || (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft')) return;
-      const n = (i + (e.key === 'ArrowRight' ? 1 : -1) + ERRORS.length) % ERRORS.length;
-      tabs[n].focus(); show(n); schedule();
-    });
     root.addEventListener('mouseenter', () => { paused = true; clearTimeout(timer); root.classList.add('paused'); });
     root.addEventListener('mouseleave', () => { paused = false; if (inView) { root.classList.remove('paused'); schedule(); } });
     fill(ERRORS[0], 0); tabs[0].setAttribute('aria-selected', 'true');
@@ -438,7 +463,7 @@
           await wait(120); jordan.to(btn, .5, .55);
           await wait(1350);
           await jordan.click();
-          btn.classList.add('press'); await wait(160); btn.classList.remove('press');
+          btn.classList.add('press'); if (onScreen(btn)) haptic('tap'); await wait(160); btn.classList.remove('press');
           draft.classList.remove('ready'); draft.classList.add('sent'); st.className = 'chip g st'; st.textContent = 'Sent';
           await wait(700);
           jordan.to(btn, ph ? .75 : 2.2, 3.2);
@@ -534,6 +559,7 @@
           m.innerHTML = '<span class="dots"><i></i><i></i><i></i></span>'; log.appendChild(m);
           await wait(1300); if (id !== run) return;
           m.style.animation = 'none'; void m.offsetWidth; m.style.animation = ''; m.innerHTML = html;
+          if (onScreen(m)) haptic('tick');
         } else { m.textContent = html; log.appendChild(m); }
         await wait(who === 'u' ? 500 : 1700);
       }
@@ -548,22 +574,30 @@
     const items = $$('.qa'); if (!items.length) return;
     const EASE_OPEN = 'cubic-bezier(.25,.9,.3,1)', EASE_CLOSE = 'cubic-bezier(.55,0,.25,1)';
     const running = new Map();
+    // The shared name="faq" makes the browser snap the other question shut the instant one opens,
+    // which skips our closing animation. Keep it only as the no-animation fallback.
+    if (!reduce) items.forEach(d => d.removeAttribute('name'));
     function close(d) {
       if (!d.open) return;
       const ans = $('.ans', d);
       running.get(d)?.cancel();
-      d.classList.add('closing');
-      const a = ans.animate([{ height: ans.offsetHeight + 'px', opacity: 1 }, { height: '0px', opacity: 0 }], { duration: 650, easing: EASE_CLOSE });
+      d.classList.add('is-closing');
+      // text fades out first, then the panel folds, so the words never get squeezed
+      const txt = $('p', ans);
+      txt.animate([{ opacity: 1, transform: 'none' }, { opacity: 0, transform: 'translateY(-4px)' }], { duration: 220, easing: 'ease-out', fill: 'forwards' });
+      const a = ans.animate([{ height: ans.offsetHeight + 'px' }, { height: '0px' }], { duration: 680, delay: 80, easing: 'cubic-bezier(.45,0,.2,1)' }); // same length as opening, so switching feels like one motion
       running.set(d, a);
-      a.onfinish = () => { d.open = false; d.classList.remove('closing'); running.delete(d); };
-      a.oncancel = () => d.classList.remove('closing');
+      a.onfinish = () => { d.open = false; d.classList.remove('is-closing'); running.delete(d); txt.getAnimations().forEach(x => x.cancel()); };
+      a.oncancel = () => { d.classList.remove('is-closing'); txt.getAnimations().forEach(x => x.cancel()); };
     }
     function open(d) {
       const ans = $('.ans', d);
       running.get(d)?.cancel();
       d.open = true;
-      const h = ans.offsetHeight;
-      const a = ans.animate([{ height: '0px', opacity: 0 }, { height: h + 'px', opacity: 1 }], { duration: 800, easing: EASE_OPEN });
+      const h = ans.offsetHeight, txt = $('p', ans);
+      // the panel opens first, then the answer fades in with a small rise
+      const a = ans.animate([{ height: '0px' }, { height: h + 'px' }], { duration: 700, easing: EASE_OPEN });
+      txt.animate([{ opacity: 0, transform: 'translateY(6px)' }, { opacity: 1, transform: 'none' }], { duration: 520, delay: 220, easing: EASE_OPEN, fill: 'backwards' });
       running.set(d, a);
       a.onfinish = () => running.delete(d);
     }
@@ -571,22 +605,54 @@
       $('summary', d).addEventListener('click', e => {
         if (reduce) return; // the shared name attribute keeps it one-at-a-time natively
         e.preventDefault();
-        if (d.open && !d.classList.contains('closing')) { close(d); return; }
+        if (d.open && !d.classList.contains('is-closing')) { close(d); return; }
         items.forEach(o => { if (o !== d) close(o); });
         open(d);
       });
     });
   })();
 
+  /* ---------- Footer: a rounded rectangle glides between links on hover ---------- */
+  $$('.f-col').forEach(col => {
+    const ind = document.createElement('span');
+    ind.className = 'f-ind'; ind.setAttribute('aria-hidden', 'true'); col.appendChild(ind);
+    let shown = false;
+    const place = a => { ind.style.width = a.offsetWidth + 'px'; ind.style.height = a.offsetHeight + 'px'; ind.style.transform = `translate(${a.offsetLeft}px,${a.offsetTop}px)`; };
+    const show = a => {
+      if (!shown) { ind.style.transition = 'opacity .4s'; place(a); void ind.offsetWidth; ind.style.transition = ''; } // first hover: appear in place, don't slide in from the corner
+      place(a); ind.style.opacity = 1; shown = true;
+    };
+    const hide = () => { ind.style.opacity = 0; shown = false; };
+    $$('a', col).forEach(a => { a.addEventListener('mouseenter', () => show(a)); a.addEventListener('focus', () => show(a)); a.addEventListener('blur', hide); });
+    col.addEventListener('mouseleave', hide);
+  });
+
   /* ---------- Contact form: inline validation + eased thank-you state ---------- */
   (function () {
     const form = $('#contactForm'); if (!form) return;
     const done = $('#cfDone'), card = $('.contact-card');
+
+    // Role: our own dropdown (a button + a list of options) feeding a hidden input
+    const dd = $('#cfRoleDD'), ddBtn = $('#cfRoleBtn'), ddVal = $('.cf-dd-val', dd), roleIn = $('#cfRole');
+    const ddOpts = $$('[role="option"]', dd), ddPlaceholder = ddVal.textContent;
+    const setOpen = o => { dd.classList.toggle('open', o); ddBtn.setAttribute('aria-expanded', o); };
+    ddBtn.addEventListener('click', () => setOpen(!dd.classList.contains('open')));
+    ddOpts.forEach(o => o.addEventListener('click', () => {
+      roleIn.value = o.dataset.v; ddVal.textContent = o.dataset.v; dd.classList.add('filled');
+      ddOpts.forEach(x => x.setAttribute('aria-selected', x === o));
+      setOpen(false); roleIn.dispatchEvent(new Event('change'));
+    }));
+    document.addEventListener('pointerdown', e => { if (!dd.contains(e.target)) setOpen(false); });
+    const resetRole = () => { roleIn.value = ''; ddVal.textContent = ddPlaceholder; dd.classList.remove('filled'); ddOpts.forEach(x => x.setAttribute('aria-selected', 'false')); setOpen(false); };
+
+    // Cases per month: segmented control; the hint says what the chosen range means
+    const volHint = $('#cfVolHint'), volHint0 = volHint.textContent;
+    $$('.cf-seg input', form).forEach(i => i.addEventListener('change', () => { volHint.textContent = i.dataset.hint; }));
     const fields = {
       name: { el: $('#cfName'), err: $('#cfNameErr'), test: v => v.trim().length >= 2, msg: 'Enter your name.' },
       email: { el: $('#cfEmail'), err: $('#cfEmailErr'), test: v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()), msg: 'Enter a work email, like you@company.com.' },
       org: { el: $('#cfOrg'), err: $('#cfOrgErr'), test: v => v.trim().length >= 2, msg: 'Enter your organization.' },
-      role: { el: $('#cfRole'), err: $('#cfRoleErr'), test: v => !!v, msg: 'Choose your role.' }
+      role: { el: roleIn, focusEl: ddBtn, err: $('#cfRoleErr'), test: v => !!v, msg: 'Choose your role.' }
     };
     function check(k) {
       const f = fields[k], ok = f.test(f.el.value);
@@ -605,7 +671,7 @@
       e.preventDefault();
       const results = Object.keys(fields).map(check);
       const firstBad = Object.keys(fields).find((k, i) => !results[i]);
-      if (firstBad) { fields[firstBad].el.focus(); return; }
+      if (firstBad) { haptic('error'); (fields[firstBad].focusEl || fields[firstBad].el).focus(); return; }
       const btn = $('.cf-submit', form); btn.classList.add('sending'); $('span', btn).textContent = 'Sending…';
       await wait(900);
       const first = fields.name.el.value.trim().split(/\s+/)[0];
@@ -617,10 +683,11 @@
       const h1 = card.offsetHeight;
       if (!reduce) card.animate([{ height: h0 + 'px' }, { height: h1 + 'px' }], { duration: 700, easing: 'cubic-bezier(.25,.9,.3,1)' });
       requestAnimationFrame(() => done.classList.add('in'));
+      haptic('success');
       btn.classList.remove('sending'); $('span', btn).textContent = 'Request a demo';
     });
     $('#cfAgain').addEventListener('click', () => {
-      form.reset(); Object.keys(fields).forEach(k => { const f = fields[k]; f.el.closest('.cf-field').classList.remove('bad'); f.err.textContent = ''; });
+      form.reset(); resetRole(); volHint.textContent = volHint0; Object.keys(fields).forEach(k => { const f = fields[k]; f.el.closest('.cf-field').classList.remove('bad'); f.err.textContent = ''; });
       done.classList.remove('in'); done.hidden = true; form.hidden = false; form.classList.remove('out');
       fields.name.el.focus();
     });
