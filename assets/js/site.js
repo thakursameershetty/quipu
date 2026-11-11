@@ -137,7 +137,7 @@
     };
   }
 
-  /* ---------- Hero: drifting particles + Nia points at the saving ---------- */
+  /* ---------- Hero: drifting particles + Rosa's queue, prepared overnight ---------- */
   (function () {
     const sky = $('.sky'); if (!sky) return;
 
@@ -168,25 +168,31 @@
     }
     if (cv) { size(); draw(); addEventListener('resize', () => { size(); if (reduce) draw(); }); }
 
-    // After the sheets rise: total counts down, then Nia's cursor glides in and points at it
-    const after = $('#afterSheet'), tot = $('#afterTot'), scene = $('.scene');
+    // Rosa's queue: cases flip from "Preparing" to their prepared state, then Nia points at the first one
+    const scene = $('.scene'), rows = $$('.hq-row', scene);
     const cur = makeCursor($('#heroCursor'), scene);
-    const fmt = v => '$' + v.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-    async function intro() {
-      if (reduce) { await wait(120); cur.to(tot, .15, .95, true); cur.show(); return; }
-      tot.textContent = fmt(3482.10);
-      await wait(2700);
-      const t0 = performance.now(), D = 1500;
-      const f = t => { const p = Math.min(1, (t - t0) / D); tot.textContent = fmt(3482.10 + (611.30 - 3482.10) * easeOut(p)); if (p < 1) requestAnimationFrame(f); };
+    const setReady = r => { const [c, t] = r.dataset.chip.split('|'), ch = $('.chip', r); r.classList.add('ready'); ch.className = 'chip st ' + c; ch.textContent = t; };
+    function countTo(el, to) {
+      const t0 = performance.now(), D = 1600;
+      const f = t => { const q = Math.min(1, (t - t0) / D); el.textContent = Math.round(to * easeOut(q)); if (q < 1) requestAnimationFrame(f); };
       requestAnimationFrame(f);
-      $$('.sheet', scene).forEach(s => s.classList.add('idle'));
+    }
+    async function intro() {
+      const btn = $('.btn-s', rows[0]);
+      if (reduce) { await wait(120); cur.to(btn, .4, .9, true); cur.show(); return; }
+      rows.forEach(r => { r.classList.remove('ready'); const ch = $('.chip', r); ch.className = 'chip st'; ch.textContent = 'Preparing'; });
+      $$('[data-hq]', scene).forEach(el => el.textContent = '0');
+      await wait(2300);
+      $$('[data-hq]', scene).forEach(el => countTo(el, +el.dataset.hq));
+      for (const r of rows) { setReady(r); await wait(380); }
+      $$('.hq-row', scene).forEach(r => r.classList.add('idle'));
       const sr = scene.getBoundingClientRect();
-      cur.at(sr.width * .86, sr.height * .95, true); cur.show();
-      await wait(100); cur.to(tot, .15, .95);
+      cur.at(sr.width * .9, sr.height * .98, true); cur.show();
+      await wait(100); cur.to(btn, .4, .9);
       await wait(1300);
-      await cur.say('Found 3 errors on this bill');
+      await cur.say('4 cases ready for you');
       await wait(2600);
-      await cur.say('Dispute drafted for your advocate');
+      await cur.say("Maria's dispute is drafted");
     }
     intro();
   })();
@@ -214,39 +220,39 @@
   (function () {
     const root = $('#explorer'); if (!root) return;
     const ERRORS = [
-      { icon: 'copy', name: 'Duplicate charges', desc: 'The same test or supply billed twice on the same day.',
+      { icon: 'copy', next: 'Corrected-bill request drafted', name: 'Duplicate charges', desc: 'The same test or supply billed twice on the same day.',
         rule: 'Billing error', fix: 'Asks the hospital for a corrected bill without the repeat line.',
         org: 'St. Brennan Medical Center', meta: 'Itemized statement · 09/18', msg: 'Same test, same time stamp (07:42)',
         rows: [['85025', 'Complete blood count', 142], ['85025', 'Complete blood count', 142, 0], ['80048', 'Basic metabolic panel', 12.9]] },
-      { icon: 'scale', name: 'Balance billing', desc: 'An in-network provider billing the member more than the amount the plan allowed.',
+      { icon: 'scale', next: 'Balance-bill dispute drafted', name: 'Balance billing', desc: 'An in-network provider billing the member more than the amount the plan allowed.',
         rule: 'Network contract with the plan', fix: 'Disputes the balance and cites the allowed amount on the EOB.',
         org: 'St. Brennan Medical Center', meta: 'Statement · allowed $2,274.80', msg: 'Billed above the allowed amount',
         rows: [['29881', 'Arthroscopy, knee', 412], ['—', 'Facility fee balance', 1675.2, 0]] },
-      { icon: 'shield-check', name: 'Surprise bills', desc: 'An out-of-network doctor at an in-network hospital that the member never chose.',
+      { icon: 'shield-check', next: 'Reprocessing request drafted', name: 'Surprise bills', desc: 'An out-of-network doctor at an in-network hospital that the member never chose.',
         rule: 'No Surprises Act', fix: 'Asks the insurer to reprocess the claim at in-network cost sharing.',
         org: 'Dallas Anesthesia Associates', meta: 'Out-of-network invoice', msg: 'Member had no choice of anesthesiologist',
         rows: [['01400', 'Anesthesia, knee procedure', 1240, 186.4], ['99100', 'Anesthesia modifier', 0]] },
-      { icon: 'trending-up', name: 'Upcoding', desc: 'A visit billed at a more complex level than the medical record supports.',
+      { icon: 'trending-up', next: 'Records request drafted', name: 'Upcoding', desc: 'A visit billed at a more complex level than the medical record supports.',
         rule: 'Codes must match the record', fix: 'Requests the visit notes and asks for the correct level.',
         org: 'Northside Primary Care', meta: 'Visit 10/02 · 14 minutes', msg: 'A 14-minute visit is a 99213, not a 99215',
         rows: [['99215', 'Office visit, level 5', 310, 142], ['85025', 'Complete blood count', 11.4]] },
-      { icon: 'split', name: 'Unbundling', desc: 'Parts of one procedure billed separately to raise the total.',
+      { icon: 'split', next: 'Rebilling request drafted', name: 'Unbundling', desc: 'Parts of one procedure billed separately to raise the total.',
         rule: 'Bundling rules (NCCI)', fix: 'Asks for the tests to be billed as one lipid panel, CPT 80061.',
         org: 'Lakewood Diagnostic Lab', meta: 'Lab invoice · 1 draw', msg: 'These three tests are one lipid panel',
         rows: [['82465', 'Cholesterol, total', 38, 19], ['83718', 'HDL cholesterol', 41, 0], ['84478', 'Triglycerides', 36, 0]] },
-      { icon: 'ban', name: 'Care not received', desc: 'Services, drugs or days on the bill that don\'t match what happened.',
+      { icon: 'ban', next: 'Correction request drafted', name: 'Care not received', desc: 'Services, drugs or days on the bill that don\'t match what happened.',
         rule: 'The bill must match the record', fix: 'Matches the bill against the discharge summary and removes the extra day.',
         org: 'Mercy Park Hospital', meta: 'Inpatient · discharged 09/03', msg: 'Discharged on day 2. Day 3 never happened',
         rows: [['0110', 'Room and board, day 1', 2100], ['0110', 'Room and board, day 2', 2100], ['0110', 'Room and board, day 3', 2100, 0]] },
-      { icon: 'id-card', name: 'Claim errors', desc: 'A wrong member ID or plan, so the claim was denied or paid at the wrong rate.',
+      { icon: 'id-card', next: 'Corrected claim drafted', name: 'Claim errors', desc: 'A wrong member ID or plan, so the claim was denied or paid at the wrong rate.',
         rule: 'Corrected claim to the insurer', fix: 'Fixes the member ID and resubmits the claim to the insurer.',
         org: 'Cedar Ridge Emergency', meta: 'Claim denied 08/27', msg: 'Member ID had one digit wrong', chip: 'Denied: coverage not found',
         rows: [['99283', 'Emergency visit, level 3', 2290.5, 310]] },
-      { icon: 'heart-handshake', name: 'Missed assistance', desc: 'Hospital financial-assistance programs the member qualifies for but never applied to.',
+      { icon: 'heart-handshake', next: 'Charity-care application drafted', name: 'Missed assistance', desc: 'Hospital financial-assistance programs the member qualifies for but never applied to.',
         rule: 'Hospital financial-assistance policy', fix: 'Fills in the charity-care application and sends it with proof of income.',
         org: 'St. Brennan Medical Center', meta: 'Household of 3 · $58k', msg: 'Under 300% of the poverty line: qualifies',
         rows: [['—', 'Balance after insurance', 3100, 0]] },
-      { icon: 'receipt', name: 'Already paid', desc: 'The provider\'s portal still shows a balance, but the payer and the member already paid it.',
+      { icon: 'receipt', next: 'Refund request drafted', name: 'Already paid', desc: 'The provider\'s portal still shows a balance, but the payer and the member already paid it.',
         rule: 'Payment record beats the portal', fix: 'Matches the bill to the payer\'s payment and the member\'s receipts, then requests a refund.',
         org: 'St. Brennan Medical Center', meta: 'Portal balance · paid 04/11', msg: 'Member paid this on 04/11. Refund owed',
         saved: 'Refund owed to the member', chip: 'Member receipt: $2,340.00 on 04/11',
@@ -274,8 +280,9 @@
       $('#exN').textContent = String(k + 1).padStart(2, '0') + ' / ' + String(ERRORS.length).padStart(2, '0');
       $('#exName').textContent = e.name; $('#exDesc').textContent = e.desc;
       $('#exRule').textContent = e.rule; $('#exFix').textContent = e.fix;
-      $('#exSaved').textContent = (e.saved ? '' : '−') + fmt(before - after);
-      $('#exSavedL').textContent = e.saved || 'Removed from the bill';
+      $('#exSaved').textContent = fmt(before - after);
+      $('#exSavedL').textContent = e.saved ? 'Refund owed' : 'Flagged';
+      $('#exNext').textContent = e.next;
       doc.classList.remove('done');
       return { before, after };
     }
@@ -448,59 +455,6 @@
     else new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting && !started) { started = true; play(); } }), { threshold: .35 }).observe(stage);
   })();
 
-  /* ---------- Patients: price list that re-sorts ---------- */
-  (function () {
-    const box = $('#plist'); if (!box) return;
-    const rows = [['Northgate Imaging', 189], ['Trinity Diagnostics', 215], ['Oak Lawn Radiology', 248], ['Lakewood Partners', 304]];
-    const els = rows.map(([n, p]) => {
-      const d = document.createElement('div');
-      d.className = 'pl-row';
-      d.innerHTML = `<b>${n}</b><span class="p">$${p}</span><span class="bar"><i style="--w:${Math.round(p / 612 * 100)}%"></i></span>`;
-      box.appendChild(d); return d;
-    });
-    const H = 64; box.style.height = (H * rows.length + 30) + 'px';
-    let order = [2, 0, 3, 1], sorted = false;
-    const place = () => (sorted ? [0, 1, 2, 3] : order).forEach((ri, pos) => {
-      els[ri].style.transform = `translateY(${30 + pos * H}px)`;
-      els[ri].classList.toggle('top', sorted && ri === 0);
-    });
-    place();
-    if (reduce) { sorted = true; place(); return; }
-    const go = () => {
-      sorted = !sorted; place();
-      if (!sorted) order = [...order].sort(() => Math.random() - .5);
-      setTimeout(go, sorted ? 3800 : 1700);
-    };
-    setTimeout(go, 1700);
-  })();
-
-  /* ---------- Patients: EOB lines struck through, total counts down ---------- */
-  (function () {
-    const eob = $('#eob'); if (!eob) return;
-    const flags = $$('[data-flag]', eob), tot = $('#eobTot');
-    const steps = [3482.10, 2242.10, 566.90, 424.90], fair = 611.30;
-    let k = 0, cur = 3482.10;
-    const fmt = v => '$' + v.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-    function count(to) {
-      const from = cur, t0 = performance.now(), D = 900;
-      const f = t => { const p = Math.min(1, (t - t0) / D); cur = from + (to - from) * easeOut(p); tot.textContent = fmt(cur); if (p < 1) requestAnimationFrame(f); };
-      requestAnimationFrame(f);
-    }
-    function step() {
-      if (k < flags.length) {
-        flags[k].classList.add('flag'); k++;
-        count(k === flags.length ? fair : steps[k]);
-        tot.classList.toggle('ok', k === flags.length);
-        setTimeout(step, k === flags.length ? 3200 : 1500);
-      } else {
-        flags.forEach(f => f.classList.remove('flag')); tot.classList.remove('ok'); k = 0; count(3482.10);
-        setTimeout(step, 1700);
-      }
-    }
-    if (reduce) { flags.forEach(f => f.classList.add('flag')); tot.textContent = fmt(fair); tot.classList.add('ok'); }
-    else setTimeout(step, 2000);
-  })();
-
   /* ---------- How it works: expanding card stack ---------- */
   (function () {
     const stack = $('#stack'); if (!stack) return;
@@ -553,48 +507,6 @@
         inView = false; clearTimeout(timer); wrap.classList.add('paused');
       }
     }), { threshold: .3 }).observe(stack);
-  })();
-
-  /* ---------- Reading an EOB: column headers are the controls ---------- */
-  (function () {
-    const root = $('#eobv'), table = $('#eobTable'); if (!root || !table) return;
-    const TERMS = {
-      billed: { name: 'Billed', c: '#8E97A8', desc: "The provider's full list price. Almost no member should pay this number." },
-      allowed: { name: 'Allowed', c: '#2F63F0', desc: 'The rate the plan agreed to. An in-network provider can\'t bill the member more than this.' },
-      paid: { name: 'Plan paid', c: '#18A574', desc: 'What the plan actually paid the provider for each service.' },
-      owe: { name: 'Member owes', c: '#E5484D', desc: 'The member\'s share after the plan pays. It should equal allowed minus plan paid. If the bill asks for more, something is wrong.' }
-    };
-    const ORDER = ['billed', 'allowed', 'paid', 'owe'];
-    const cap = $('#termCap'), dot = $('#termDot'), nm = $('#termName'), ds = $('#termDesc');
-    let cur = null, timer = null, paused = false, started = false;
-
-    async function pick(key, instant) {
-      if (key === cur) return;
-      cur = key; const t = TERMS[key];
-      $$('[data-col]', table).forEach(c => c.classList.toggle('hl', c.dataset.col === key));
-      $$('.colbtn', table).forEach(b => b.setAttribute('aria-pressed', b.dataset.term === key));
-      $$('.fx', root).forEach(f => f.classList.toggle('on', f.dataset.f === key));
-      cap.style.setProperty('--c', t.c); dot.style.background = t.c;
-      if (!instant && !reduce) { cap.classList.add('swap'); await wait(260); }
-      nm.textContent = t.name; ds.textContent = t.desc;
-      cap.classList.remove('swap');
-    }
-    function schedule() {
-      clearTimeout(timer);
-      if (paused || reduce) return;
-      timer = setTimeout(() => { pick(ORDER[(ORDER.indexOf(cur) + 1) % ORDER.length]); schedule(); }, 3600);
-    }
-    $$('.colbtn', table).forEach(b => {
-      b.addEventListener('click', () => { pick(b.dataset.term); schedule(); });
-      b.addEventListener('focus', () => pick(b.dataset.term));
-    });
-    $$('td[data-col]', table).forEach(td => td.addEventListener('mouseenter', () => pick(td.dataset.col)));
-    root.addEventListener('mouseenter', () => { paused = true; clearTimeout(timer); });
-    root.addEventListener('mouseleave', () => { paused = false; schedule(); });
-    pick('owe', true);
-    new IntersectionObserver(es => es.forEach(e => {
-      if (e.isIntersecting && !started) { started = true; setTimeout(() => { pick('billed'); schedule(); }, 900); }
-    }), { threshold: .4 }).observe(root);
   })();
 
   /* ---------- Nia conversation ---------- */

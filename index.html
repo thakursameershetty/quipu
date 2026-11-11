@@ -74,32 +74,22 @@
       <a class="link" href="#who"><span>Who it's for</span><i data-lucide="arrow-right" width="15" height="15"></i></a>
     </div>
 
-    <div class="scene" aria-label="A member's hospital statement before and after review in Quipus">
+    <div class="scene q-scene" aria-label="Rosa's queue in Quipus, with cases Nia prepared overnight">
       <div class="ghost g1" aria-hidden="true"><b>EOB · BLUERIVER HEALTH</b><i style="width:90%"></i><i style="width:70%"></i><i style="width:82%"></i><i style="width:55%"></i></div>
       <div class="ghost g2" aria-hidden="true"><b>FAX · ITEMIZED BILL</b><i style="width:86%"></i><i style="width:64%"></i><i style="width:78%"></i><i style="width:60%"></i></div>
-      <div class="env" aria-hidden="true"><div class="flap"></div><div class="back"></div><div class="front"></div></div>
 
-      <div class="sheet before">
-        <span class="tag"><i data-lucide="file-text" width="17" height="17"></i>Before</span>
-        <div class="h"><b>St. Brennan Medical</b><span>Statement 10/14</span></div>
-        <div class="r"><span>Arthroscopy, knee</span><span>$412.00</span></div>
-        <div class="r x"><span>Facility fee balance</span><span>$1,675.20</span></div>
-        <div class="r x"><span>Anesthesia</span><span>$1,240.00</span></div>
-        <div class="r x"><span>Blood count (again)</span><span>$142.00</span></div>
-        <div class="tot"><span>Amount due</span><b>$3,482.10</b></div>
+      <div class="hq" id="heroQueue">
+        <div class="hq-top">
+          <div class="hq-hi"><b>Good morning, Rosa</b><span>Nia worked your queue overnight</span></div>
+          <div class="hq-stats"><span><b class="num" data-hq="23">23</b>prepared</span><span><b class="num" data-hq="4">4</b>ready to approve</span></div>
+        </div>
+        <div class="hq-row ready" data-chip="a|Needs approval"><i class="av" style="background:#5C86FA">MG</i><div class="who"><b>Maria G.</b><span>St. Brennan · balance bill</span></div><span class="what">Dispute letter drafted</span><span class="chip a st">Needs approval</span><button class="btn-s p" type="button" tabindex="-1">Review</button></div>
+        <div class="hq-row ready" data-chip="r|Hold requested"><i class="av" style="background:#E5484D">DP</i><div class="who"><b>Dev Patel</b><span>Cedar Ridge · ER visit</span></div><span class="what">Collections notice answered</span><span class="chip r st">Hold requested</span><button class="btn-s p" type="button" tabindex="-1">Review</button></div>
+        <div class="hq-row ready" data-chip="a|Needs approval"><i class="av" style="background:#8B6CF0">LT</i><div class="who"><b>Linh Tran</b><span>Lakewood · MRI lumbar</span></div><span class="what">Upcoding flagged, records requested</span><span class="chip a st">Needs approval</span><button class="btn-s p" type="button" tabindex="-1">Review</button></div>
+        <div class="hq-row ready" data-chip="b|Due Dec 1"><i class="av" style="background:#18A574">AB</i><div class="who"><b>Aisha Bello</b><span>Mercy Park · delivery</span></div><span class="what">Charity-care application ready</span><span class="chip b st">Due Dec 1</span><button class="btn-s p" type="button" tabindex="-1">Review</button></div>
       </div>
 
-      <div class="sheet after" id="afterSheet">
-        <span class="tag"><i data-lucide="file-check-2" width="17" height="17"></i>After</span>
-        <div class="h"><b>Corrected balance</b><span>Reviewed in Quipus</span></div>
-        <div class="r"><span>Arthroscopy, knee</span><span>$412.00</span></div>
-        <div class="r"><span>Anesthesia, in-network share</span><span>$186.40</span></div>
-        <div class="r"><span>Basic metabolic panel</span><span>$12.90</span></div>
-        <div class="tot"><span>Amount due</span><b class="num" id="afterTot">$611.30</b></div>
-        <span class="saved"><i data-lucide="trending-down" width="13" height="13"></i>$2,870.80 removed</span>
-      </div>
-
-      <span class="ncursor" id="heroCursor" style="--x:760px;--y:330px;opacity:0" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M19.438 6.716 1.115.05A.832.832 0 0 0 .05 1.116L6.712 19.45a.834.834 0 0 0 1.557.025l3.198-8 7.995-3.2a.833.833 0 0 0 0-1.559h-.024Z"/></svg><span class="ncb"><span class="nm">Nia</span><span class="msg">Found 3 errors</span></span></span>
+      <span class="ncursor" id="heroCursor" style="opacity:0" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M19.438 6.716 1.115.05A.832.832 0 0 0 .05 1.116L6.712 19.45a.834.834 0 0 0 1.557.025l3.198-8 7.995-3.2a.833.833 0 0 0 0-1.559h-.024Z"/></svg><span class="ncb"><span class="nm">Nia</span><span class="msg">Queue ready</span></span></span>
     </div>
   </div>
 </section>
@@ -307,7 +297,7 @@
         <div class="sc-body">
           <p class="sum" style="--i:0">Maria was balance-billed <em>$3,482.10</em> after in-network knee surgery. BlueRiver agreed to reprocess the anesthesia claim. The hospital fax is drafted and waiting for you.</p>
           <div class="src" style="--i:1"><span class="chip">6 documents</span><span class="chip">9 messages</span><span class="chip">3 parties</span></div>
-          <div class="sum-foot" style="--i:2"><span>Expected savings</span><b class="num">$2,870.80</b></div>
+          <div class="sum-foot" style="--i:2"><span>Amount in dispute</span><b class="num">$2,870.80</b></div>
         </div>
       </div>
     </div>
@@ -319,7 +309,7 @@
   <div class="container">
     <div class="sec-head">
       <div data-r><span class="kicker">Bill review</span><h2>What Quipus checks on every bill.</h2></div>
-      <p data-r style="--d:1">Medical bills go wrong in predictable ways. Pick one and watch Nia catch it on a real-looking statement.</p>
+      <p data-r style="--d:1">Nia runs these checks on every case before an advocate opens it. Pick one to watch it work.</p>
     </div>
     <div class="explorer" id="explorer" data-r style="--d:1">
       <div class="ex-tabs" id="exTabs" role="tablist" aria-label="Billing errors"></div>
@@ -343,61 +333,36 @@
             <div><span>Rule</span><b style="font-weight:500" id="exRule"></b></div>
             <div><span>Quipus does</span><b style="font-weight:400" id="exFix"></b></div>
           </div>
-          <div class="saved"><span id="exSavedL">Removed from the bill</span><b id="exSaved">$0.00</b></div>
+          <div class="next-act"><span class="na-ic"><i data-lucide="file-pen-line" width="17" height="17"></i></span><div class="na-t"><b id="exNext">Request drafted</b><span>Waiting for advocate approval</span></div><span class="na-amt"><small id="exSavedL">Flagged</small><b id="exSaved">$0.00</b></span></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================= EOB EXPLAINER ================= -->
-<section class="section band" id="eob-guide">
-  <div class="container">
-    <div class="sec-head">
-      <div data-r><span class="kicker">Reading an EOB</span><h2 class="eobx-h">Four numbers decide what the member really owes.</h2></div>
-      <p data-r style="--d:1">An Explanation of Benefits isn't a bill, but it's the best evidence against one. Quipus reads it next to the provider's statement on every case. Pick a column to see what it means.</p>
+<!-- ================= CONTROL & AUDIT ================= -->
+<section class="section band" id="control">
+  <div class="container ctl">
+    <div>
+      <div data-r><span class="kicker">Control &amp; audit</span><h2 class="h2 ctl-h">Your advocates stay in charge. Every step is on the record.</h2></div>
+      <p class="lede" data-r style="--d:1">Agents do the reading and drafting. People make the calls. Anything that happens on a case can be traced to who did it and why.</p>
+      <ul class="ctl-pts" data-r style="--d:2">
+        <li><span class="ic"><i data-lucide="user-check" width="18" height="18"></i></span><div><b>Nothing goes out without sign-off</b><p>Every email, fax and application waits for an advocate to approve it.</p></div></li>
+        <li><span class="ic"><i data-lucide="file-search" width="18" height="18"></i></span><div><b>A source behind every finding</b><p>Each flag links to the page and line it came from, and the checks are fixed rules, not guesses.</p></div></li>
+        <li><span class="ic"><i data-lucide="calendar-clock" width="18" height="18"></i></span><div><b>Deadlines tracked on every case</b><p>Appeal windows, charity-care dates and follow-ups are watched for your team.</p></div></li>
+      </ul>
     </div>
-
-    <div class="eobv" id="eobv" data-r style="--d:1">
-      <div class="eobv-top">
-        <div><b>Explanation of Benefits</b><span>BlueRiver Health PPO · Claim BRH-55120938 · Service date Sep 18, 2026</span></div>
-        <span class="chip b">This is not a bill</span>
-      </div>
-      <div class="tbl">
-        <table id="eobTable">
-          <thead><tr>
-            <th>Service</th>
-            <th data-col="billed" style="--c:#8E97A8"><button type="button" class="colbtn" data-term="billed"><i></i>Billed</button></th>
-            <th data-col="allowed" style="--c:#2F63F0"><button type="button" class="colbtn" data-term="allowed"><i></i>Allowed</button></th>
-            <th data-col="paid" style="--c:#18A574"><button type="button" class="colbtn" data-term="paid"><i></i>Plan paid</button></th>
-            <th data-col="owe" style="--c:#E5484D"><button type="button" class="colbtn" data-term="owe"><i></i>Member owes</button></th>
-          </tr></thead>
-          <tbody>
-            <tr><td>Knee arthroscopy <span class="cd">29881</span></td><td data-col="billed">$9,840.00</td><td data-col="allowed">$4,120.00</td><td data-col="paid">$3,708.00</td><td data-col="owe">$412.00</td></tr>
-            <tr><td>Facility fee, outpatient</td><td data-col="billed">$3,950.00</td><td data-col="allowed">$2,274.80</td><td data-col="paid">$2,274.80</td><td data-col="owe">$0.00</td></tr>
-            <tr><td>Anesthesia <span class="cd">01400</span></td><td data-col="billed">$1,240.00</td><td data-col="allowed">$186.40</td><td data-col="paid">$0.00</td><td data-col="owe">$186.40</td></tr>
-            <tr><td>Blood count <span class="cd">85025</span></td><td data-col="billed">$142.00</td><td data-col="allowed">$11.40</td><td data-col="paid">$11.40</td><td data-col="owe">$0.00</td></tr>
-            <tr><td>Metabolic panel <span class="cd">80048</span></td><td data-col="billed">$96.00</td><td data-col="allowed">$12.90</td><td data-col="paid">$0.00</td><td data-col="owe">$12.90</td></tr>
-            <tr class="total"><td>Total</td><td data-col="billed">$15,268.00</td><td data-col="allowed">$6,605.50</td><td data-col="paid">$5,994.20</td><td data-col="owe">$611.30</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="swipe" aria-hidden="true"><i data-lucide="move-horizontal" width="14" height="14"></i>Swipe the table to see every column</p>
-
-      <div class="eobv-foot">
-        <div class="term-cap" id="termCap" aria-live="polite">
-          <span class="dot" id="termDot"></span>
-          <div><b id="termName">Member owes</b><p id="termDesc">The member's share after the plan pays. It should equal allowed minus plan paid.</p></div>
-        </div>
-        <div class="formula" id="formula">
-          <span class="fx" data-f="allowed"><small>Allowed</small>$6,605.50</span>
-          <span class="op">−</span>
-          <span class="fx" data-f="paid"><small>Plan paid</small>$5,994.20</span>
-          <span class="op">=</span>
-          <span class="fx" data-f="owe"><small>Member owes</small>$611.30</span>
-        </div>
-      </div>
-      <div class="gap-strip"><i data-lucide="triangle-alert" width="18" height="18"></i><span>The hospital's statement asked for <b>$3,482.10</b>. That's <b>$2,870.80 more</b> than this EOB says Maria owes. Quipus flags gaps like this on every case.</span></div>
+    <div class="tl-card" data-r style="--d:1">
+      <div class="tl-top"><div><small>QP-24817 · Activity</small><b>Maria G. · St. Brennan Medical</b></div><span class="chip g">Logged</span></div>
+      <ol class="tl">
+        <li style="--k:0"><span class="t">06:12</span><span class="dot"></span><div><b>Itemized bill received by fax</b><span>Intake agent · 4 pages parsed and filed</span></div></li>
+        <li style="--k:1"><span class="t">06:14</span><span class="dot"></span><div><b>Duplicate CBC flagged</b><span>Review agent · source: itemized bill, page 2, line 7</span></div></li>
+        <li style="--k:2"><span class="t">06:15</span><span class="dot"></span><div><b>Out-of-network anesthesia flagged</b><span>Review agent · No Surprises Act rule matched</span></div></li>
+        <li style="--k:3"><span class="t">06:20</span><span class="dot"></span><div><b>Dispute letter drafted</b><span>Nia · cites EOB BRH-55120938</span></div></li>
+        <li style="--k:4" class="person"><span class="t">09:41</span><span class="dot"></span><div><b>Approved and sent by Rosa M.</b><span>Fax to (214) 555-0147 · 2 pages</span></div></li>
+        <li style="--k:5"><span class="t">09:41</span><span class="dot"></span><div><b>Follow-up set for Nov 20</b><span>Nia · watching the fax line for a reply</span></div></li>
+      </ol>
+      <div class="tl-legend"><span><i></i>Agents and Nia</span><span><i class="p"></i>Your advocate</span></div>
     </div>
   </div>
 </section>
@@ -407,7 +372,7 @@
   <div class="container nia">
     <div>
       <div data-r><span class="kicker">Meet Nia</span><h2 class="h2">Ask about any case. Nia does the legwork.</h2></div>
-      <p class="lede" data-r style="--d:1">Nia is the assistant inside the advocate workspace. It knows every document, email and fax on the case, and it can do anything Quipus can do.</p>
+      <p class="lede" data-r style="--d:1">Nia is the assistant inside the advocate workspace. It knows every document on the case and can do anything Quipus can do.</p>
       <div class="caps" data-r style="--d:2">
         <div><span>ANSWER</span>Questions about the case, with sources</div>
         <div><span>RESEARCH</span>Prices, contacts and billing rules</div>
@@ -484,46 +449,12 @@
 </section>
 
 <!-- ================= FOR INDIVIDUALS (retail, coming soon) ================= -->
-<section class="section soon" id="individuals">
+<section class="soon-strip" id="individuals">
   <div class="container">
-    <div class="sec-head">
-      <div data-r><span class="kicker">Coming soon · Quipus for individuals</span><h2>A retail version for patients and families.</h2></div>
-      <p data-r style="--d:1">The same agents, built for one household. Compare real prices before a visit, and get a bill checked after it. <a class="soon-link" href="#contact">Ask to hear when it launches</a></p>
-    </div>
-    <div class="moments">
-      <article class="mcard light" data-r>
-        <div class="mart">
-          <span class="mtag">Before the visit</span>
-          <span class="cap k1"></span><span class="cap k2"></span><span class="cap k3"></span>
-          <div class="pl" id="plist">
-            <div class="pl-head"><span>Screening mammogram · 3D</span><span class="mono" style="font-size:11.5px">ZIP 75201</span></div>
-          </div>
-        </div>
-        <div class="mtext">
-          <h3>Compare real prices nearby</h3>
-          <p class="mono">Pick the service you need and enter a ZIP code. Quipus lists the labs and imaging centers around you, cheapest first, with one all-in price instead of a hospital list price.</p>
-          <ul><li>Mammograms</li><li>X-rays</li><li>MRI &amp; CT</li><li>Blood work</li><li>Clinic visits</li></ul>
-        </div>
-      </article>
-      <article class="mcard dark" data-r style="--d:1">
-        <div class="mart">
-          <span class="mtag">After the visit</span>
-          <div class="coin-stage"><div class="coin"><svg><use href="#mark"/></svg></div></div>
-          <div class="eob" id="eob">
-            <div class="hd"><span>EOB · BlueRiver Health</span><span class="mono">BRH-55120938</span></div>
-            <div class="eob-row"><span>Knee arthroscopy</span><span class="amt">$412.00</span></div>
-            <div class="eob-row" data-flag><span>Anesthesia, out of network</span><span class="amt">$1,240.00</span><span class="why">Protected under the No Surprises Act</span></div>
-            <div class="eob-row" data-flag><span>Facility fee balance</span><span class="amt">$1,675.20</span><span class="why">Billed above the allowed amount</span></div>
-            <div class="eob-row" data-flag><span>Blood count (CBC)</span><span class="amt">$142.00</span><span class="why">Charged twice</span></div>
-            <div class="tot"><span style="font-size:12.5px;color:#556074">Patient owes</span><span class="v num" id="eobTot">$3,482.10</span></div>
-          </div>
-        </div>
-        <div class="mtext">
-          <h3>Get the bill checked and negotiated</h3>
-          <p class="mono">Send the bill and your EOB. Quipus matches every line against what insurance allowed, flags duplicates and surprise charges, and drafts the dispute for you.</p>
-          <ul><li>EOB review</li><li>Duplicate charges</li><li>Balance billing</li><li>No Surprises Act</li></ul>
-        </div>
-      </article>
+    <div class="ss" data-r>
+      <span class="ss-ic"><i data-lucide="user-round" width="20" height="20"></i></span>
+      <div class="ss-t"><span class="ss-k">Coming soon</span><b>Quipus for individuals</b><p>A version for patients and families who want a bill checked themselves.</p></div>
+      <a class="cta ghost" href="#contact">Get notified <i data-lucide="arrow-right" class="arr" width="14" height="14"></i></a>
     </div>
   </div>
 </section>
