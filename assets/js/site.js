@@ -651,6 +651,7 @@
       if (root.classList.contains('sheet-open')) haptic('tick'); // Nia strikes the charge
       await wait(500); if (id !== run) return;
       doc.classList.add('done'); findings(result);
+      if (mq.matches) cur.show(false); // phones: Nia's bubble would cover the evidence chip and the findings row
     }
     // Phones: the checks are a grid, and tapping one opens the statement in a bottom sheet
     const mq = matchMedia('(max-width:600px)'), card = $('#exCard'), scrim = $('#exScrim'), closeBtn = $('#exClose');
