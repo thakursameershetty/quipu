@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320" role="img" aria-labelledby="title desc">
+  <title id="title">quipus mark</title>
+  <desc id="desc">quipus woven-lattice mark — two cords each way with a knot at every crossing.</desc>
+  <g fill="none" stroke-linecap="round">
+    <path d="M58 116H262" stroke="#26356B" stroke-width="20"></path>
+    <path d="M58 204H262" stroke="#26356B" stroke-width="20"></path>
+    <path d="M116 58V262" stroke="#3E55A6" stroke-width="20"></path>
+    <path d="M204 58V262" stroke="#3E55A6" stroke-width="20"></path>
+  </g>
+  <rect x="101" y="101" width="30" height="30" rx="4" fill="#26356B"></rect>
+  <rect x="189" y="101" width="30" height="30" rx="4" fill="#B9C2E6"></rect>
+  <rect x="101" y="189" width="30" height="30" rx="4" fill="#B9C2E6"></rect>
+  <rect x="189" y="189" width="30" height="30" rx="4" fill="#26356B"></rect>
+</svg>

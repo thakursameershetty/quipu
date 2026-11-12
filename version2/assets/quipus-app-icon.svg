@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320" role="img" aria-labelledby="title desc">
+  <title id="title">quipus app icon</title>
+  <desc id="desc">quipus woven-lattice mark, white on indigo, in a rounded-square container.</desc>
+  <rect width="320" height="320" rx="55" fill="#26356B"></rect>
+  <g transform="translate(160 160) scale(.78) translate(-160 -160)">
+    <g fill="none" stroke-linecap="round">
+      <path d="M58 116H262" stroke="#FFFAF3" stroke-width="20"></path>
+      <path d="M58 204H262" stroke="#FFFAF3" stroke-width="20"></path>
+      <path d="M116 58V262" stroke="#FFFAF3" stroke-width="20" opacity=".82"></path>
+      <path d="M204 58V262" stroke="#FFFAF3" stroke-width="20" opacity=".82"></path>
+    </g>
+    <rect x="101" y="101" width="30" height="30" rx="4" fill="#FFFAF3"></rect>
+    <rect x="189" y="101" width="30" height="30" rx="4" fill="#FFFAF3" opacity=".62"></rect>
+    <rect x="101" y="189" width="30" height="30" rx="4" fill="#FFFAF3" opacity=".62"></rect>
+    <rect x="189" y="189" width="30" height="30" rx="4" fill="#FFFAF3"></rect>
+  </g>
+</svg>

@@ -859,7 +859,8 @@
       $$('.colbtn', table).forEach(b => b.setAttribute('aria-pressed', b.dataset.term === key));
       $$('.fx', root).forEach(f => f.classList.toggle('on', f.dataset.f === key));
       $$('.et', root).forEach(b => { b.classList.toggle('on', b.dataset.term === key); b.setAttribute('aria-pressed', b.dataset.term === key); });
-      cap.style.setProperty('--c', t.c); dot.style.background = t.c;
+      const c = $(`.et[data-term="${key}"]`, root)?.style.getPropertyValue('--c') || t.c; // the page's own colour wins (version2 is indigo)
+      cap.style.setProperty('--c', c); dot.style.background = c;
       if (!instant && !reduce) { cap.classList.add('swap'); await wait(260); }
       nm.textContent = t.name; ds.textContent = t.desc;
       cap.classList.remove('swap');
