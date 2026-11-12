@@ -21,7 +21,7 @@ npx serve .
 | `/version2/`  | Draft: the original page in the indigo palette, for comparison             |
 | `/version3/`  | Draft: content brief plus meeting changes, before the latest fixes         |
 | `/version4/`  | Draft: the content brief as written (PDF exact), for comparison            |
-| `/version5/`  | Draft: the PDF's wording word for word, on the live design and details     |
+| `/version5/`  | Draft: the PDF's wording, on the live design (no section labels or tags)   |
 | `/brand/`     | The brand book                                                             |
 
 Drafts carry `<meta name="robots" content="noindex">` so only the live pages appear in search.
