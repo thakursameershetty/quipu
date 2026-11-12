@@ -21,6 +21,7 @@ npx serve .
 | `/version2/`  | Draft: the original page in the indigo palette, for comparison             |
 | `/version3/`  | Draft: content brief plus meeting changes, before the latest fixes         |
 | `/version4/`  | Draft: the content brief as written (PDF exact), for comparison            |
+| `/version5/`  | Draft: the PDF's wording word for word, on the live design and details     |
 | `/brand/`     | The brand book                                                             |
 
 Drafts carry `<meta name="robots" content="noindex">` so only the live pages appear in search.
@@ -38,6 +39,7 @@ assets/img/               favicon, logo files, link-preview image (og-image.png)
 version2/                 indigo draft (own site.css and favicon)
 version3/                 draft (v3.css)
 version4/                 PDF-exact draft
+version5/                 PDF word-for-word draft (uses the live script and styles)
 brand/                    brand book and logo files
 ```
 

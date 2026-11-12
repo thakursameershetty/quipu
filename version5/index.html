@@ -1,0 +1,780 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Quipus | Bill advocacy and care finding for TPAs and advocacy teams</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Quipus reads each bill, EOB, email, fax and text your members send. It prepares the case, finds fair-priced care and drafts the reply for your advocates.">
+<link rel="canonical" href="https://quipus-xi.vercel.app/version5/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Quipus">
+<meta property="og:url" content="https://quipus-xi.vercel.app/version5/">
+<meta property="og:title" content="Quipus | Bill advocacy and care finding for TPAs and advocacy teams">
+<meta property="og:description" content="Quipus reads each bill, EOB, email, fax and text your members send. It prepares the case, finds fair-priced care and drafts the reply for your advocates.">
+<meta property="og:image" content="https://quipus-xi.vercel.app/version5/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Quipus: member bills checked and care found before your advocate opens the case">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Quipus | Bill advocacy and care finding for TPAs and advocacy teams">
+<meta name="twitter:description" content="Quipus reads each bill, EOB, email, fax and text your members send. It prepares the case, finds fair-priced care and drafts the reply for your advocates.">
+<meta name="twitter:image" content="https://quipus-xi.vercel.app/version5/og-image.png">
+<meta name="theme-color" content="#2F63F0">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,200..900;1,200..900&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="stylesheet" href="/assets/css/live.css">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="mark" viewBox="38 38 244 244">
+      <defs><mask id="knot-gap-1" maskUnits="userSpaceOnUse" x="0" y="0" width="320" height="320"><rect width="320" height="320" fill="#fff"/><rect x="87" y="87" width="58" height="58" rx="12" fill="#000"/><rect x="175" y="87" width="58" height="58" rx="12" fill="#000"/><rect x="87" y="175" width="58" height="58" rx="12" fill="#000"/><rect x="175" y="175" width="58" height="58" rx="12" fill="#000"/></mask></defs><g mask="url(#knot-gap-1)" fill="none" stroke-linecap="round" stroke-width="20"><path d="M58 116H262" stroke="currentColor"/><path d="M58 204H262" stroke="currentColor"/><path d="M116 58V262" stroke="currentColor" opacity=".82"/><path d="M204 58V262" stroke="currentColor" opacity=".82"/></g><rect x="96" y="96" width="40" height="40" rx="6" fill="currentColor"/><rect x="184" y="96" width="40" height="40" rx="6" fill="currentColor" opacity=".55"/><rect x="96" y="184" width="40" height="40" rx="6" fill="currentColor" opacity=".55"/><rect x="184" y="184" width="40" height="40" rx="6" fill="currentColor"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ================= NAVBAR ================= -->
+<div class="nav-blur" id="navBlur" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<header class="nav" id="nav">
+  <div class="bar">
+    <a class="brand" href="#top" aria-label="Quipus home"><i><svg width="18" height="18"><use href="#mark"/></svg></i>Quipus</a>
+    <nav class="links" id="links" aria-label="Main">
+      <span class="ind" aria-hidden="true"></span>
+      <a href="#platform">Platform</a>
+      <a href="#find-care">Find care</a>
+      <a href="#how">Bill advocacy</a>
+      <a href="#security">Security</a>
+    </nav>
+    <div class="nav-r">
+      <a class="login" href="#" data-todo="login-url">Log in</a>
+      <a class="cta top" href="#contact">Book a demo <i data-lucide="arrow-right" class="arr" width="14" height="14"></i></a>
+      <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><i></i><i></i><i></i></button>
+    </div>
+  </div>
+</header>
+<div class="mobile-menu" id="mobileMenu">
+  <div class="in">
+    <a href="#platform">Platform</a><a href="#find-care">Find care</a><a href="#how">Bill advocacy</a><a href="#security">Security</a><a href="#" data-todo="login-url">Log in</a>
+    <a class="cta" href="#contact"><span>Book a demo</span><i data-lucide="arrow-right" class="arr" width="16" height="16"></i></a>
+  </div>
+</div>
+
+<main id="top">
+<!-- ================= 1. HERO ================= -->
+<section class="hero">
+  <div class="sky">
+    <canvas id="particles" aria-hidden="true"></canvas>
+    <h1 id="heroH">Member bills checked and care found before your advocate opens the case</h1>
+    <p class="sub fade" style="--d:2">Quipus reads what your members send, finds what is wrong on a bill or the best-priced care, and prepares the reply</p>
+    <div class="actions fade" style="--d:3">
+      <a class="cta black" href="#contact">Book a demo <i data-lucide="arrow-right" class="arr" width="16" height="16"></i></a>
+      <a class="link" href="#workspace"><span>See the workspace</span></a>
+    </div>
+
+    <div class="scene q-scene" aria-label="The advocate's queue in Quipus, with cases prepared overnight">
+      <div class="ghost g1" aria-hidden="true"><b>EOB · BLUERIVER HEALTH</b><i style="width:90%"></i><i style="width:70%"></i><i style="width:82%"></i><i style="width:55%"></i></div>
+
+      <div class="hq" id="heroQueue">
+        <div class="hq-top">
+          <div class="hq-hi"><b>Queue, Wednesday Nov 11</b><span>23 prepared since 6:00 pm, 4 ready to approve</span></div>
+          <div class="hq-stats"><span><b class="num" data-hq="23">23</b>prepared</span><span><b class="num" data-hq="4">4</b>ready to approve</span></div>
+        </div>
+        <div class="hq-row ready" data-chip="a|Needs approval"><i class="av av-1">MG</i><div class="who"><b>Maria G.</b><span>St. Brennan · balance bill</span></div><span class="what">Dispute letter drafted</span><span class="chip a st">Needs approval</span><button class="btn-s p" type="button" tabindex="-1">Review</button></div>
+        <div class="hq-row ready" data-chip="a|Needs approval"><i class="av av-2">DP</i><div class="who"><b>Dev Patel</b><span>Cedar Ridge · ER visit</span></div><span class="what">Collections notice answered</span><span class="chip a st">Needs approval</span><button class="btn-s p" type="button" tabindex="-1">Review</button></div>
+        <div class="hq-row ready" data-chip="|Waiting on provider"><i class="av av-3">LT</i><div class="who"><b>Linh Tran</b><span>Lakewood · MRI lumbar</span></div><span class="what">Itemized bill requested</span><span class="chip st">Waiting on provider</span><button class="btn-s p" type="button" tabindex="-1">Review</button></div>
+        <div class="hq-row ready" data-chip="a|Needs approval"><i class="av av-4">AB</i><div class="who"><b>Aisha Bello</b><span>Mercy Park · delivery</span></div><span class="what">Financial assistance form ready</span><span class="chip a st">Needs approval</span><button class="btn-s p" type="button" tabindex="-1">Review</button></div>
+      </div>
+
+      <div class="hbill" aria-label="Illustrative case: an itemized bill with two lines struck out">
+        <div class="hb-paper">
+          <div class="hb-top"><b>St. Brennan bill</b></div>
+          <div class="hb-l x"><span>Complete blood count</span><i>Billed twice</i><b>$142.00</b></div>
+          <div class="hb-l x"><span>Facility fee balance</span><i>Above the allowed amount</i><b>$1,675.20</b></div>
+          <div class="hb-tot"><span>Bill demands</span><b>$3,482.10</b><span class="eob">EOB supports</span><b class="eob">$611.30</b></div>
+        </div>
+        <span class="hb-cap">Illustrative case</span>
+      </div>
+      <span class="ncursor" id="heroCursor" style="opacity:0" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M19.438 6.716 1.115.05A.832.832 0 0 0 .05 1.116L6.712 19.45a.834.834 0 0 0 1.557.025l3.198-8 7.995-3.2a.833.833 0 0 0 0-1.559h-.024Z"/></svg><span class="ncb"><span class="nm">Nia</span><span class="msg">Queue ready</span></span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 2. INTAKE STRIP ================= -->
+<section class="docstrip">
+  <div class="container">
+    <p data-r>Cases arrive from the channels your members already use</p>
+    <div class="row" data-r style="--d:1">
+      <span><i data-lucide="inbox" width="22" height="22"></i>Shared email inbox</span>
+      <span><i data-lucide="printer" width="22" height="22"></i>Fax</span>
+      <span><i data-lucide="message-square-text" width="22" height="22"></i>Text messages</span>
+      <span><i data-lucide="database" width="22" height="22"></i>Your CRM</span>
+      <span><i data-lucide="upload" width="22" height="22"></i>File uploads</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 3. WHO IT IS FOR ================= -->
+<section class="section" id="who">
+  <div class="container">
+    <div class="sec-head">
+      <div data-r><span class="kicker">Who it is for</span><h2>Built for the teams that answer for the outcome</h2></div>
+    </div>
+    <div class="aud">
+      <article class="aud-card" data-r>
+        <span class="aud-ic"><i data-lucide="landmark" width="22" height="22"></i></span>
+        <h3>TPAs and plan administrators</h3>
+        <div class="aud-vis v-q" aria-hidden="true">
+          <div class="vq-groups"><span>Acme Logistics</span><span>Northwind Schools</span><span>Harbor Foods</span></div>
+          <div class="vq-lanes"><i style="--l:0"></i><i style="--l:1"></i><i style="--l:2"></i></div>
+          <div class="vq-box"><span>One queue</span><b class="num" id="vqN">18</b><em>from all 46 groups</em></div>
+        </div>
+        <ul class="ticks-list">
+          <li><span class="tk" aria-hidden="true"><i data-lucide="check" width="13" height="13" stroke-width="2.6"></i></span>One queue for the member requests of every employer group</li>
+          <li><span class="tk" aria-hidden="true"><i data-lucide="check" width="13" height="13" stroke-width="2.6"></i></span>Members sent to fair-priced care before a claim exists</li>
+          <li><span class="tk" aria-hidden="true"><i data-lucide="check" width="13" height="13" stroke-width="2.6"></i></span>A record for each client of what your team did, case by case</li>
+        </ul>
+      </article>
+      <article class="aud-card dark" data-r style="--d:1">
+        <span class="aud-ic"><i data-lucide="users-round" width="22" height="22"></i></span>
+        <h3>Advocacy providers</h3>
+        <div class="aud-vis v-c" aria-hidden="true">
+          <div class="vc-top"><span class="vc-av">AD</span><div><b>Your advocate</b><span>Today</span></div><em><b class="num" id="vcN">38</b> cases</em></div>
+          <div class="vc-bar"><i></i></div>
+          <div class="vc-rows"><span><i data-lucide="check" width="12" height="12" stroke-width="2.6"></i>Read</span><span><i data-lucide="check" width="12" height="12" stroke-width="2.6"></i>Ledger</span><span><i data-lucide="check" width="12" height="12" stroke-width="2.6"></i>Draft</span><span class="rv"><i data-lucide="pen-line" width="12" height="12" stroke-width="2.2"></i>Review</span></div>
+        </div>
+        <ul class="ticks-list">
+          <li><span class="tk" aria-hidden="true"><i data-lucide="check" width="13" height="13" stroke-width="2.6"></i></span>Each advocate starts at the review, not at the reading</li>
+          <li><span class="tk" aria-hidden="true"><i data-lucide="check" width="13" height="13" stroke-width="2.6"></i></span>The reading, the ledger and the first draft are done on every case</li>
+          <li><span class="tk" aria-hidden="true"><i data-lucide="check" width="13" height="13" stroke-width="2.6"></i></span>A record that your clients can audit</li>
+        </ul>
+      </article>
+    </div>
+    <div class="below-line" data-r>
+      <span class="bl-ic"><i data-lucide="badge-check" width="18" height="18"></i></span>
+      <p>Your name stays on every email, fax and text</p>
+      <span class="bl-from" aria-hidden="true"><em>From</em><b id="blName">Member Services</b><span>· yourplan.com</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 4. WORKSPACE ================= -->
+<section class="ws" id="workspace">
+  <div class="container">
+    <div class="sec-head center">
+      <div data-r><span class="kicker">The workspace</span><h2>Quipus prepares the case and your advocate signs off</h2></div>
+      <p data-r style="--d:1">The queue, the case, each document, each message and Nia are on one screen</p>
+    </div>
+    <div class="stage" id="stage">
+      <div class="app" id="app">
+        <div class="app-top">
+          <span class="dots3"><i></i><i></i><i></i></span>
+          <span class="m-title"><i data-lucide="chevron-left" width="18" height="18"></i>My cases <small>23 open</small></span>
+          <span class="url"><i data-lucide="lock" width="12" height="12"></i>app.quipushealth.com/cases/QP-24817</span>
+          <span class="me">Advocate <i>AD</i></span>
+        </div>
+        <div class="app-body">
+          <aside class="q" aria-hidden="true">
+            <h5>My cases <span>23 open</span></h5>
+            <div class="qi on"><b>Maria G. <span>24817</span></b>St. Brennan · knee arthroscopy<span class="chip a">1 needs approval</span></div>
+            <div class="qi"><b>Dev Patel <span>24809</span></b>Cedar Ridge ER visit<span class="chip r">Collections notice</span></div>
+            <div class="qi"><b>Linh Tran <span>24796</span></b>Lakewood · MRI lumbar<span class="chip a">1 needs approval</span></div>
+            <div class="qi"><b>Robert King <span>24781</span></b>Northside · colonoscopy<span class="chip b">New documents</span></div>
+            <div class="qi"><b>Aisha Bello <span>24770</span></b>Mercy Park · delivery<span class="chip">Waiting on insurer</span></div>
+            <div class="qi"><b>Tom Whitaker <span>24752</span></b>Oak Lawn · CT abdomen<span class="chip g">Closed</span></div>
+          </aside>
+          <div class="cv">
+            <div class="cv-h">
+              <div><small>QP-24817 · Opened Oct 21</small><h4>Maria G.<span class="sep"> · </span><span class="org">St. Brennan Medical</span></h4></div>
+              <span class="chip b">Negotiating</span>
+            </div>
+            <div class="cv-tabs" aria-hidden="true"><span class="on">Summary</span><span>Communications</span><span>Documents</span><span>Timeline</span><span>Audit</span></div>
+            <div class="facts">
+              <div>Bill demands<b class="num">$3,482.10</b></div>
+              <div>EOB supports<b class="num g">$611.30</b></div>
+              <div class="f-ins">Insurer<b>BlueRiver PPO</b></div>
+              <div>Appeal window<b class="dl"><i data-lucide="clock" width="13" height="13"></i>21 days left</b></div>
+              <div>Assistance form<b class="dl soft">Due Dec 1</b></div>
+            </div>
+            <div class="cv-grid">
+              <div class="box">
+                <span class="lab"><i data-lucide="sparkles" width="12" height="12"></i>Case summary</span>
+                <p>Maria was balance-billed after in-network knee surgery. Three lines explain $2,870.80 of it: out-of-network anesthesia, a duplicate CBC, and a facility charge above the allowed amount.</p>
+              </div>
+              <div class="box" id="agentsBox">
+                <span class="lab" style="color:var(--ink-2)"><span class="live"></span>Done so far</span>
+                <div>
+                  <div class="task" data-t><span class="ck"><i data-lucide="check" width="10" height="10" stroke-width="3"></i></span><span>Itemized fax read</span></div>
+                  <div class="task" data-t><span class="ck"><i data-lucide="check" width="10" height="10" stroke-width="3"></i></span><span>Duplicate CBC flagged</span></div>
+                  <div class="task" data-t><span class="ck"><i data-lucide="check" width="10" height="10" stroke-width="3"></i></span><span>Billing fax no. found</span></div>
+                  <div class="task" data-t><span class="ck"><i data-lucide="check" width="10" height="10" stroke-width="3"></i></span><span>Dispute drafted</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="draft" id="draft">
+              <div class="top">
+                <div class="kind"><i>FAX</i><div><b>Dispute letter to St. Brennan billing</b><span>To (214) 555-0147 · 2 pages</span></div></div>
+                <span class="chip st" id="draftSt">Drafting</span>
+              </div>
+              <div class="lines"><i style="--w:96%"></i><i style="--w:90%"></i><i style="--w:72%"></i></div>
+              <div class="row">
+                <button class="btn-s p" id="approveBtn" type="button" tabindex="-1">Approve and send</button>
+                <button class="btn-s g" type="button" tabindex="-1"><i data-lucide="refresh-cw" width="13" height="13"></i>Review again</button>
+                <button class="btn-s g" type="button" tabindex="-1"><i data-lucide="pause" width="13" height="13"></i>Hold</button>
+                <span class="sentmsg"><i data-lucide="check" width="14" height="14"></i>Sent by your advocate · logged on the timeline</span>
+              </div>
+            </div>
+          </div>
+          <aside class="np" aria-hidden="true">
+            <div class="np-h"><span class="orb"></span><div><b>Nia</b></div></div>
+            <div class="np-log" id="npLog">
+              <div class="m n">St. Brennan faxed the itemized bill at 2:14 am. I am reading it now.</div>
+            </div>
+            <div class="np-in"><span>Ask Nia</span><i><i data-lucide="send" width="13" height="13"></i></i></div>
+          </aside>
+        </div>
+        <span class="ncursor" id="niaCursor" style="--x:640px;--y:120px;opacity:0" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M19.438 6.716 1.115.05A.832.832 0 0 0 .05 1.116L6.712 19.45a.834.834 0 0 0 1.557.025l3.198-8 7.995-3.2a.833.833 0 0 0 0-1.559h-.024Z"/></svg><span class="ncb"><span class="nm">Nia</span><span class="msg">Reading the fax</span></span></span>
+        <span class="ncursor person" id="advCursor" style="--x:900px;--y:560px;opacity:0" aria-hidden="true"><span class="ring"></span><svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M19.438 6.716 1.115.05A.832.832 0 0 0 .05 1.116L6.712 19.45a.834.834 0 0 0 1.557.025l3.198-8 7.995-3.2a.833.833 0 0 0 0-1.559h-.024Z"/></svg><span class="ncb"><span class="msg">Advocate</span></span></span>
+      </div>
+    </div>
+    <div class="ws-legend" data-r><span><i></i>Nia, the assistant</span><span><i class="p"></i>Your advocate</span></div>
+
+
+
+    <div class="tabs5" data-r>
+      <div class="tabs5-grid">
+        <div class="t5"><span class="t5-ic"><i data-lucide="layout-list" width="18" height="18"></i></span><b>Summary</b><p>The member, the coverage, the providers, the active problem, the next actions and the amount each bill demands</p></div>
+        <div class="t5"><span class="t5-ic"><i data-lucide="messages-square" width="18" height="18"></i></span><b>Communications</b><p>Each email, fax and text on the case, with the drafts that wait for approval at the top</p></div>
+        <div class="t5"><span class="t5-ic"><i data-lucide="folder-open" width="18" height="18"></i></span><b>Documents</b><p>Each file, sorted by what it is: bill, EOB, plan document, letter, payment record</p></div>
+        <div class="t5"><span class="t5-ic"><i data-lucide="history" width="18" height="18"></i></span><b>Timeline</b><p>What happened and when, with each event tied to its document</p></div>
+        <div class="t5"><span class="t5-ic"><i data-lucide="shield-check" width="18" height="18"></i></span><b>Audit</b><p>The checks that passed, the open items and the next step</p></div>
+      </div>
+    </div>
+
+    <div class="search-block" data-r>
+      <div class="sb-copy">
+        <span class="kicker">Search <em class="soon">Coming soon</em></span>
+        <h3>Find a case by describing it</h3>
+        <p>Type "the ER bill where the insurer paid the wrong hospital" and Quipus finds the case. You do not need the case number or the exact words. A case number or a member's name still takes you straight to the case.</p>
+      </div>
+      <div class="sb-demo" id="sbDemo" aria-hidden="true">
+        <div class="sb-input"><i data-lucide="search" width="17" height="17"></i><span class="sb-q"><span id="sbText"></span><i class="sb-caret"></i></span><span class="sb-ph" id="sbPh">Describe a case</span></div>
+        <div class="sb-list" id="sbList"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 5. TWO SERVICES ================= -->
+<section class="section" id="services">
+  <div class="container">
+    <div class="sec-head">
+      <div data-r><span class="kicker">Before care and after care</span><h2>Members lose money in two places and your team can cover both</h2></div>
+      <p data-r style="--d:1">A member picks a provider without a price. A member pays a bill that nobody checked. Quipus prepares the work for the two problems.</p>
+    </div>
+    <div class="svc">
+      <a class="svc-card" href="#find-care" data-r>
+        <div class="svc-top"><span class="svc-ic"><i data-lucide="map-pin" width="22" height="22"></i></span><span class="svc-k">Before the visit <em class="soon">Coming soon</em></span></div>
+        <h3>Find care</h3>
+        <p>A member asks where to go. Quipus finds the voucher offers, filters them, and suggests the best ones in a reply that is ready</p>
+        <div class="svc-vis" aria-hidden="true">
+          <div class="sv-row best"><span>Northgate Imaging · 2.4 mi</span><b class="num">$420.00</b></div>
+          <div class="sv-row"><span>Trinity Diagnostics · 4.1 mi</span><b class="num">$465.00</b></div>
+          <div class="sv-row"><span>Oak Lawn Radiology · 6.8 mi</span><b class="num">$510.00</b></div>
+        </div>
+        <span class="svc-more">How find care works <i data-lucide="arrow-right" width="15" height="15"></i></span>
+      </a>
+      <a class="svc-card dark" href="#how" data-r style="--d:1">
+        <div class="svc-top"><span class="svc-ic"><i data-lucide="file-search" width="22" height="22"></i></span><span class="svc-k">After the visit</span></div>
+        <h3>Bill advocacy</h3>
+        <p>A member sends a bill. Quipus compares it with the EOB and the payment records, finds what is wrong and drafts the dispute</p>
+        <div class="svc-vis" aria-hidden="true">
+          <div class="sv-row"><span>Blood count, billed twice</span><b class="num"><s>$142.00</s></b></div>
+          <div class="sv-row"><span>Facility fee above allowed</span><b class="num"><s>$1,675.20</s></b></div>
+          <div class="sv-row act"><span><i data-lucide="file-pen-line" width="14" height="14"></i>Dispute drafted</span><b>Waits for advocate</b></div>
+        </div>
+        <span class="svc-more">How bill advocacy works <i data-lucide="arrow-right" width="15" height="15"></i></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 6. FIND CARE (NEW) ================= -->
+<section class="section band" id="find-care">
+  <div class="container">
+    <div class="sec-head">
+      <div data-r><span class="kicker">Find care <em class="soon">Coming soon</em></span><h2>A member asks for care and Quipus finds, filters and suggests the offers</h2></div>
+      <p data-r style="--d:1">Your advocate does not search. Quipus starts when the request arrives. The reply is ready before anyone opens the case.</p>
+    </div>
+
+    <div class="fc2">
+      <div class="fcx" id="fcx" data-st="3" data-r aria-label="A member's text asking for a knee MRI, worked through the four steps">
+        <div class="fc-msg"><span class="fc-from">The member's text · 8:02 am</span><p>I need an <mark>MRI</mark> of my <mark>knee</mark>. Where do I go?</p></div>
+        <div class="fcx-card">
+          <div class="fcx-top"><div><b id="fcxTitle">3 offers suggested</b><span id="fcxSub">14 found · 11 filtered out</span></div><span class="chip b">Knee MRI</span></div>
+          <div class="fcx-body">
+            <div class="fcx-l l-grid">
+              <div class="of-head"><span class="h-find"><b class="num" id="fcxCount">14</b> voucher offers near 75201</span><span class="h-filt"><b>3 left</b> · 4 wrong service · 3 outside the plan · 3 too far · 1 expired</span></div>
+              <div class="of-grid" id="fcxGrid"></div>
+            </div>
+            <div class="fcx-l l-und">
+              <div class="und-row"><span>Service</span><b>MRI knee, no contrast</b></div>
+              <div class="und-row"><span>Code</span><b class="mono">73721</b></div>
+              <div class="und-row"><span>Plan</span><b>BlueRiver PPO</b></div>
+              <div class="und-row"><span>Location</span><b>Dallas, 75201 · within 10 mi</b></div>
+              <p class="und-note"><i data-lucide="sparkles" width="14" height="14"></i>Read from the member's own words. No code needed.</p>
+            </div>
+            <div class="fcx-l l-best">
+              <div class="fc-offer best"><div><b>Northgate Imaging</b><span>MRI knee, no contrast · 2.4 mi</span></div><b class="num">$420.00</b></div>
+              <div class="fc-offer"><div><b>Trinity Diagnostics</b><span>MRI knee, no contrast · 4.1 mi</span></div><b class="num">$465.00</b></div>
+              <div class="fc-offer"><div><b>Oak Lawn Radiology</b><span>MRI knee, no contrast · 6.8 mi</span></div><b class="num">$510.00</b></div>
+              <div class="fc-foot"><span>Reply ready to send by text</span><span class="chip a">Waits for advocate</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fc-steps" data-r style="--d:1">
+        <span class="fc-lbl">What Quipus does by itself</span>
+        <ol class="fc-flow" id="fcxSteps">
+          <li data-st="1"><span class="ic"><i data-lucide="message-square-text" width="17" height="17"></i></span><div><b>Reads plain words</b><p>A member writes "my knee still hurts and my doctor wants a scan" and Quipus knows it is a knee MRI. When the request is not clear, Quipus asks</p><span class="fp"><i></i></span></div></li>
+          <li data-st="0"><span class="ic"><i data-lucide="search" width="17" height="17"></i></span><div><b>Finds</b><p>Quipus collects the voucher offers for that service near the member</p><span class="fp"><i></i></span></div></li>
+          <li data-st="2"><span class="ic"><i data-lucide="list-filter" width="17" height="17"></i></span><div><b>Filters</b><p>Quipus removes each offer that does not fit: the wrong service, outside the plan, too far or expired</p><span class="fp"><i></i></span></div></li>
+          <li data-st="3" class="on"><span class="ic ic-orb"><span class="orb"></span></span><div><b>Suggests</b><p>Quipus ranks the offers that remain and puts the best ones in the reply, each with one service, one location and one price</p><span class="fp"><i></i></span></div></li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="fc-then2" data-r>
+      <span class="fc-lbl">Then</span>
+      <ol>
+        <li><span class="n">1</span><b>The reply goes to the member</b><p>It goes by email or text, the channel the member used. You set the rule: Quipus sends it at once, or an advocate approves it first.</p></li>
+        <li><span class="n">2</span><b>The member picks an offer</b><p>The voucher is for that service, at that location, at that price</p></li>
+        <li><span class="n">3</span><b>The case stays open until the visit is done</b><p>The request, the offers, the pick and the voucher are on the record</p></li>
+      </ol>
+    </div>
+
+    <div class="fc-end">
+      <div class="fc-chips" data-r><span>Blood work</span><span>X-rays</span><span>MRI and CT</span><span>Mammograms</span><span>Clinic visits</span><span>Procedures</span></div>
+      <div class="fc-call">
+        <div data-r><span class="fc-for">For TPAs</span><p>The plan pays a known price, with no claim to reprice later and no surprise bill to dispute</p></div>
+        <div data-r style="--d:1"><span class="fc-for">For advocacy providers</span><p>The cheapest dispute is the one that never starts</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 7. MEMBER REQUESTS ================= -->
+<section class="section" id="requests">
+  <div class="container">
+    <div class="sec-head">
+      <div data-r><span class="kicker">Member requests</span><h2>Every member request gets an answer, not a ticket number</h2></div>
+      <p data-r style="--d:1">Members write the way they always did. Quipus reads each message, finds the member and the case, and prepares the reply. For each kind of request you set the rule: Quipus sends the reply, or an advocate approves it first.</p>
+    </div>
+    <div class="rq" id="rq">
+      <div class="inbox" id="rqBox" data-st="0" data-r aria-label="Incoming member messages, each matched to its case and answered">
+        <div class="ib-top"><b><i data-lucide="inbox" width="16" height="16"></i>Incoming</b><span>Shared mailbox · fax · texts</span></div>
+        <div class="ib-row r-maria" style="--k:0"><span class="ib-ch">Email</span><div><b>Maria G.</b><span>"Did they get my assistance form?"</span></div><span class="ib-st"><em class="b">QP-24817</em></span><i class="ib-crm" aria-hidden="true"><i data-lucide="check" width="12" height="12"></i></i></div>
+        <div class="ib-row r-jordan" style="--k:1"><span class="ib-ch">Text</span><div><b>Jordan K.</b><span>"Where do I go for a knee MRI?"</span></div><span class="ib-st"><em class="b">QP-24851</em></span><i class="ib-crm" aria-hidden="true"><i data-lucide="check" width="12" height="12"></i></i></div>
+        <div class="ib-row r-fax" style="--k:2"><span class="ib-ch">Fax</span><div><b>Cedar Ridge billing</b><span>Itemized statement, 3 pages</span></div><span class="ib-st"><em class="b">QP-24809</em></span><i class="ib-crm" aria-hidden="true"><i data-lucide="check" width="12" height="12"></i></i></div>
+        <div class="ib-row r-unk" style="--k:3"><span class="ib-ch">Email</span><div><b>Unknown sender</b><span>"Question about my bill"</span></div><span class="ib-st wait"><em class="b">Shared inbox</em></span></div>
+        <div class="rq-pane">
+          <div class="rq-p p0"><span class="rq-k"><i data-lucide="link-2" width="14" height="14"></i>Matched by</span><p>Maria's email address and her open case <b class="mono">QP-24817</b>. No ticket, no copy and paste.</p></div>
+          <div class="rq-p p1 p2">
+            <div class="rq-reply"><span class="rq-k"><span class="rq-to">Reply to Jordan K. by text</span><em class="rq-badge d">Draft</em><em class="rq-badge s"><i data-lucide="check" width="12" height="12"></i>Sent 8:14 am</em></span>
+              <p>Hi Jordan, here are 3 places near you for a knee MRI: Northgate Imaging $420.00, Trinity Diagnostics $465.00, Oak Lawn Radiology $510.00</p>
+              <span class="rq-src"><span class="u">Uses: Find care · 3 offers</span><span class="f">From Rosa · (214) 555-0142</span></span>
+            </div>
+          </div>
+          <div class="rq-p p3"><span class="rq-k"><i data-lucide="database" width="14" height="14"></i>Saved</span>
+            <ul class="rq-log"><li>On case <b class="mono">QP-24817</b>, <b class="mono">QP-24851</b>, <b class="mono">QP-24809</b></li><li>Synced to your CRM</li></ul></div>
+          <div class="rq-p p4"><span class="rq-k"><i data-lucide="inbox" width="14" height="14"></i>No case found for this sender</span>
+            <div class="rq-acts"><span class="rq-btn">Attach to a case</span><span class="rq-btn pri">Open a new case</span></div></div>
+        </div>
+      </div>
+      <ul class="rq-list" id="rqSteps" data-r style="--d:1">
+        <li class="on"><span class="ic"><i data-lucide="link-2" width="18" height="18"></i></span><div><b>The right case, found</b><p>Quipus matches each email and text to its case</p><span class="fp"><i></i></span></div></li>
+        <li><span class="ic"><i data-lucide="file-pen-line" width="18" height="18"></i></span><div><b>A reply that is ready <em class="soon">Coming soon</em></b><p>Quipus drafts the answer and shows the document it used</p><span class="fp"><i></i></span></div></li>
+        <li><span class="ic"><i data-lucide="send" width="18" height="18"></i></span><div><b>Sent from your team</b><p>Emails go from your shared mailbox and texts from the advocate's own number</p><span class="fp"><i></i></span></div></li>
+        <li><span class="ic"><i data-lucide="database" width="18" height="18"></i></span><div><b>On the record</b><p>Each message is saved on the case and in your CRM</p><span class="fp"><i></i></span></div></li>
+        <li><span class="ic"><i data-lucide="inbox" width="18" height="18"></i></span><div><b>Nothing lost</b><p>A message with no case waits in one shared inbox until an advocate attaches it or opens a new case</p><span class="fp"><i></i></span></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 8. HOW IT WORKS (BILL ADVOCACY) ================= -->
+<section class="section band" id="how">
+  <div class="container">
+  <div class="case-grid">
+    <div>
+      <div data-r><span class="kicker">Bill advocacy</span><h2 class="h2 how-h">The work is done before anyone opens the case</h2></div>
+      <ol class="steps" id="steps" data-r style="--d:1">
+        <li class="step"><span class="n">01</span><b>Each document gets read</b><p><span>Scans, faxes, emails, photos and PDFs. Quipus sorts each one by what it is.</span></p><span class="prog"><i></i></span></li>
+        <li class="step"><span class="n">02</span><b>The timeline and the ledger get built</b><p><span>Services, statements and payments go in date order. The ledger sets what each bill demands against what the plan decided.</span></p><span class="prog"><i></i></span></li>
+        <li class="step"><span class="n">03</span><b>The plan names what the case still needs</b><p><span>An itemized bill. A corrected claim. A financial assistance form. Each need names who can supply it.</span></p><span class="prog"><i></i></span></li>
+        <li class="step"><span class="n">04</span><b>The letters get drafted</b><p><span>Emails and faxes go to the provider, the insurer and the member. Each letter asks for a named need.</span></p><span class="prog"><i></i></span></li>
+        <li class="step"><span class="n">05</span><b>The work gets checked, then your advocate approves</b><p><span>A second pass checks the numbers against the documents. Your advocate edits, approves and sends.</span></p><span class="prog"><i></i></span></li>
+      </ol>
+    </div>
+
+    <div class="stack" id="stack" data-r style="--d:2">
+      <div class="sc">
+        <div class="sc-hd"><span class="l"><span class="ico"><i data-lucide="folder-open" width="16" height="16"></i></span>Documents</span><span class="r"><span><b>4 new</b>today</span></span></div>
+        <div class="sc-body">
+          <div class="docrow" style="--i:0"><span class="t">EOB</span><div><b>BlueRiver Health EOB.pdf</b><span>Insurer · 3 pages · claim BRH-55120938</span></div><span class="chip b">EOB</span></div>
+          <div class="docrow" style="--i:1"><span class="t">FAX</span><div><b>Itemized statement</b><span>St. Brennan Medical · 4 pages</span></div><span class="chip b">Bill</span></div>
+          <div class="docrow" style="--i:2"><span class="t">IMG</span><div><b>Photo of a statement</b><span>Text from Maria G. · 1 page</span></div><span class="chip b">Bill</span></div>
+          <div class="docrow" style="--i:3"><span class="t">PDF</span><div><b>Summary plan description</b><span>BlueRiver PPO · 42 pages</span></div><span class="chip">Plan document</span></div>
+        </div>
+      </div>
+      <div class="sc">
+        <div class="sc-hd"><span class="l"><span class="ico"><i data-lucide="scale" width="16" height="16"></i></span>Ledger</span><span class="r"><span><b>Ledger</b>Bill demands vs plan decided</span></span></div>
+        <div class="sc-body">
+          <div class="bars">
+            <div class="bx" style="--i:0;--w:42%"><div class="top"><b>Arthroscopy</b><span class="mono">$412.00 / $412.00</span></div><div class="trk"><i></i></div></div>
+            <div class="bx bad" style="--i:1;--w:96%"><div class="top"><b>Anesthesia</b><span class="mono">$1,240.00 / $186.40</span></div><div class="trk"><i></i></div></div>
+            <div class="bx bad" style="--i:2;--w:88%"><div class="top"><b>Facility fee</b><span class="mono">$1,675.20 / $0.00</span></div><div class="trk"><i></i></div></div>
+            <div class="bx mid" style="--i:3;--w:70%"><div class="top"><b>Blood count, billed twice</b><span class="mono">$142.00 / $0.00</span></div><div class="trk"><i></i></div></div>
+            <div class="bx" style="--i:4;--w:22%"><div class="top"><b>Metabolic panel</b><span class="mono">$12.90</span></div><div class="trk"><i></i></div></div>
+            <div class="bx" style="--i:5;--w:35%"><div class="top"><b>Plan paid</b><span class="mono">$5,994.20</span></div><div class="trk"><i></i></div></div>
+          </div>
+          <div class="report" style="--i:6"><div><b>3 lines do not match</b><span>$2,870.80 demanded beyond what the plan decided.</span></div><span class="go"><i data-lucide="arrow-up-right" width="12" height="12"></i></span></div>
+        </div>
+      </div>
+      <div class="sc">
+        <div class="sc-hd"><span class="l"><span class="ico"><i data-lucide="list-checks" width="16" height="16"></i></span>What the case needs</span><span class="r"><span><b>Case plan</b>3 open needs</span></span></div>
+        <div class="sc-body">
+          <div class="docrow" style="--i:0"><span class="t">1</span><div><b>Itemized bill</b><span>From St. Brennan billing</span></div><span class="chip g">Received</span></div>
+          <div class="docrow" style="--i:1"><span class="t">2</span><div><b>Corrected claim</b><span>From BlueRiver Health</span></div><span class="chip a">Letter drafted</span></div>
+          <div class="docrow" style="--i:2"><span class="t">3</span><div><b>Financial assistance form</b><span>From Maria G.</span></div><span class="chip">Waiting</span></div>
+        </div>
+      </div>
+      <div class="sc">
+        <div class="sc-hd"><span class="l"><span class="ico"><i data-lucide="printer" width="16" height="16"></i></span>Letters</span><span class="r"><span><b>Draft</b>Fax · 2 pages</span></span></div>
+        <div class="sc-body">
+          <div class="fax" style="--i:0">
+            <div class="meta"><span class="chip">To: BlueRiver claims</span><span class="chip g">Fax no. verified</span><span class="chip">Asks for: corrected claim</span></div>
+            <div class="txt">The anesthesia on 09/18 was out of network at an in-network hospital. Please reprocess claim BRH-55120938 at in-network cost sharing under the No Surprises Act.</div>
+            <div class="ln" style="--k:0;--w:96%"></div><div class="ln" style="--k:1;--w:88%"></div><div class="ln" style="--k:2;--w:64%"></div>
+          </div>
+          <div class="sacts" style="--i:1"><button class="btn-s p" type="button" tabindex="-1">Approve and send</button><button class="btn-s g" type="button" tabindex="-1">Ask Nia to revise</button></div>
+        </div>
+      </div>
+      <div class="sc navy">
+        <div class="sc-hd"><span class="l"><span class="ico"><i data-lucide="shield-check" width="16" height="16"></i></span>Second pass</span><span class="r"><span><b>Ready to approve</b>Updated 2 min ago</span></span></div>
+        <div class="sc-body">
+          <p class="sum" style="--i:0">14 amounts checked against their documents. <em>13 match.</em> One is a question for your advocate, with a recommendation.</p>
+          <div class="src" style="--i:1"><span class="chip">14 amounts</span><span class="chip">6 documents</span><span class="chip">1 question</span></div>
+          <div class="sum-foot" style="--i:2"><span>Amounts that match their documents</span><b class="num">13 of 14</b></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="how-notes2" data-r>
+    <div><span class="ic"><i data-lucide="refresh-cw" width="18" height="18"></i></span><div><b>When a reply arrives, the case updates</b><p>Quipus reads the new document and changes only what the document changes</p></div></div>
+    <div><span class="ic"><i data-lucide="message-circle-question" width="18" height="18"></i></span><div><b>When Quipus is not sure, it asks</b><p>The advocate gets the question, a recommendation and the details, and the review continues after the answer</p></div></div>
+  </div>
+  </div>
+</section>
+
+<!-- ================= 9. BILL REVIEW ================= -->
+<section class="section" id="errors">
+  <div class="container">
+    <div class="sec-head">
+      <div data-r><span class="kicker">Bill review</span><h2>What Quipus checks on every bill</h2></div>
+      <p data-r style="--d:1">Medical bills go wrong in the same ways again and again. Quipus looks for each one.</p>
+    </div>
+    <div class="explorer" id="explorer" data-r style="--d:1">
+      <div class="ex-tabs" id="exTabs" role="tablist" aria-label="Billing errors"></div>
+      <div class="ex-scrim" id="exScrim" aria-hidden="true"></div>
+      <div class="ex-card" id="exCard">
+        <button class="ex-close" id="exClose" type="button" aria-label="Close"><i data-lucide="x" width="18" height="18"></i></button>
+        <div class="ex-doc" id="exDoc" role="tabpanel">
+          <div class="ex-body" id="exBody">
+            <div class="dh"><b id="exOrg">St. Brennan Medical Center</b><span id="exMeta">Itemized statement</span></div>
+            <div class="ex-rows" id="exRows"></div>
+          </div>
+          <span class="ex-chip" id="exChip"></span>
+          <div class="ex-tot ex-find"><span class="ef-l"><i data-lucide="scan-search" width="16" height="16"></i><span id="exFindL">Checking</span></span><span class="ef-r"><b id="exFindAmt"></b><span class="chip st" id="exFindSt" hidden></span></span></div>
+          <span class="ncursor" id="exCursor" style="opacity:0" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M19.438 6.716 1.115.05A.832.832 0 0 0 .05 1.116L6.712 19.45a.834.834 0 0 0 1.557.025l3.198-8 7.995-3.2a.833.833 0 0 0 0-1.559h-.024Z"/></svg><span class="ncb"><span class="nm">Nia</span><span class="msg"></span></span></span>
+        </div>
+        <div class="ex-info" id="exInfo" aria-live="polite">
+          <h3 id="exName">Duplicate charges</h3>
+          <p id="exDesc" hidden></p>
+          <div class="kv">
+            <div><span>What it is</span><b style="font-weight:400" id="exRule"></b></div>
+            <div><span>What Quipus does</span><b style="font-weight:400" id="exFix"></b></div>
+          </div>
+          <div class="next-act"><span class="na-ic"><i data-lucide="file-pen-line" width="17" height="17"></i></span><div class="na-t"><b id="exNext">Request drafted</b><span>Waits for an advocate</span></div><span class="na-amt"><small id="exSavedL">Amount in question</small><b id="exSaved">$0.00</b></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 10. EVIDENCE ================= -->
+<section class="section band" id="evidence">
+  <div class="container">
+    <div class="sec-head">
+      <div data-r><span class="kicker">Reviewable by design</span><h2>Every number shows where it came from</h2></div>
+      <p data-r style="--d:1">A billing dispute fails on one wrong number. In Quipus, each amount and each date carries the exact line from its document. Software confirms that the line is in the document before the case reaches your advocate.</p>
+    </div>
+    <ul class="ev-list" data-r>
+      <li><i data-lucide="file-search" width="17" height="17"></i>Each amount points to its document and its line</li>
+      <li><i data-lucide="git-compare" width="17" height="17"></i>Records that disagree stay marked, and Quipus does not merge them into one answer</li>
+      <li><i data-lucide="mail-question" width="17" height="17"></i>Missing evidence becomes a request to the party that has it, not a guess</li>
+      <li><i data-lucide="scale" width="17" height="17"></i>The bill says what the member owes, and the EOB says why the bill is wrong</li>
+      <li><i data-lucide="file-check-2" width="17" height="17"></i>Each letter uses only facts from the case</li>
+    </ul>
+    <div class="eobv" id="eobv" data-r style="--d:1">
+      <div class="eobv-top">
+        <div><b>Explanation of Benefits</b><span>BlueRiver Health PPO · Claim BRH-55120938 · Service date Sep 18, 2026</span></div>
+        <span class="chip b">This is not a bill</span>
+      </div>
+      <div class="eob-tiles" role="group" aria-label="The four numbers on this EOB">
+        <button type="button" class="et" data-term="billed"><span><i></i>Billed</span><b>$15,268.00</b></button>
+        <button type="button" class="et" data-term="allowed"><span><i></i>Allowed</span><b>$6,605.50</b></button>
+        <button type="button" class="et" data-term="paid"><span><i></i>Plan paid</span><b>$5,994.20</b></button>
+        <button type="button" class="et" data-term="owe"><span><i></i>Member owes</span><b>$611.30</b></button>
+      </div>
+      <div class="tbl">
+        <table id="eobTable">
+          <thead><tr>
+            <th>Service</th>
+            <th data-col="billed"><button type="button" class="colbtn" data-term="billed"><i></i>Billed</button></th>
+            <th data-col="allowed"><button type="button" class="colbtn" data-term="allowed"><i></i>Allowed</button></th>
+            <th data-col="paid"><button type="button" class="colbtn" data-term="paid"><i></i>Plan paid</button></th>
+            <th data-col="owe"><button type="button" class="colbtn" data-term="owe"><i></i>Member owes</button></th>
+          </tr></thead>
+          <tbody>
+            <tr><td>Knee arthroscopy <span class="cd">29881</span></td><td data-col="billed">$9,840.00</td><td data-col="allowed">$4,120.00</td><td data-col="paid">$3,708.00</td><td data-col="owe">$412.00</td></tr>
+            <tr><td>Facility fee, outpatient</td><td data-col="billed">$3,950.00</td><td data-col="allowed">$2,274.80</td><td data-col="paid">$2,274.80</td><td data-col="owe">$0.00</td></tr>
+            <tr><td>Anesthesia <span class="cd">01400</span></td><td data-col="billed">$1,240.00</td><td data-col="allowed">$186.40</td><td data-col="paid">$0.00</td><td data-col="owe">$186.40</td></tr>
+            <tr><td>Blood count <span class="cd">85025</span></td><td data-col="billed">$142.00</td><td data-col="allowed">$11.40</td><td data-col="paid">$11.40</td><td data-col="owe">$0.00</td></tr>
+            <tr><td>Metabolic panel <span class="cd">80048</span></td><td data-col="billed">$96.00</td><td data-col="allowed">$12.90</td><td data-col="paid">$0.00</td><td data-col="owe">$12.90</td></tr>
+            <tr class="total"><td>Total</td><td data-col="billed">$15,268.00</td><td data-col="allowed">$6,605.50</td><td data-col="paid">$5,994.20</td><td data-col="owe">$611.30</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="swipe" aria-hidden="true"><i data-lucide="move-horizontal" width="14" height="14"></i>Swipe the table to see every column</p>
+
+      <div class="eobv-foot">
+        <div class="term-cap" id="termCap" aria-live="polite">
+          <span class="dot" id="termDot"></span>
+          <div><b id="termName">Member owes</b><p id="termDesc">The member's share after the plan pays. It should equal allowed minus plan paid.</p></div>
+        </div>
+        <div class="formula" id="formula">
+          <span class="fx" data-f="allowed"><small>Allowed</small>$6,605.50</span>
+          <span class="op">−</span>
+          <span class="fx" data-f="paid"><small>Plan paid</small>$5,994.20</span>
+          <span class="op">=</span>
+          <span class="fx" data-f="owe"><small>Member owes</small>$611.30</span>
+        </div>
+      </div>
+      <div class="ev-cap"><i data-lucide="scale" width="18" height="18"></i><span>The hospital asked for <b>$3,482.10</b> and the EOB supports <b>$611.30</b></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 11. NIA ================= -->
+<section class="section nia-band" id="nia">
+  <div class="container nia">
+    <div>
+      <div data-r><span class="kicker">Nia</span><h2 class="h2">Ask about any case and Nia answers with the document open</h2></div>
+      <p class="lede" data-r style="--d:1">Nia is the assistant in the advocate workspace. It knows each document, email, fax and text on the case.</p>
+      <div class="caps" data-r style="--d:2">
+        <div><span>ANSWER</span>Questions about the case, with the document and the quote</div>
+        <div><span>RESEARCH</span>Billing rules, contacts and prices, with no member details in the search</div>
+        <div><span>DRAFT</span>Emails, faxes and call notes</div>
+        <div><span>UPDATE</span>A new review of the case when new information arrives</div>
+      </div>
+      <p class="never" data-r style="--d:3">Nia does not place phone calls and sends nothing by itself</p>
+    </div>
+    <div class="chatbox" data-r style="--d:1">
+      <div class="chat-top">
+        <div class="nia-id"><span class="orb"></span><div><b>Nia</b><span>Working on case QP-24817</span></div></div>
+      </div>
+      <div class="log" id="log" aria-live="polite"></div>
+      <div class="composer" id="composer"><span id="composerText">Ask Nia</span><i><i data-lucide="send" width="16" height="16"></i></i></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 12. PLATFORM ================= -->
+<section class="section" id="platform">
+  <div class="container">
+    <div class="sec-head">
+      <div data-r><span class="kicker">The platform</span><h2>Works with the systems you run today</h2></div>
+    </div>
+    <div class="plat">
+      <div class="pl-i bc" data-r><span class="pl-ic"><i data-lucide="database" width="20" height="20"></i></span><b>Your CRM stays the system of record</b><p>Quipus writes each email, fax, text and file back to the case. Salesforce is connected today</p></div>
+      <div class="pl-i bc" data-r style="--d:1"><span class="pl-ic"><i data-lucide="inbox" width="20" height="20"></i></span><b>Your shared mailbox</b><p>Quipus reads the mailbox and sends as your team</p></div>
+      <div class="pl-i bc" data-r style="--d:2"><span class="pl-ic"><i data-lucide="printer" width="20" height="20"></i></span><b>Your fax and phone numbers</b><p>Faxes go out with a cover page and the files you choose, and advocates text from their own numbers</p></div>
+      <div class="pl-i bc" data-r><span class="pl-ic"><i data-lucide="paperclip" width="20" height="20"></i></span><b>Files from the advocate's computer</b><p>Attach a file to an email or a fax and Quipus saves it on the case</p></div>
+      <div class="pl-i bc blue-i pl-wide" data-r style="--d:2"><span class="pl-ic"><i data-lucide="moon-star" width="20" height="20"></i></span><b>Work that continues overnight</b><p>The morning starts with drafts, not with an inbox</p><div class="pl-sky" aria-hidden="true"><div class="ps-dawn"></div><i class="ps-sun"></i><div class="ps-night"><i class="ps-stars"></i><svg class="ps-moon" viewBox="0 0 100 100" aria-hidden="true"><path d="M45.72 4.20A46 46 0 1 0 84.08 80.90A43 43 0 0 1 45.72 4.20Z"/></svg></div><i class="ps-land"></i></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 13. SECURITY AND OVERSIGHT ================= -->
+<section class="section band" id="security">
+  <div class="container ctl">
+    <div>
+      <div data-r><span class="kicker">Security and oversight</span><h2 class="h2 ctl-h">Your members' data and your team's decision</h2></div>
+      <ul class="sec-pts" data-r style="--d:1">
+        <li><i data-lucide="sliders-horizontal" width="17" height="17"></i><span>You set the rule for each kind of request: Quipus sends, or an advocate approves first <em class="soon">Coming soon</em></span></li>
+        <li><i data-lucide="key-round" width="17" height="17"></i><span>Each person signs in with a second factor</span></li>
+        <li data-tl="sys"><i data-lucide="eye-off" width="17" height="17"></i><span>System logs carry IDs and counts, with no member names and no case content</span></li>
+        <li><i data-lucide="search-x" width="17" height="17"></i><span>Member details do not go into a web search</span></li>
+        <li data-tl="case"><i data-lucide="history" width="17" height="17"></i><span>Each case keeps a full record of what was read, found, sent and decided</span></li>
+      </ul>
+    </div>
+    <div class="tl-card" id="tlCard" data-v="case" data-r style="--d:1">
+      <div class="tl-top">
+        <div class="tl-head">
+          <div class="tl-h hc"><small>QP-24817 · Case record</small><b>Maria G. · St. Brennan Medical</b></div>
+          <div class="tl-h hs"><small>case_8812 · System log</small><b>IDs and counts only</b></div>
+        </div>
+        <div class="tl-seg" role="tablist" aria-label="Record view"><span class="tl-ind" aria-hidden="true"></span><button type="button" role="tab" data-v="case" aria-selected="true">Case record</button><button type="button" role="tab" data-v="sys" aria-selected="false">System log</button></div>
+      </div>
+      <div class="tl-views">
+        <ol class="tl tl-v vc">
+          <li style="--k:0"><span class="t">06:12</span><span class="dot"></span><div><b>Itemized bill received by fax</b><span>Intake agent · 4 pages read and sorted as a bill</span></div></li>
+          <li style="--k:1"><span class="t">06:14</span><span class="dot"></span><div><b>Duplicate CBC flagged</b><span>Review agent · source: itemized bill, page 2, line 7</span></div></li>
+          <li style="--k:2"><span class="t">06:15</span><span class="dot"></span><div><b>Out-of-network anesthesia flagged</b><span>Review agent · No Surprises Act rule matched</span></div></li>
+          <li style="--k:3"><span class="t">06:20</span><span class="dot"></span><div><b>Dispute letter drafted</b><span>Nia · cites EOB BRH-55120938, line 3</span></div></li>
+          <li style="--k:4" class="person" id="tlGate"><span class="t">09:41</span><span class="dot"></span><div class="gate"><div class="g-w"><b>Waiting for an advocate</b><span>Waits for an advocate, by your rule</span></div><div class="g-a"><b>Approved and sent by your advocate</b><span>Fax to (214) 555-0147 · 2 pages</span></div></div></li>
+          <li style="--k:5"><span class="t">09:41</span><span class="dot"></span><div><b>Follow-up set for Nov 20</b><span>Quipus · waits for the reply</span></div></li>
+        </ol>
+        <ol class="tl-v vs" aria-label="System log: IDs and counts, no names or case content">
+          <li><span class="t">06:12</span><code>evt_7f3a</code><b>doc.ingest</b><span>pages=4 type=bill</span></li>
+          <li><span class="t">06:14</span><code>evt_7f41</code><b>check.flag</b><span>rule=dup_line count=1</span></li>
+          <li><span class="t">06:15</span><code>evt_7f44</code><b>check.flag</b><span>rule=nsa_oon count=1</span></li>
+          <li><span class="t">06:20</span><code>evt_7f52</code><b>draft.create</b><span>refs=2</span></li>
+          <li class="p"><span class="t">09:41</span><code>evt_8a10</code><b>send.fax</b><span>approved_by=usr_204 pages=2</span></li>
+          <li><span class="t">09:41</span><code>evt_8a11</code><b>task.create</b><span>due=11-20</span></li>
+          <li class="redact"><i data-lucide="eye-off" width="14" height="14"></i>No member names. No case content.</li>
+        </ol>
+      </div>
+      <div class="tl-legend"><span><i></i>Quipus</span><span><i class="p"></i>Your advocate</span><span class="tl-logged"><i data-lucide="lock" width="12" height="12"></i>System log</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 14. FAQ ================= -->
+<section class="section" id="faq">
+  <div class="container faq">
+    <div class="side" data-r><span class="kicker">Questions</span><h2 class="h2">Questions operations leaders ask first</h2><p>Book a demo and ask us yours</p></div>
+    <div data-r style="--d:1">
+      <details class="qa" name="faq"><summary>Is Quipus an advocacy service?<span class="pm"></span></summary><div class="ans"><p>No. Quipus is software for your advocacy team. Your organization keeps the member relationship and makes each decision.</p></div></details>
+      <details class="qa" name="faq"><summary>Does Quipus replace our CRM?<span class="pm"></span></summary><div class="ans"><p>No. Your CRM stays the system of record. Quipus holds the detailed case and writes messages and files back to it.</p></div></details>
+      <details class="qa" name="faq"><summary>Can Quipus send anything by itself?<span class="pm"></span></summary><div class="ans"><p>Only what you allow. You set the rule for each kind of request. For example, a reply with care offers can go to the member at once, and a dispute letter can wait for an advocate.</p></div></details>
+      <details class="qa" name="faq"><summary>How do we know a finding is right?<span class="pm"></span></summary><div class="ans"><p>Each amount and date carries the line from its document. Software confirms that the line is there, and a second pass checks the numbers. Your advocate has the last word.</p></div></details>
+      <details class="qa" name="faq"><summary>What happens when Quipus is not sure?<span class="pm"></span></summary><div class="ans"><p>It asks the advocate one clear question, with a recommendation. It does not guess.</p></div></details>
+      <details class="qa" name="faq"><summary>How does Quipus pick the offers it suggests?<span class="pm"></span></summary><div class="ans"><p><em class="soon">Coming soon</em> Quipus collects the voucher offers for the service the member asked for. It removes the offers that do not fit the service, the plan or the location. Then it ranks the rest and suggests the best ones.</p></div></details>
+      <details class="qa" name="faq"><summary>How do care vouchers work?<span class="pm"></span></summary><div class="ans"><p><em class="soon">Coming soon</em> The member picks one of the suggested offers. The voucher is for that service, at that location, at that price.</p></div></details>
+      <details class="qa" name="faq"><summary>Who do members hear from?<span class="pm"></span></summary><div class="ans"><p>Your team. Emails go from your mailbox, and texts go from your advocates' numbers.</p></div></details>
+      <details class="qa" name="faq"><summary>What if the member already paid?<span class="pm"></span></summary><div class="ans"><p>Quipus checks the payment against the bill and the EOB. If the member paid too much, it drafts the refund request.</p></div></details>
+      <details class="qa" name="faq"><summary>How do we start?<span class="pm"></span></summary><div class="ans"><p>With a part of your queue. You pick one client group or one case type, and we start there.</p></div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 15. CONTACT ================= -->
+<section class="contact" id="contact">
+  <span class="blob cb1" aria-hidden="true"></span><span class="blob cb2" aria-hidden="true"></span>
+  <div class="container contact-grid">
+    <div class="contact-copy">
+      <div data-r><span class="kicker">Contact</span><h2>Bring us the case your team dreads reopening</h2></div>
+      <p class="lede" data-r style="--d:1">We are onboarding TPA and advocacy teams now. Tell us about your caseload, and we will show Quipus on a real case.</p>
+      <ol class="next" data-r style="--d:2">
+        <li><span class="n">01</span><div><b>We reply</b><p>Someone from the team sets a time</p></div></li>
+        <li><span class="n">02</span><div><b>A walkthrough on your case</b><p>Bring a redacted bill and EOB, and watch Quipus work the case from start to end</p></div></li>
+        <li><span class="n">03</span><div><b>A pilot on part of your queue</b><p>Start with one client group or one case type, and measure the time saved before you expand</p></div></li>
+      </ol>
+    </div>
+
+    <div class="contact-card" data-r style="--d:1">
+      <form id="contactForm" novalidate>
+        <div class="cf-grid">
+          <div class="cf-field"><label for="cfName">Full name</label><input id="cfName" name="name" autocomplete="name" placeholder="Your full name"><span class="cf-err" id="cfNameErr"></span></div>
+          <div class="cf-field"><label for="cfEmail">Work email</label><input id="cfEmail" name="email" type="email" autocomplete="email" placeholder="you@company.com"><span class="cf-err" id="cfEmailErr"></span></div>
+          <div class="cf-field"><label for="cfOrg">Organization</label><input id="cfOrg" name="organization" autocomplete="organization" placeholder="Your TPA or advocacy provider"><span class="cf-err" id="cfOrgErr"></span></div>
+          <div class="cf-field"><span class="cf-label" id="cfRoleLbl">Organization type</span>
+            <div class="cf-dd" id="cfRoleDD">
+              <input type="hidden" id="cfRole" name="organization_type" value="">
+              <button type="button" class="cf-dd-btn" id="cfRoleBtn" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="cfRoleLbl cfRoleBtn"><span class="cf-dd-val">Choose one</span><i data-lucide="chevron-down" width="16" height="16"></i></button>
+              <div class="cf-dd-list" id="cfRoleList" role="listbox" aria-labelledby="cfRoleLbl">
+                <button type="button" role="option" aria-selected="false" data-v="TPA or plan administrator"><span class="ic"><i data-lucide="landmark" width="15" height="15"></i></span><span class="tx">TPA or plan administrator</span><i data-lucide="check" class="ck" width="16" height="16"></i></button>
+                <button type="button" role="option" aria-selected="false" data-v="Advocacy provider"><span class="ic"><i data-lucide="users-round" width="15" height="15"></i></span><span class="tx">Advocacy provider</span><i data-lucide="check" class="ck" width="16" height="16"></i></button>
+                <button type="button" role="option" aria-selected="false" data-v="Concierge or care navigation company"><span class="ic"><i data-lucide="compass" width="15" height="15"></i></span><span class="tx">Concierge or care navigation company</span><i data-lucide="check" class="ck" width="16" height="16"></i></button>
+                <button type="button" role="option" aria-selected="false" data-v="Benefits consultant or broker"><span class="ic"><i data-lucide="briefcase" width="15" height="15"></i></span><span class="tx">Benefits consultant or broker</span><i data-lucide="check" class="ck" width="16" height="16"></i></button>
+                <button type="button" role="option" aria-selected="false" data-v="Other"><span class="ic"><i data-lucide="ellipsis" width="15" height="15"></i></span><span class="tx">Other</span><i data-lucide="check" class="ck" width="16" height="16"></i></button>
+              </div>
+            </div>
+            <span class="cf-err" id="cfRoleErr"></span></div>
+          <div class="cf-field full"><span class="cf-label" id="cfMemLabel">Members covered</span>
+            <div class="cf-seg" role="radiogroup" aria-labelledby="cfMemLabel">
+              <span class="seg-thumb" aria-hidden="true"></span>
+              <label><input type="radio" name="members" value="Under 5,000"><span>Under 5,000</span></label>
+              <label><input type="radio" name="members" value="5,000 to 25,000"><span>5,000 to 25,000</span></label>
+              <label><input type="radio" name="members" value="25,000 to 100,000"><span>25,000 to 100,000</span></label>
+              <label><input type="radio" name="members" value="Over 100,000"><span>Over 100,000</span></label>
+            </div></div>
+          <div class="cf-field full"><span class="cf-label" id="cfVolLabel">Cases each month</span>
+            <div class="cf-seg" role="radiogroup" aria-labelledby="cfVolLabel">
+              <span class="seg-thumb" aria-hidden="true"></span>
+              <label><input type="radio" name="volume" value="Under 50"><span>Under 50</span></label>
+              <label><input type="radio" name="volume" value="50 to 200"><span>50 to 200</span></label>
+              <label><input type="radio" name="volume" value="200 to 1,000"><span>200 to 1,000</span></label>
+              <label><input type="radio" name="volume" value="Over 1,000"><span>Over 1,000</span></label>
+            </div></div>
+          <div class="cf-field full"><label for="cfCrm">CRM in use <em>Optional</em></label><input id="cfCrm" name="crm" placeholder="e.g. Salesforce"></div>
+          <div class="cf-field full"><span class="cf-label" id="cfSeeLabel">What you want to see <em>Optional</em></span>
+            <div class="cf-checks" role="group" aria-labelledby="cfSeeLabel">
+              <label><input type="checkbox" name="interest" value="Bill advocacy"><span><i data-lucide="check" width="14" height="14"></i>Bill advocacy</span></label>
+              <label><input type="checkbox" name="interest" value="Find care"><span><i data-lucide="check" width="14" height="14"></i>Find care</span></label>
+              <label><input type="checkbox" name="interest" value="Member requests"><span><i data-lucide="check" width="14" height="14"></i>Member requests</span></label>
+            </div></div>
+        </div>
+        <button class="cta solid lg cf-submit" type="submit"><span>Book a demo</span><i data-lucide="arrow-right" class="arr" width="16" height="16"></i></button>
+        <p class="cf-note">A member with a bill? Contact your plan or your advocacy team</p>
+      </form>
+      <div class="cf-done" id="cfDone" hidden>
+        <span class="cf-check"><svg viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="24"/><path d="M15 27l7 7 15-16"/></svg></span>
+        <h3 id="cfDoneTitle">Thanks.</h3>
+        <p id="cfDoneText">We'll be in touch soon.</p>
+        <button class="cta ghost" type="button" id="cfAgain">Send another request</button>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="container">
+    <div class="f-top">
+      <div>
+        <a class="brand" href="#top" aria-label="Quipus home"><i><svg width="18" height="18"><use href="#mark"/></svg></i>Quipus</a>
+        <p class="about">Bill advocacy and care finding for TPAs and advocacy teams</p>
+      </div>
+      <div class="f-col"><h4>Product</h4><a href="#platform">Platform</a><a href="#find-care">Find care</a><a href="#how">Bill advocacy</a><a href="#security">Security</a></div>
+      <div class="f-col"><h4>Who it's for</h4><a href="#who">TPAs and plan administrators</a><a href="#who">Advocacy providers</a></div>
+      <div class="f-col"><h4>Company</h4><a href="#faq">FAQ</a><a href="#contact">Contact</a><a href="#contact">Book a demo</a></div>
+    </div>
+    <div class="f-big" aria-hidden="true">Quipus</div>
+    <div class="f-bot"><span>© 2026 Quipus. All rights reserved.</span></div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script src="/assets/js/live.js"></script>
+</body>
+</html>
