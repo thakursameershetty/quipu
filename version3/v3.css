@@ -1,0 +1,12 @@
+/* Version 3 only: small layout adjustments on top of /assets/css/site.css.
+   No colours here; every colour stays in the :root block of site.css. */
+
+/* Long PDF headlines: keep every section headline to two lines on desktop (layout only, wording unchanged) */
+@media (min-width:1001px){
+  #nia .h2,#faq .h2,.contact h2{font-size:clamp(32px,3.6vw,52px);line-height:1.02}   /* same size as Find care / Requests / Services */
+  .contact h2{max-width:none}
+  #find-care .sec-head > div{grid-column:1/-1}                                       /* headline across the full width */
+  #find-care .sec-head > p{grid-column:2;justify-self:start}                         /* intro under it, on the right-hand column */
+}
+@media (min-width:1001px){ .nia{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)} }   /* a little more room for the Nia headline */
+@media (min-width:1001px){ #nia .h2{font-size:clamp(30px,3vw,44px)} }   /* longest PDF headline ("Ask about any case and Nia answers…"): one step smaller so it stays on two lines */

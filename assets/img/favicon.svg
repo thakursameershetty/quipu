@@ -1,1 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320" role="img" aria-label="Quipus"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6E95FF"/><stop offset="1" stop-color="#2F63F0"/></linearGradient></defs><rect width="320" height="320" rx="55" fill="url(#g)"/><g transform="translate(160 160) scale(.78) translate(-160 -160)"><g fill="none" stroke-linecap="round" stroke-width="20"><path d="M58 116H262" stroke="#FFFFFF"/><path d="M58 204H262" stroke="#FFFFFF"/><path d="M116 58V262" stroke="#FFFFFF" opacity=".82"/><path d="M204 58V262" stroke="#FFFFFF" opacity=".82"/></g><rect x="101" y="101" width="30" height="30" rx="4" fill="#FFFFFF"/><rect x="189" y="101" width="30" height="30" rx="4" fill="#FFFFFF" opacity=".62"/><rect x="101" y="189" width="30" height="30" rx="4" fill="#FFFFFF" opacity=".62"/><rect x="189" y="189" width="30" height="30" rx="4" fill="#FFFFFF"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="38 38 244 244" role="img" aria-label="Quipus">
+<style>
+  .q{color:#2F63F0}
+  @media (prefers-color-scheme:dark){.q{color:#6E95FF}}
+</style>
+<defs><mask id="qk" maskUnits="userSpaceOnUse" x="0" y="0" width="320" height="320"><rect width="320" height="320" fill="#fff"/><rect x="87" y="87" width="58" height="58" rx="12" fill="#000"/><rect x="175" y="87" width="58" height="58" rx="12" fill="#000"/><rect x="87" y="175" width="58" height="58" rx="12" fill="#000"/><rect x="175" y="175" width="58" height="58" rx="12" fill="#000"/></mask></defs>
+<g class="q">
+  <g mask="url(#qk)" fill="none" stroke-linecap="round" stroke-width="22" stroke="currentColor"><path d="M58 116H262"/><path d="M58 204H262"/><path d="M116 58V262" opacity=".82"/><path d="M204 58V262" opacity=".82"/></g>
+  <g fill="currentColor"><rect x="96" y="96" width="40" height="40" rx="6"/><rect x="184" y="96" width="40" height="40" rx="6" opacity=".55"/><rect x="96" y="184" width="40" height="40" rx="6" opacity=".55"/><rect x="184" y="184" width="40" height="40" rx="6"/></g>
+</g>
+</svg>

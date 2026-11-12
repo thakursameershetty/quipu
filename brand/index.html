@@ -6,7 +6,7 @@
 <title>Quipus Brand Book</title>
 <meta name="description" content="The Quipus brand book: story, positioning, voice, logo, colour, type, motion, icons and components.">
 <meta name="theme-color" content="#2F63F0">
-<link rel="icon" href="/brand/assets/quipus-badge.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,200..900;1,200..900&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap">
@@ -18,6 +18,8 @@
   --blue:#2F63F0; --royal:#2447D8; --blue-2:#6E95FF; --blue-deep:#1A3BA8;
   --navy:#0A1226; --navy-2:#8D9AB8; --on-navy:#EEF2FB;
   --red:#E5484D; --amber:#F2A33A; --green:#18A574;
+  --sky-1:#5B7DB4; --sky-2:#7F9DCB; --sky-3:#A8C0E2; --sky-4:#CFDDF1; --sky-5:#E3ECF8;   /* hero sky, bottom to top */
+  --night-1:#0B1020; --night-2:#0A143C; --dawn-1:#FFB3A8; --dawn-2:#FFE0A8; --moon:#F5C431;  /* overnight card */
   --shadow-s:0 1px 2px rgba(13,20,36,.05),0 4px 14px -6px rgba(13,20,36,.10);
   --shadow-m:0 2px 4px rgba(13,20,36,.04),0 18px 40px -18px rgba(13,20,36,.22);
   --shadow-l:0 4px 8px rgba(13,20,36,.04),0 40px 80px -30px rgba(13,20,36,.30);
@@ -42,7 +44,7 @@ img,svg{max-width:100%}
 .top{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.82);backdrop-filter:blur(16px) saturate(1.6);-webkit-backdrop-filter:blur(16px) saturate(1.6);border-bottom:1px solid var(--line)}
 .top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px}
 .lock{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:18px;letter-spacing:-.03em;text-decoration:none}
-.lock img{width:28px;height:28px}
+.lock img{width:24px;height:24px}
 .top .meta{font:400 12px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
 
 /* layout: side index + content */
@@ -55,7 +57,7 @@ img,svg{max-width:100%}
 .book>main{min-width:0}
 
 /* cover */
-.cover{position:relative;overflow:hidden;border-radius:28px;margin-top:32px;min-height:460px;background:linear-gradient(0deg,#5B7DB4 0%,#7F9DCB 38%,#A8C0E2 68%,#CFDDF1 88%,#E3ECF8 100%);color:#fff;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:end}
+.cover{position:relative;overflow:hidden;border-radius:28px;margin-top:32px;min-height:460px;background:linear-gradient(0deg,var(--sky-1) 0%,var(--sky-2) 38%,var(--sky-3) 68%,var(--sky-4) 88%,var(--sky-5) 100%);color:#fff;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:end}
 .cover .words{padding:48px}
 .cover .k{font:400 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;opacity:.85}
 .cover h1{font-size:clamp(72px,10vw,148px);line-height:.9;margin-top:18px;text-shadow:0 2px 30px rgba(30,50,100,.18)}
@@ -141,7 +143,7 @@ td:first-child{color:var(--ink);font-weight:500}
 .sw .info code{justify-self:start;background:none;padding:0;color:var(--ink-2)}
 .sw .info small{font-size:12px;color:var(--ink-3);line-height:1.45}
 .sw.copied .chip::after{content:"Copied";margin-left:auto}
-.sky{height:84px;border-radius:18px;background:linear-gradient(90deg,#5B7DB4,#7F9DCB 34%,#A8C0E2 66%,#CFDDF1 88%,#E3ECF8);display:flex;justify-content:space-between;align-items:flex-end;padding:10px 14px;font:500 11px/1 var(--mono);color:#fff}
+.sky{height:84px;border-radius:18px;background:linear-gradient(90deg,var(--sky-1),var(--sky-2) 34%,var(--sky-3) 66%,var(--sky-4) 88%,var(--sky-5));display:flex;justify-content:space-between;align-items:flex-end;padding:10px 14px;font:500 11px/1 var(--mono);color:#fff}
 .sky span:nth-child(n+4){color:var(--ink-2)}
 .ratio{display:flex;height:22px;border-radius:999px;overflow:hidden;border:1px solid var(--line)}
 .ratio i{display:block}
@@ -238,6 +240,19 @@ td:first-child{color:var(--ink);font-weight:500}
 .cur.p svg{color:var(--ink)}
 .cur.p .bub{background:var(--ink);border-radius:12px}
 
+/* v1.1 additions */
+.changes{margin-top:20px;padding:22px 26px;border-radius:24px;background:var(--band);display:grid;gap:10px}
+.changes b{font:500 12px/1 var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3)}
+.changes ul{margin:0;padding-left:18px;display:grid;gap:6px;color:var(--ink-2);font-size:15px}
+.night{height:84px;border-radius:18px;background:linear-gradient(90deg,var(--night-1),var(--night-2) 38%,var(--dawn-1) 72%,var(--dawn-2));display:flex;justify-content:space-between;align-items:flex-end;padding:10px 14px;font:500 11px/1 var(--mono);color:var(--on-navy)}
+.night span:nth-child(n+3){color:var(--ink-2)}
+.hbill-demo{max-width:440px;padding:12px 16px;border-radius:12px;background:var(--bg);border:1px solid var(--line);box-shadow:var(--shadow-l);rotate:2deg;font-size:12px}
+.hbill-demo .l{display:grid;grid-template-columns:auto 1fr auto;gap:8px;padding:5px 0;font:400 11.5px/1.3 var(--mono);color:var(--ink-3)}
+.hbill-demo .l s{text-decoration-thickness:1.5px;text-decoration-color:var(--ink)}
+.hbill-demo .l i{font:400 11px/1.3 var(--f);font-style:normal;color:var(--blue);white-space:nowrap}
+.hbill-demo .t{display:grid;grid-template-columns:1fr auto;padding-top:6px;margin-top:2px;border-top:1px solid var(--line);font:500 12px/1.5 var(--mono)}
+.hbill-demo .t .e{color:var(--blue)}
+.tag-cap{display:inline-block;margin:10px 0 0 6px;padding:4px 8px;border-radius:6px;border:1px solid var(--line);background:var(--bg);font:400 10px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
 /* imagery mini mock */
 .mock{border-radius:20px;border:1px solid var(--line);background:#fff;padding:16px;display:grid;gap:8px;font-size:13px}
 .mock .q{display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:10px;align-items:center;padding:8px 4px;border-top:1px solid var(--line)}
@@ -255,8 +270,8 @@ td:first-child{color:var(--ink);font-weight:500}
 
 <header class="top">
   <div class="wrap">
-    <a class="lock" href="#top"><img src="/brand/assets/quipus-badge.svg" alt="">Quipus</a>
-    <span class="meta">Brand book · v1.0 · Nov 2026</span>
+    <a class="lock" href="#top"><img src="/brand/assets/quipus-mark-blue.svg" alt="">Quipus</a>
+    <span class="meta">Brand book · v1.1 · 12 Nov 2026</span>
   </div>
 </header>
 
@@ -283,7 +298,7 @@ td:first-child{color:var(--ink);font-weight:500}
       <div class="words">
         <span class="k">Brand book</span>
         <h1>Quipus</h1>
-        <p>The AI workspace for TPAs and healthcare advocacy companies. The work is prepared; the advocate stays in charge.</p>
+        <p>Bill advocacy and care finding for TPAs and advocacy teams. Quipus prepares the case; the advocate decides.</p>
       </div>
       <div class="art" aria-hidden="true">
         <svg viewBox="0 0 480 460" preserveAspectRatio="xMaxYMax meet">
@@ -291,22 +306,32 @@ td:first-child{color:var(--ink);font-weight:500}
           <rect x="40" y="296" width="150" height="56" rx="28" fill="#DDE7FF"/>
           <rect x="206" y="80" width="300" height="400" rx="24" fill="#0A1226"/>
           <g transform="translate(343 262) scale(.9) translate(-160 -160)">
-            <g fill="none" stroke-linecap="round" stroke-width="20">
+            <defs><mask id="knot-gap-1" maskUnits="userSpaceOnUse" x="0" y="0" width="320" height="320"><rect width="320" height="320" fill="#fff"/><rect x="87" y="87" width="58" height="58" rx="12" fill="#000"/><rect x="175" y="87" width="58" height="58" rx="12" fill="#000"/><rect x="87" y="175" width="58" height="58" rx="12" fill="#000"/><rect x="175" y="175" width="58" height="58" rx="12" fill="#000"/></mask></defs><g mask="url(#knot-gap-1)" fill="none" stroke-linecap="round" stroke-width="20">
               <path d="M58 116H262" stroke="#EEF2FB"/><path d="M58 204H262" stroke="#EEF2FB"/>
               <path d="M116 58V262" stroke="#EEF2FB" stroke-opacity=".6"/><path d="M204 58V262" stroke="#EEF2FB" stroke-opacity=".6"/>
             </g>
-            <rect x="101" y="101" width="30" height="30" rx="4" fill="#6E95FF"/><rect x="189" y="189" width="30" height="30" rx="4" fill="#6E95FF"/>
-            <rect x="189" y="101" width="30" height="30" rx="4" fill="#EEF2FB" fill-opacity=".6"/><rect x="101" y="189" width="30" height="30" rx="4" fill="#EEF2FB" fill-opacity=".6"/>
+            <rect x="96" y="96" width="40" height="40" rx="6" fill="#6E95FF"/><rect x="184" y="184" width="40" height="40" rx="6" fill="#6E95FF"/>
+            <rect x="184" y="96" width="40" height="40" rx="6" fill="#EEF2FB" fill-opacity=".6"/><rect x="96" y="184" width="40" height="40" rx="6" fill="#EEF2FB" fill-opacity=".6"/>
           </g>
         </svg>
       </div>
     </section>
 
+    <div class="changes" aria-label="What changed in v1.1">
+      <b>What changed in v1.1</b>
+      <ul>
+        <li>Logo: the bare mark is the default everywhere (nav, footer, favicon). The tiled badge is for app icons only. Knots are larger, with a small gap cut in the cords around each one.</li>
+        <li>Copy follows the content brief: no small labels above headlines, no "Coming soon" tags, no named advocate, no full stop on headlines, money always as $1,240.00.</li>
+        <li>Every colour lives in one place, the <code>:root</code> block of <code>assets/css/site.css</code>. Pages and scripts use variables only.</li>
+        <li>New: the overnight card (night into sunrise), the paper bill in the hero, and the member pages.</li>
+      </ul>
+    </div>
+
     <!-- 01 STORY -->
     <section class="sec" id="story">
       <div class="sec-head">
         <span class="sec-k">01 · Story</span>
-        <h2>Named for a record that keeps every account.</h2>
+        <h2>Named for a record that keeps every account</h2>
         <p class="lede">A quipu is the knotted-cord record the Inca used to keep accounts. Quipus keeps every member's case the same way: every bill, every document, every action, accounted for.</p>
       </div>
       <div class="grid2">
@@ -318,7 +343,7 @@ td:first-child{color:var(--ink);font-weight:500}
         <div class="logo-stage">
           <div style="display:grid;justify-items:center;gap:14px">
             <img src="/brand/assets/quipus-mark-ink.svg" alt="The Quipus mark" style="width:120px;height:120px">
-            <span class="note" style="margin:0;text-align:center;max-width:22em">A woven lattice: two cords each way, with a knot tied at every crossing. Crossing cords and two of the knots sit lighter, so the weave reads.</span>
+            <span class="note" style="margin:0;text-align:center;max-width:22em">A woven lattice: two cords each way, with a knot tied at every crossing. A small gap is cut in the cords around each knot so it reads as tied on, and two of the knots sit lighter.</span>
           </div>
         </div>
       </div>
@@ -328,9 +353,9 @@ td:first-child{color:var(--ink);font-weight:500}
     <section class="sec" id="positioning">
       <div class="sec-head">
         <span class="sec-k">02 · Positioning</span>
-        <h2>Built for the teams members call when a bill goes wrong.</h2>
+        <h2>Built for the teams members call when a bill goes wrong</h2>
       </div>
-      <p class="quote">For TPAs and healthcare advocacy companies whose teams work member billing cases, Quipus is the AI workspace that prepares every case before an advocate opens it. Agents read the documents, check the bill and draft the outreach. Advocates review, approve and move on.</p>
+      <p class="quote">For TPAs and advocacy providers, Quipus reads what members send, finds what is wrong on a bill or the best-priced care, and prepares the reply. The advocates decide.</p>
       <h3>Who's involved</h3>
       <div class="tbl"><table>
         <thead><tr><th>Who</th><th>What they do</th><th>What they need from Quipus</th></tr></thead>
@@ -343,8 +368,8 @@ td:first-child{color:var(--ink);font-weight:500}
       </table></div>
       <h3>What Quipus is, and isn't</h3>
       <div class="dd">
-        <div class="do"><b>Quipus is</b><p>Software that reads, checks and drafts. A way for advocates to close more cases. A business product today.</p></div>
-        <div class="dont"><b>Quipus isn't</b><p>A TPA, an insurer or a claims processor. A replacement for advocates. A consumer app (that's Quipus for individuals, coming soon).</p></div>
+        <div class="do"><b>Quipus is</b><p>Software that reads, checks and drafts: bill advocacy after the visit, care finding before it. A business product for advocacy teams.</p></div>
+        <div class="dont"><b>Quipus isn't</b><p>A TPA, an insurer or a claims processor. A replacement for advocates. A consumer app: members never sign up, they hear from your team.</p></div>
       </div>
     </section>
 
@@ -352,7 +377,7 @@ td:first-child{color:var(--ink);font-weight:500}
     <section class="sec" id="voice">
       <div class="sec-head">
         <span class="sec-k">03 · Voice</span>
-        <h2>Calm, precise, on the advocate's side.</h2>
+        <h2>Calm, precise, on the advocate's side</h2>
         <p class="lede">We write like an experienced advocate explains a case to a colleague: plain words, the right terms, nothing dramatic.</p>
       </div>
       <div class="tbl"><table>
@@ -369,9 +394,12 @@ td:first-child{color:var(--ink);font-weight:500}
         <li>Write <strong>Quipus</strong>, always with the s. Never "Quipu", "QUIPUS" or "Quipus AI".</li>
         <li><strong>Nia</strong> is the assistant. Refer to Nia as "it". Nia prepares; it never decides and never sends on its own.</li>
         <li>Say <strong>member</strong>, not patient. Say <strong>case</strong> for the work. Say <strong>the plan</strong>, not "your insurance".</li>
-        <li><strong>Sentence case</strong> for headings, buttons and labels. Uppercase only in mono kickers.</li>
+        <li><strong>Sentence case</strong> for headings, buttons and labels. No small uppercase labels above section headlines, and no full stop at the end of a headline, label, button or caption.</li>
+        <li><strong>Don't name the advocate.</strong> Say "your advocate" or "your team". Named people in examples confuse readers; members in lists and inboxes are fine.</li>
+        <li><strong>No "Coming soon" tags</strong> and no "AI" chips. Only describe what the product does today.</li>
+        <li><strong>Money</strong> always with cents: $1,240.00, never $1,240 or $1.2k.</li>
         <li><strong>We</strong> is the Quipus team; <strong>you, your team, your advocates</strong> is the customer.</li>
-        <li>No exclamation marks, no emoji, no invented statistics. Sample data is labelled as sample data.</li>
+        <li>No exclamation marks, no emoji, no invented statistics. Sample data is labelled as sample data ("Illustrative case").</li>
       </ul>
     </section>
 
@@ -379,11 +407,11 @@ td:first-child{color:var(--ink);font-weight:500}
     <section class="sec" id="messaging">
       <div class="sec-head">
         <span class="sec-k">04 · Messaging</span>
-        <h2>Lead with capacity, control and accuracy.</h2>
+        <h2>Lead with capacity, control and accuracy</h2>
         <p class="lede">Savings are a result we can mention, never the lead. Every page, deck and email opens with one of these three.</p>
       </div>
       <div class="grid3">
-        <div class="card"><h4>Capacity</h4><p>More cases closed with the team you have. Agents do the reading and drafting overnight; advocates start the day with cases ready to approve.</p></div>
+        <div class="card"><h4>Capacity</h4><p>The reading, the ledger and the first draft are done on every case. Work continues overnight, so the morning starts with drafts, not with an inbox.</p></div>
         <div class="card"><h4>Control</h4><p>Advocates stay in charge. Nothing goes out without sign-off, and every step is on the record: who, when, and from which document.</p></div>
         <div class="card"><h4>Accuracy</h4><p>Findings come from fixed rules and link to their source page and line. Problems are listed, never hidden.</p></div>
       </div>
@@ -391,15 +419,18 @@ td:first-child{color:var(--ink);font-weight:500}
       <div class="tbl"><table>
         <thead><tr><th>Where</th><th>Line</th></tr></thead>
         <tbody>
-          <tr><td>Hero</td><td>More cases closed. <em>Same team.</em></td></tr>
-          <tr><td>Hero description</td><td>The AI workspace for TPAs and advocacy companies. Agents find what's wrong and draft the dispute. Your advocates approve.</td></tr>
-          <tr><td>Workspace</td><td>Nia prepares the case. Your advocate signs off.</td></tr>
-          <tr><td>Bill review</td><td>The checks Nia runs on every case.</td></tr>
-          <tr><td>Control</td><td>Your advocates stay in charge. Every step is on the record.</td></tr>
-          <tr><td>Contact</td><td>See Quipus on your own caseload.</td></tr>
+          <tr><td>Hero</td><td>Member bills checked and care found before your advocate opens the case</td></tr>
+          <tr><td>Hero, short</td><td>Bills checked and care found before the case is opened</td></tr>
+          <tr><td>Hero description</td><td>Quipus reads what your members send, finds what is wrong on a bill or the best-priced care, and prepares the reply</td></tr>
+          <tr><td>Workspace</td><td>The whole case on one screen</td></tr>
+          <tr><td>Two services</td><td>Before the visit and after it</td></tr>
+          <tr><td>Bill review</td><td>What Quipus checks on every bill</td></tr>
+          <tr><td>Evidence</td><td>Every number shows where it came from</td></tr>
+          <tr><td>Security</td><td>Your members' data and your team's decision</td></tr>
+          <tr><td>Contact</td><td>Bring us the case your team dreads reopening</td></tr>
         </tbody>
       </table></div>
-      <p class="note">Headline options still under discussion: "Advocacy work, automated." · "Untangle every bill." · "Every thread, accounted for." · "Wake up to cases ready to approve."</p>
+      <p class="note">Retired, don't use: "Quipus prepares the case and your advocate signs off" · "Members lose money in two places and your team can cover both" · "More cases closed. Same team." · "Carry a larger caseload with the team you have" (a claim with no number behind it).</p>
       <h3>Words</h3>
       <div class="tbl"><table>
         <thead><tr><th>Use</th><th>Avoid</th><th>Why</th></tr></thead>
@@ -409,12 +440,15 @@ td:first-child{color:var(--ink);font-weight:500}
           <tr><td>flagged, in question</td><td>removed, saved, slashed</td><td>The advocate decides what's removed</td></tr>
           <tr><td>drafted, ready for review</td><td>sent, done (for Nia's work)</td><td>Nia never sends on its own</td></tr>
           <tr><td>advocates approve</td><td>AI handles it</td><td>Keep the human in charge</td></tr>
+          <tr><td>member message</td><td>member request, ticket</td><td>"Member request" read as unclear; members just write in</td></tr>
+          <tr><td>your advocate</td><td>a named advocate</td><td>Names with no context confuse the reader</td></tr>
+          <tr><td>voucher offer</td><td>deal, discount</td><td>One service, one location, one price</td></tr>
         </tbody>
       </table></div>
       <h3>Rewrites</h3>
       <div class="dd">
         <div class="dont"><b>Not this</b><p>We'll get your $3,482 bill down to $611.</p></div>
-        <div class="do"><b>This</b><p>Nia flags $2,870.80 in question on Maria's statement and drafts the dispute for Rosa to approve.</p></div>
+        <div class="do"><b>This</b><p>Quipus flags $2,870.80 in question on the statement and drafts the dispute for your advocate to approve.</p></div>
         <div class="dont"><b>Not this</b><p>Our AI fights your medical bills for you.</p></div>
         <div class="do"><b>This</b><p>Agents read every bill, EOB and fax and draft the outreach. Your advocates approve.</p></div>
       </div>
@@ -424,30 +458,32 @@ td:first-child{color:var(--ink);font-weight:500}
     <section class="sec" id="logo">
       <div class="sec-head">
         <span class="sec-k">05 · Logo</span>
-        <h2>A badge and a mark.</h2>
-        <p class="lede">The badge (white mark on the rounded blue square) is the default. The mark alone goes on flat grounds. Download the files below.</p>
+        <h2>A mark, with a badge for app icons</h2>
+        <p class="lede">The mark alone is the default: nav, footer, favicon, documents. The badge (white mark on the rounded blue square) is only for places that need a filled tile, like app icons. Download the files below.</p>
       </div>
       <div class="grid2">
-        <div class="logo-stage"><span class="lockup-big"><img src="/brand/assets/quipus-badge.svg" alt="">Quipus</span></div>
-        <div class="logo-stage"><div class="clear"><i class="t">½</i><i class="l">½</i><img src="/brand/assets/quipus-badge.svg" alt="Badge with clear space"></div></div>
+        <div class="logo-stage"><span class="lockup-big"><img src="/brand/assets/quipus-mark-blue.svg" alt="">Quipus</span></div>
+        <div class="logo-stage"><div class="clear"><i class="t">½</i><i class="l">½</i><img src="/brand/assets/quipus-mark-blue.svg" alt="The mark with clear space"></div></div>
       </div>
       <ul class="rules" style="margin-top:20px">
-        <li><strong>Lockup:</strong> badge at 32px, 10px gap, "Quipus" in Geist 600, 20px, <code>ink</code>.</li>
+        <li><strong>Lockup:</strong> mark at 24px, 10px gap, "Quipus" in Geist 600, 20px. The mark takes the text colour: <code>ink</code> on light, white on the hero sky.</li>
+        <li><strong>Knots:</strong> four knots, one at each crossing, with a small gap cut in the cords around each. Two knots sit lighter. Don't fill the gaps or make the knots smaller than the cords.</li>
+        <li><strong>Favicon:</strong> the bare mark in <code>blue</code>, switching to <code>blue-2</code> on dark browser tabs. No tile.</li>
         <li><strong>Clear space:</strong> half the mark's height on every side. <strong>Minimum size:</strong> 16px.</li>
         <li>The white mark only on <code>blue</code>, <code>royal</code>, <code>blue-deep</code> or <code>navy</code>.</li>
       </ul>
       <h3>Files</h3>
       <div class="marks">
-        <div class="mk"><img src="/brand/assets/quipus-badge.svg" alt=""><span>Badge</span><a href="/brand/assets/quipus-badge.svg" download>Download SVG</a></div>
+        <div class="mk"><img src="/brand/assets/quipus-badge.svg" alt=""><span>Badge · app icon</span><a href="/brand/assets/quipus-badge.svg" download>Download SVG</a></div>
         <div class="mk"><img src="/brand/assets/quipus-mark-ink.svg" alt=""><span>Mark · ink</span><a href="/brand/assets/quipus-mark-ink.svg" download>Download SVG</a></div>
         <div class="mk"><img src="/brand/assets/quipus-mark-blue.svg" alt=""><span>Mark · blue</span><a href="/brand/assets/quipus-mark-blue.svg" download>Download SVG</a></div>
         <div class="mk on-royal"><img src="/brand/assets/quipus-mark-white.svg" alt=""><span>Mark · white</span><a href="/brand/assets/quipus-mark-white.svg" download>Download SVG</a></div>
       </div>
       <h3>Don't</h3>
       <div class="donts">
-        <div class="dn"><div class="g"><img src="/brand/assets/quipus-badge.svg" alt="" style="width:48px;height:48px;filter:hue-rotate(140deg)"></div>Recolour it</div>
-        <div class="dn"><div class="g"><img src="/brand/assets/quipus-badge.svg" alt="" style="width:72px;height:40px"></div>Stretch it</div>
-        <div class="dn"><div class="g"><img src="/brand/assets/quipus-badge.svg" alt="" style="width:48px;height:48px;rotate:-20deg"></div>Rotate it</div>
+        <div class="dn"><div class="g"><img src="/brand/assets/quipus-mark-blue.svg" alt="" style="width:48px;height:48px;filter:hue-rotate(140deg)"></div>Recolour it</div>
+        <div class="dn"><div class="g"><img src="/brand/assets/quipus-badge.svg" alt="" style="width:40px;height:40px"></div>Put the nav logo in a tile</div>
+        <div class="dn"><div class="g"><img src="/brand/assets/quipus-mark-blue.svg" alt="" style="width:48px;height:48px;rotate:-20deg"></div>Rotate it</div>
         <div class="dn"><div class="g" style="background:var(--tint);border-radius:12px"><img src="/brand/assets/quipus-mark-white.svg" alt="" style="width:44px;height:44px"></div>White on light</div>
       </div>
     </section>
@@ -456,8 +492,9 @@ td:first-child{color:var(--ink);font-weight:500}
     <section class="sec" id="colour">
       <div class="sec-head">
         <span class="sec-k">06 · Colour</span>
-        <h2>White space, one ink, one blue.</h2>
+        <h2>White space, one ink, one blue</h2>
         <p class="lede">Quipus is a light brand. Blue carries the brand; status colours only ever mean a state and always come with a word. Click a swatch to copy its hex.</p>
+        <p class="lede"><strong>One place for every colour.</strong> All colours are defined in the <code>:root</code> block of <code>assets/css/site.css</code> (and <code>version2/site.css</code> for the indigo variant). Pages, inline markup and scripts use variables only. To re-theme, change the values there.</p>
       </div>
       <div class="ratio" aria-label="Roughly how much of each colour a page uses">
         <i style="flex:62;background:#fff"></i><i style="flex:14;background:var(--band)"></i><i style="flex:10;background:var(--ink)"></i><i style="flex:8;background:var(--blue)"></i><i style="flex:4;background:var(--tint-2)"></i><i style="flex:2;background:var(--green)"></i>
@@ -467,13 +504,16 @@ td:first-child{color:var(--ink);font-weight:500}
       <h3>Hero sky</h3>
       <div class="sky"><span>#5B7DB4</span><span>#7F9DCB</span><span>#A8C0E2</span><span>#CFDDF1</span><span>#E3ECF8</span></div>
       <p class="note">Top to bottom behind the hero only. Don't reuse it elsewhere.</p>
+      <h3>Night into sunrise</h3>
+      <div class="night"><span>night-1</span><span>night-2</span><span>dawn-1</span><span>dawn-2</span></div>
+      <p class="note">Only in the overnight card on the Platform section, with the moon in <code>moon</code> and the sun in <code>amber</code>. It plays night to sunrise and back on a 16-second loop while on screen.</p>
     </section>
 
     <!-- 07 TYPE -->
     <section class="sec" id="type">
       <div class="sec-head">
         <span class="sec-k">07 · Typography</span>
-        <h2>A light serif for ideas, a clean sans for work.</h2>
+        <h2>A light serif for ideas, a clean sans for work</h2>
         <p class="lede">Three families, all free on Google Fonts. Headlines in Crimson Pro Light, everything you read and click in Geist, codes and labels in Geist Mono.</p>
       </div>
       <div class="grid3">
@@ -483,19 +523,19 @@ td:first-child{color:var(--ink);font-weight:500}
       </div>
       <h3>Scale</h3>
       <div class="spec">
-        <div class="row"><div class="lbl"><b>Hero</b>Crimson 300 · 104/0.93</div><div style="font:300 clamp(44px,6.5vw,92px)/.93 var(--serif);letter-spacing:-.02em">More cases closed. <em>Same team.</em></div></div>
-        <div class="row"><div class="lbl"><b>Section</b>Crimson 300 · 74/0.98</div><div style="font:300 clamp(34px,4.6vw,60px)/.98 var(--serif);letter-spacing:-.022em">The checks Nia runs on every case.</div></div>
-        <div class="row"><div class="lbl"><b>Card title</b>Crimson 300 · 38/1.05</div><div style="font:300 34px/1.05 var(--serif);letter-spacing:-.015em">Give every member an advocate.</div></div>
+        <div class="row"><div class="lbl"><b>Hero</b>Crimson 300 · 104/0.93</div><div style="font:300 clamp(40px,5.6vw,80px)/.98 var(--serif);letter-spacing:-.02em">Bills checked and care found before the case is opened</div></div>
+        <div class="row"><div class="lbl"><b>Section</b>Crimson 300 · 74/0.98</div><div style="font:300 clamp(34px,4.6vw,60px)/.98 var(--serif);letter-spacing:-.022em">What Quipus checks on every bill</div></div>
+        <div class="row"><div class="lbl"><b>Card title</b>Crimson 300 · 38/1.05</div><div style="font:300 34px/1.05 var(--serif);letter-spacing:-.015em">TPAs and plan administrators</div></div>
         <div class="row"><div class="lbl"><b>Figure</b>Crimson 400 · 68/1 · tabular</div><div style="font:400 64px/1 var(--serif);letter-spacing:-.03em;font-variant-numeric:lining-nums tabular-nums">21 <span style="font-size:.42em;color:var(--ink-3)">days</span></div></div>
-        <div class="row"><div class="lbl"><b>Lede</b>Geist 400 · 17/1.6 · ink-2</div><div style="font-size:17px;color:var(--ink-2)">Agents read every bill, EOB and fax, find what's wrong and draft the dispute.</div></div>
+        <div class="row"><div class="lbl"><b>Lede</b>Geist 400 · 17/1.6 · ink-2</div><div style="font-size:17px;color:var(--ink-2)">Quipus reads what your members send, finds what is wrong on a bill or the best-priced care, and prepares the reply</div></div>
         <div class="row"><div class="lbl"><b>Body</b>Geist 400 · 16/1.6</div><div>Every email, fax and application waits for an advocate to approve it.</div></div>
-        <div class="row"><div class="lbl"><b>UI</b>Geist 500 · 14.5</div><div style="font-weight:500;font-size:14.5px">Request a demo · Approve &amp; send · Ready for review</div></div>
-        <div class="row"><div class="lbl"><b>Kicker</b>Geist Mono 400 · 12 · +0.07em</div><div><span class="sec-k">Control &amp; audit</span></div></div>
+        <div class="row"><div class="lbl"><b>UI</b>Geist 500 · 14.5</div><div style="font-weight:500;font-size:14.5px">Book a demo · Approve and send · Ready for review</div></div>
+        <div class="row"><div class="lbl"><b>Card tag</b>Geist Mono 400 · 12 · +0.07em</div><div><span class="sec-k">Before the visit</span> <span class="note" style="margin-left:8px">Inside cards only, never above a section headline</span></div></div>
         <div class="row"><div class="lbl"><b>Data</b>Geist Mono 400 · 13</div><div class="mono" style="font-size:13px">85025 · $142.00 · QP-24817 · 06:14</div></div>
       </div>
       <ul class="rules" style="margin-top:20px">
-        <li>Put the brand moment in <em>italics</em> on the second half of a headline.</li>
-        <li>Headlines: two lines at most on desktop, <code>text-wrap: balance</code>.</li>
+        <li>No italics in headlines. Let the words carry the emphasis.</li>
+        <li>Headlines: one line where possible, two at most on desktop, <code>text-wrap: balance</code>, no full stop.</li>
         <li>Load: <code>fonts.googleapis.com/css2?family=Crimson+Pro…&amp;family=Geist…&amp;family=Geist+Mono…</code> (see this page's source).</li>
       </ul>
     </section>
@@ -504,7 +544,7 @@ td:first-child{color:var(--ink);font-weight:500}
     <section class="sec" id="shape">
       <div class="sec-head">
         <span class="sec-k">08 · Space &amp; shape</span>
-        <h2>Generous space, soft corners, flat at rest.</h2>
+        <h2>Generous space, soft corners, flat at rest</h2>
         <p class="lede">Cards rest flat with a hairline border and lift with a soft shadow when you interact. Buttons and chips are pills; hover highlights are rounded rectangles.</p>
       </div>
       <h3>Spacing</h3>
@@ -536,14 +576,14 @@ td:first-child{color:var(--ink);font-weight:500}
     <section class="sec" id="motion">
       <div class="sec-head">
         <span class="sec-k">09 · Motion</span>
-        <h2>Every motion is eased. Nothing snaps.</h2>
+        <h2>Every motion is eased. Nothing snaps</h2>
         <p class="lede">Movement is slow enough to follow and never jumps. Shadows, heights and positions change together. Press play to compare the curves.</p>
       </div>
       <div class="eases" id="eases"></div>
       <button class="btn-play" id="playEases" type="button">Play</button>
       <ul class="rules" style="margin-top:20px">
         <li><strong>0.4s</strong> for colour and opacity on hover. <strong>0.8s</strong> for card lift and shadow. <strong>1.1s</strong> for sections rising into view.</li>
-        <li>Animated product scenes (Nia's cursor, the overnight queue) play only while on screen.</li>
+        <li>Animated product scenes (Nia's cursor, the overnight queue, the member's phone, the night-to-sunrise card) play only while on screen, and ease to a stop when you scroll away.</li>
         <li>With reduced motion on: no lifts or loops, fades only.</li>
         <li>On phones, taps give a light haptic tick, and the browser's tap highlight is off.</li>
       </ul>
@@ -553,7 +593,7 @@ td:first-child{color:var(--ink);font-weight:500}
     <section class="sec" id="icons">
       <div class="sec-head">
         <span class="sec-k">10 · Icons</span>
-        <h2>Lucide, drawn light.</h2>
+        <h2>Lucide, drawn light</h2>
         <p class="lede">Lucide icons at stroke width 1.75, 14 to 22px. <code>ink-3</code> at rest, <code>blue</code> on tinted wells. No emoji anywhere.</p>
       </div>
       <div class="icons">
@@ -577,13 +617,13 @@ td:first-child{color:var(--ink);font-weight:500}
     <section class="sec" id="components">
       <div class="sec-head">
         <span class="sec-k">11 · Components</span>
-        <h2>The pieces, as they look in the product.</h2>
+        <h2>The pieces, as they look in the product</h2>
         <p class="lede">These are live. Hover the buttons and cards, pick a range, focus the input.</p>
       </div>
       <h3>Buttons</h3>
       <div class="demo">
-        <a class="cta" href="#components">Request a demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
-        <a class="cta dark" href="#components">Request a demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+        <a class="cta" href="#components">Book a demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+        <a class="cta dark" href="#components">Book a demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
         <a class="lnk" href="#components">Who it's for</a>
         <a class="cta royal" href="#components">Get in touch</a>
       </div>
@@ -596,41 +636,49 @@ td:first-child{color:var(--ink);font-weight:500}
       <h3>Cards</h3>
       <div class="grid2">
         <div class="card lift"><h4>Deadline clock</h4><p>Days left to appeal · Charity care due Dec 1</p><div style="font:400 56px/1 var(--serif);letter-spacing:-.03em;margin-top:16px;font-variant-numeric:lining-nums tabular-nums">21 <span style="font-size:.42em;color:var(--ink-3)">days</span></div></div>
-        <div class="card feat lift"><span class="sec-k" style="color:rgba(255,255,255,.7)">Advocacy companies</span><h4 style="margin-top:12px">Take on more TPA clients with the advocates you have.</h4><p>Cases arrive summarized, checked and drafted.</p></div>
+        <div class="card feat lift"><h4>Advocacy providers</h4><p>Each advocate starts at the review, not at the reading. The reading, the ledger and the first draft are done on every case.</p></div>
       </div>
       <h3>Form fields</h3>
       <div class="card" style="display:grid;gap:18px;max-width:640px">
         <div class="field"><label for="bbOrg">Organization</label><input id="bbOrg" placeholder="Your TPA or advocacy company"></div>
-        <div class="field"><span class="lab" id="bbVol">Cases per month</span>
+        <div class="field"><span class="lab" id="bbVol">Cases each month</span>
           <div class="seg" role="radiogroup" aria-labelledby="bbVol"><i class="th"></i>
             <label><input type="radio" name="bbv" id="bbv1"><span>Under 50</span></label>
-            <label><input type="radio" name="bbv" id="bbv2"><span>50–200</span></label>
-            <label><input type="radio" name="bbv" id="bbv3" checked><span>200–1,000</span></label>
-            <label><input type="radio" name="bbv" id="bbv4"><span>1,000+</span></label>
+            <label><input type="radio" name="bbv" id="bbv2"><span>50 to 200</span></label>
+            <label><input type="radio" name="bbv" id="bbv3" checked><span>200 to 1,000</span></label>
+            <label><input type="radio" name="bbv" id="bbv4"><span>Over 1,000</span></label>
           </div></div>
       </div>
       <h3>Nia's cursor</h3>
       <div class="nia-demo">
         <div class="row"><span>Complete blood count · 85025</span><span><s>$142.00</s><b>$0.00</b></span></div>
         <span class="cur" style="left:110px;top:62px"><svg viewBox="0 0 20 20"><path fill="currentColor" d="M19.438 6.716 1.115.05A.832.832 0 0 0 .05 1.116L6.712 19.45a.834.834 0 0 0 1.557.025l3.198-8 7.995-3.2a.833.833 0 0 0 0-1.559h-.024Z"/></svg><span class="bub"><small>Nia</small>Same test, same time stamp (07:42)</span></span>
-        <span class="cur p" style="right:90px;top:92px"><svg viewBox="0 0 20 20"><path fill="currentColor" d="M19.438 6.716 1.115.05A.832.832 0 0 0 .05 1.116L6.712 19.45a.834.834 0 0 0 1.557.025l3.198-8 7.995-3.2a.833.833 0 0 0 0-1.559h-.024Z"/></svg><span class="bub">Rosa</span></span>
+        <span class="cur p" style="right:90px;top:92px"><svg viewBox="0 0 20 20"><path fill="currentColor" d="M19.438 6.716 1.115.05A.832.832 0 0 0 .05 1.116L6.712 19.45a.834.834 0 0 0 1.557.025l3.198-8 7.995-3.2a.833.833 0 0 0 0-1.559h-.024Z"/></svg><span class="bub">Your advocate</span></span>
       </div>
-      <p class="note">Nia (royal) names what it is doing and shows the evidence. The advocate (ink) is the one who approves.</p>
+      <p class="note">Nia (royal) names what it is doing and shows the evidence. The advocate (ink) is the one who approves, and is never given a name.</p>
+      <h3>Paper bill</h3>
+      <div class="hbill-demo" aria-label="Illustrative case">
+        <div class="l"><s>Complete blood count</s><i>Billed twice</i><s>$142.00</s></div>
+        <div class="l"><s>Facility fee balance</s><i>Above the allowed amount</i><s>$1,675.20</s></div>
+        <div class="t"><span>Bill demands</span><span>$3,482.10</span><span class="e">EOB supports</span><span class="e">$611.30</span></div>
+      </div>
+      <span class="tag-cap">Illustrative case</span>
+      <p class="note">Struck lines in ink, notes beside them in <code>blue</code>, tilted 2°, always captioned "Illustrative case".</p>
     </section>
 
     <!-- 12 IMAGERY -->
     <section class="sec" id="imagery">
       <div class="sec-head">
         <span class="sec-k">12 · Imagery</span>
-        <h2>Show the product working.</h2>
-        <p class="lede">Our pictures are queues, statements with flagged lines, activity logs and Nia's cursor, drawn in the brand's own colours with realistic sample data.</p>
+        <h2>Show the product working</h2>
+        <p class="lede">Our pictures are queues, statements with flagged lines, activity logs, member conversations and Nia's cursor, drawn in the brand's own colours with realistic sample data. Label example cases "Illustrative case". On pages about members, say "a member" rather than giving them a name.</p>
       </div>
       <div class="dd">
         <div class="do"><b>Use</b>
           <div class="mock" style="margin-top:12px">
-            <div class="q"><span class="av" style="background:#5C86FA">MG</span><span>Maria G.<small>Dispute letter drafted</small></span><span class="cp a">Needs approval</span></div>
-            <div class="q"><span class="av" style="background:#E5484D">DP</span><span>Dev Patel<small>Collections notice answered</small></span><span class="cp r">Hold requested</span></div>
-            <div class="q"><span class="av" style="background:#18A574">AB</span><span>Aisha Bello<small>Charity-care application ready</small></span><span class="cp b">Due Dec 1</span></div>
+            <div class="q"><span class="av" style="background:var(--blue-2)">MG</span><span>Maria G.<small>Dispute letter drafted</small></span><span class="cp a">Needs approval</span></div>
+            <div class="q"><span class="av" style="background:var(--red)">DP</span><span>Dev Patel<small>Collections notice answered</small></span><span class="cp r">Hold requested</span></div>
+            <div class="q"><span class="av" style="background:var(--green)">AB</span><span>Aisha Bello<small>Charity-care application ready</small></span><span class="cp b">Due Dec 1</span></div>
           </div>
         </div>
         <div class="dont"><b>Avoid</b>
@@ -643,7 +691,7 @@ td:first-child{color:var(--ink);font-weight:500}
     <section class="sec" id="access">
       <div class="sec-head">
         <span class="sec-k">13 · Accessibility</span>
-        <h2>Readable for everyone, on every screen.</h2>
+        <h2>Readable for everyone, on every screen</h2>
       </div>
       <ul class="rules">
         <li>Text meets 4.5:1 contrast. The exception is <code>ink-3</code> meta text (2.9:1), kept from the product: never put anything essential in it.</li>
@@ -655,7 +703,7 @@ td:first-child{color:var(--ink);font-weight:500}
     </section>
 
     <footer class="foot">
-      <span>© 2026 Quipus · Brand book v1.0</span>
+      <span>© 2026 Quipus · Brand book v1.1</span>
       <span>Built from the Quipus product site · tokens match <code>assets/css/site.css</code></span>
     </footer>
   </main>
@@ -670,9 +718,10 @@ td:first-child{color:var(--ink);font-weight:500}
     ['Ink', [['ink','#0D1424','Headlines and body · 16:1'],['ink-2','#556074','Secondary text · 6.3:1'],['ink-3','#8E97A8','Meta only · 2.9:1'],['line','#E5E8EE','Hairlines and dividers']]],
     ['Blue', [['blue','#2F63F0','Brand blue, primary, focus · 5:1'],['royal','#2447D8','Action blue, selected · 7:1'],['blue-2','#6E95FF','Gradient light end only'],['blue-deep','#1A3BA8','Feature cards, avatars']]],
     ['Navy', [['navy','#0A1226','Dark emphasis surface'],['navy-2','#8D9AB8','Muted text on navy · 6.6:1'],['on-navy','#EEF2FB','Text on navy and royal']]],
-    ['Status', [['red','#E5484D','Problem · always with a word'],['amber','#F2A33A','Waiting · never as text'],['green','#18A574','Done · 13px+ or icons']]]
+    ['Status', [['red','#E5484D','Problem · always with a word'],['amber','#F2A33A','Waiting · never as text'],['green','#18A574','Done · 13px+ or icons']]],
+    ['Illustration', [['night-1','#0B1020','Night sky, top · overnight card'],['night-2','#0A143C','Night sky, lower'],['dawn-1','#FFB3A8','Sunrise glow'],['dawn-2','#FFE0A8','Sunrise at the horizon'],['moon','#F5C431','Moon · overnight card only']]]
   ];
-  var light = { bg:1, soft:1, band:1, tint:1, 'tint-2':1, highlight:1, line:1, 'on-navy':1, amber:1 };
+  var light = { bg:1, soft:1, band:1, tint:1, 'tint-2':1, highlight:1, line:1, 'on-navy':1, amber:1, 'dawn-1':1, 'dawn-2':1, moon:1 };
   var host = document.getElementById('swatches');
   host.innerHTML = GROUPS.map(function (g) {
     return '<h3>' + g[0] + '</h3><div class="swatches">' + g[1].map(function (t) {

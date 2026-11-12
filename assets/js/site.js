@@ -7,6 +7,9 @@
   const easeOut = t => 1 - Math.pow(1 - t, 3);
   const onScreen = el => { const r = el.getBoundingClientRect(); return r.bottom > 0 && r.top < innerHeight; };
 
+  // Hero queue title: today's date in the PDF's format ("Wednesday Nov 11"); the markup falls back to "this morning"
+  $$('[data-today]').forEach(el => { el.textContent = new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' }).replace(',', ''); });
+
   /* ---------- Section visibility: animations run only while their section is on screen ----------
      Leaving: every CSS animation inside eases its speed down to a stop (~0.7s), then pauses.
      Coming back: they resume and ease back up to full speed. Script loops wait with whenOn(el). */
@@ -306,7 +309,7 @@
     };
   }
 
-  /* ---------- Hero: drifting particles + Rosa's queue, prepared overnight ---------- */
+  /* ---------- Hero: drifting particles + the advocate's queue, prepared overnight ---------- */
   (function () {
     const gw = async ms => { await wait(ms); await whenOn($('.scene')); };
     const sky = $('.sky'); if (!sky) return;
@@ -318,11 +321,13 @@
       W = sky.clientWidth; H = sky.clientHeight;
       cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       const n = Math.round(W * H / 16000);
+      const cs = getComputedStyle(document.documentElement);
+      const STAR = cs.getPropertyValue('--star-rgb').trim() || '255,255,255', STAR_ALT = cs.getPropertyValue('--star-alt-rgb').trim() || STAR;
       dots = Array.from({ length: n }, () => ({
         x: Math.random() * W, y: Math.random() * H, r: .5 + Math.random() * 1.3,
         vy: .06 + Math.random() * .18, vx: (Math.random() - .5) * .06,
         ph: Math.random() * Math.PI * 2, sp: .004 + Math.random() * .01,
-        tint: Math.random() < .25 ? '200,255,220' : '255,255,255'
+        tint: Math.random() < .25 ? STAR_ALT : STAR
       }));
     }
     function draw() {
@@ -342,7 +347,7 @@
     }
     if (cv) { size(); draw(); addEventListener('resize', () => { size(); if (reduce) draw(); }); }
 
-    // Rosa's queue: cases flip from "Preparing" to their prepared state, then Nia points at the first one
+    // The advocate's queue: cases flip from "Preparing" to their prepared state, then Nia points at the first one
     const scene = $('.scene'), rows = $$('.hq-row', scene);
     const cur = makeCursor($('#heroCursor'), scene);
     const setReady = r => { const [c, t] = r.dataset.chip.split('|'), ch = $('.chip', r); r.classList.add('ready'); ch.className = 'chip st ' + c; ch.textContent = t; };
@@ -406,9 +411,9 @@
     };
     const Q = 'the ER bill where the insurer paid the wrong hospital';
     const CASES = [
-      { k: 'lt', av: 'LT', bg: '#8B6CF0', name: 'Linh Tran · QP-24796', sub: 'Lakewood ER visit · claim denied, member ID wrong' },
-      { k: 'ab', av: 'AB', bg: '#18A574', name: 'Aisha Bello · QP-24770', sub: 'Mercy Park ER visit · balance bill' },
-      { k: 'dp', av: 'DP', bg: '#E5484D', name: 'Dev Patel · QP-24809', sub: 'Cedar Ridge ER visit · plan paid Northside Hospital in error', best: true }
+      { k: 'lt', av: 'LT', bg: 'var(--avatar-3)', name: 'Linh Tran · QP-24796', sub: 'Lakewood ER visit · claim denied, member ID wrong' },
+      { k: 'ab', av: 'AB', bg: 'var(--avatar-4)', name: 'Aisha Bello · QP-24770', sub: 'Mercy Park ER visit · balance bill' },
+      { k: 'dp', av: 'DP', bg: 'var(--avatar-2)', name: 'Dev Patel · QP-24809', sub: 'Cedar Ridge ER visit · plan paid Northside Hospital in error', best: true }
     ];
     const row = c => `<div class="sb-row" data-k="${c.k}"><span class="av" style="background:${c.bg}">${c.av}</span><div><b>${c.name}</b><span class="sub">${c.sub}</span></div>${c.best ? '<span class="chip b sb-chip">Best match</span>' : ''}</div>`;
     // move the best match to the top, animating everyone from where they were (FLIP)
@@ -465,7 +470,7 @@
       ['Riverside Imaging', 495, '16 mi away'], ['Highland Diagnostics', 520, 'Ultrasound only']
     ];
     grid.innerHTML = OFFERS.map(([n, p, why], k) =>
-      `<span class="of${why ? ' x' : ''}" style="--k:${k}"><em>${n}</em><b>${why ? `<s>$${p}</s><i>${why}</i>` : '$' + p}</b></span>`).join('');
+      `<span class="of${why ? ' x' : ''}" style="--k:${k}"><em>${n}</em><b>${why ? `<s>$${p}.00</s><i>${why}</i>` : '$' + p + '.00'}</b></span>`).join('');
     const TITLES = [['Collecting voucher offers', 'Near the member · BlueRiver PPO'], ['Reading the request', "From the member's own words"],
       ['Filtering the offers', '14 found · 11 filtered out'], ['3 offers suggested', '14 found · 11 filtered out']];
     const N = steps.length, DUR = 4600;
@@ -691,7 +696,7 @@
     }), { threshold: .3 }).observe(root);
   })();
 
-  /* ---------- Workspace: tilt on scroll + Nia prepares, Rosa approves ---------- */
+  /* ---------- Workspace: tilt on scroll + Nia prepares, the advocate approves ---------- */
   (function () {
     const gw = async ms => { await wait(ms); await whenOn($('#stage')); };
     const app = $('#app'), stage = $('#stage'); if (!app) return;
@@ -754,7 +759,7 @@
           if (k === 3) draft.classList.add('written');
         }
         nia.to(draft, ph ? .3 : .55, ph ? .02 : .3); // phones: point at the title so the label clears the buttons
-        await nia.say('Ready for you, Rosa');
+        await nia.say('Ready for your approval');
         draft.classList.add('ready'); st.className = 'chip a st'; st.textContent = 'Needs approval';
         post('n', 'Should the duplicate CBC go in this letter, or wait for round two?');
         await gw(1700);
@@ -843,10 +848,10 @@
   (function () {
     const root = $('#eobv'), table = $('#eobTable'); if (!root || !table) return;
     const TERMS = {
-      billed: { name: 'Billed', c: '#8E97A8', desc: "The provider's full list price. Almost no member should pay this number." },
-      allowed: { name: 'Allowed', c: '#2F63F0', desc: 'The rate the plan agreed to. An in-network provider can\'t bill the member more than this.' },
-      paid: { name: 'Plan paid', c: '#18A574', desc: 'What the plan actually paid the provider for each service.' },
-      owe: { name: 'Member owes', c: '#E5484D', desc: 'The member\'s share after the plan pays. It should equal allowed minus plan paid. If the bill asks for more, something is wrong.' }
+      billed: { name: 'Billed', c: 'var(--term-billed)', desc: "The provider's full list price. Almost no member should pay this number." },
+      allowed: { name: 'Allowed', c: 'var(--term-allowed)', desc: 'The rate the plan agreed to. An in-network provider can\'t bill the member more than this.' },
+      paid: { name: 'Plan paid', c: 'var(--term-paid)', desc: 'What the plan actually paid the provider for each service.' },
+      owe: { name: 'Member owes', c: 'var(--term-owe)', desc: 'The member\'s share after the plan pays. It should equal allowed minus plan paid. If the bill asks for more, something is wrong.' }
     };
     const ORDER = ['billed', 'allowed', 'paid', 'owe'];
     const cap = $('#termCap'), dot = $('#termDot'), nm = $('#termName'), ds = $('#termDesc');
@@ -1025,8 +1030,8 @@
       const btn = $('.cf-submit', form); btn.classList.add('sending'); $('span', btn).textContent = 'Sending…';
       await wait(900);
       const first = fields.name.el.value.trim().split(/\s+/)[0];
-      $('#cfDoneTitle').textContent = `Thanks, ${first}.`;
-      $('#cfDoneText').textContent = `We'll reply to ${fields.email.el.value.trim()} to set up your walkthrough.`;
+      $('#cfDoneTitle').textContent = `Thank you, ${first}`;
+      $('#cfDoneText').textContent = 'We have your request, and someone from the team will reply to set a time';
       const h0 = card.offsetHeight;
       form.classList.add('out'); await wait(reduce ? 0 : 380);
       form.hidden = true; done.hidden = false;

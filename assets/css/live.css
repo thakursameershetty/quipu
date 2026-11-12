@@ -1,0 +1,109 @@
+/* Live site only (/ and /members/): layout adjustments on top of /assets/css/site.css.
+   No colours here; every colour stays in the :root block of site.css. */
+
+/* Contact form: the ranges are spelled out ("25,000 to 100,000"), so let them wrap inside the pill */
+.cf-seg span{white-space:normal;text-align:center;line-height:1.2;padding:0 6px}
+
+/* Member requests: each row is shown already matched to its case (no "Matching…" step) */
+.ib-st .b{opacity:1;transform:none}
+
+/* Bill review: no "Reviewing" / "Reading" / "01 / 09" progress labels */
+[hidden]{display:none!important}
+.ncb .msg:empty{display:none}
+
+/* Nav: quiet "Log in" text link (placeholder href until the app login URL exists; see data-todo="login-url") */
+.nav-r .login{padding:8px 12px;font-size:14px;text-decoration:none;color:var(--ink-2);transition:color .52s var(--ease-out)}
+.nav-r .login:hover{color:var(--ink)}
+.nav:not(.scrolled) .nav-r .login{color:var(--white-a80)}
+.nav:not(.scrolled) .nav-r .login:hover{color:var(--white)}
+@media (max-width:1000px){.nav-r .login{display:none}}
+
+/* Members page: closing band button (the band itself is the landing page's contact section) */
+.mem-actions{display:flex;margin-top:32px}
+
+/* Section heads: put the intro paragraph on the same column line as the content below it
+   (base .sec-head is 1.1fr/.9fr with the paragraph pushed right, which never lined up) */
+@media (min-width:1001px){
+  #services .sec-head{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:20px}           /* = .svc */
+  #find-care .sec-head{grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);column-gap:56px} /* = .fc2 */
+  #requests .sec-head{grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:56px}       /* = .rq */
+  #services .sec-head p,#find-care .sec-head p,#requests .sec-head p{justify-self:start}
+}
+
+/* Long PDF headlines: keep every section headline to two lines on desktop (layout only, wording unchanged) */
+@media (min-width:1001px){
+  #nia .h2,#faq .h2,.contact h2{font-size:clamp(32px,3.6vw,52px);line-height:1.02}   /* same size as Find care / Requests / Services */
+  .contact h2{max-width:none}
+  #find-care .sec-head > div{grid-column:1/-1}                                       /* headline across the full width */
+  #find-care .sec-head > p{grid-column:2;justify-self:start}                         /* intro under it, on the right-hand column */
+}
+@media (min-width:1001px){ .nia{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)} }   /* a little more room for the Nia headline */
+@media (min-width:1001px){ #nia .h2{font-size:clamp(30px,3vw,44px)} }   /* longest PDF headline ("Ask about any case and Nia answers…"): one step smaller so it stays on two lines */
+
+/* ===== Members page: member's phone in the hero (replaces the team queue card used on the landing page) ===== */
+.m-scene{height:clamp(410px,36vw,470px)}
+.mphone{position:absolute;left:50%;bottom:-24px;width:340px;translate:-50% 0;z-index:2;padding:12px 12px 24px;border-radius:38px;background:var(--bg);border:1px solid var(--line);box-shadow:var(--shadow-l)}
+.mp-top{display:flex;align-items:center;gap:10px;padding:8px 8px 12px;border-bottom:1px solid var(--line)}
+.mp-av{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--tint);color:var(--blue);font:500 12px/1 var(--f)}
+.mp-top div b{display:block;font-size:14px;font-weight:500;color:var(--ink)}
+.mp-top div span{display:block;font:400 11px/1.3 var(--mono);color:var(--ink-3)}
+.mp-thread{display:grid;gap:10px;padding:14px 4px 0}
+.pm{max-width:84%;padding:10px 13px;border-radius:18px;font-size:13.5px;line-height:1.4}
+.pm small{display:block;margin-top:4px;font:400 10.5px/1 var(--mono);opacity:.7}
+.pm.in{justify-self:start;background:var(--soft);color:var(--ink);border-bottom-left-radius:6px}
+.pm.out{justify-self:end;background:var(--blue);color:var(--white);border-bottom-right-radius:6px}
+.pm .offers{display:grid;gap:4px;margin-top:8px}
+.pm .offers span{display:flex;justify-content:space-between;gap:10px;padding:6px 9px;border-radius:9px;background:var(--white-a16);font-size:12.5px}
+.pm .offers span.best{background:var(--white);color:var(--ink)}
+.pm .offers b{font-family:var(--mono);font-weight:500}
+.js .m-scene .mphone{opacity:0;translate:-50% 90px;transition:opacity 1.3s var(--ease-out) .8s,translate 1.9s var(--ease-out) .8s}
+.js.loaded .m-scene .mphone{opacity:1;translate:-50% 0}
+.js .mphone .pm{opacity:0;translate:0 10px;transition:opacity .6s var(--ease-out),translate .7s var(--ease-out);transition-delay:calc(1.9s + var(--i) * .8s)}
+.js.loaded .mphone .pm{opacity:1;translate:0 0}
+@media (prefers-reduced-motion:reduce){.js .m-scene .mphone,.js .mphone .pm{transition:none;opacity:1}.js .mphone .pm{translate:none}.js .m-scene .mphone{translate:-50% 0}}
+@media (max-width:560px){.m-scene{height:420px}.mphone{width:300px}}
+
+/* ===== Members page: three member conversations, shown as chat threads ===== */
+.mconv{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:stretch}
+.mc{display:flex;flex-direction:column;gap:14px;padding:22px;border-radius:24px;background:var(--bg);border:1px solid var(--line);transition:transform 1.04s var(--ease-out),box-shadow 1.04s var(--ease-out)}
+.mc:hover{translate:0 -6px}
+.mc-who{display:flex;align-items:center;gap:10px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.mc-av{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--tint);color:var(--blue)}
+.mc-who b{display:block;font-size:14.5px;font-weight:500;color:var(--ink)}
+.mc-who span{display:block;font-size:12px;color:var(--ink-3)}
+.mc-ic{margin-left:auto;color:var(--ink-3)}
+.mc-in{align-self:flex-start;max-width:88%;padding:12px 14px;border-radius:18px 18px 18px 6px;background:var(--soft);color:var(--ink);font-size:14.5px;line-height:1.45}
+.mc-att{display:flex;align-items:center;gap:8px;margin-bottom:8px;padding:8px 10px;border-radius:10px;background:var(--bg);border:1px solid var(--line);font-size:12.5px;color:var(--ink-2)}
+.mc-att b{margin-left:auto;font-family:var(--mono);font-weight:500;color:var(--ink)}
+.mc-out{align-self:flex-end;width:92%;padding:12px 12px 10px;border-radius:18px 18px 6px 18px;background:var(--blue);color:var(--white);font-size:14px;line-height:1.45}
+.mc-out p{padding:0 2px 8px}
+.mc-rows{display:grid;gap:5px}
+.mc-rows span{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:7px 10px;border-radius:10px;background:var(--white-a16);font-size:12.5px}
+.mc-rows span b{flex:none;font-family:var(--mono);font-weight:500}
+.mc-rows span.best{background:var(--white);color:var(--ink)}
+.mc-rows span.best b{color:var(--blue)}
+.mc-rows span.x{color:var(--white-a72)}
+.mc-rows span.x b{text-decoration:line-through;text-decoration-thickness:1.5px}
+.mc-rows .mc-st{padding:3px 8px;border-radius:999px;background:var(--tint);font-family:var(--f) !important;font-size:11.5px}
+.mc-from{margin-top:auto;padding-top:12px;border-top:1px solid var(--line);font-size:12px;color:var(--ink-3)}
+@media (max-width:1000px){.mconv{grid-template-columns:1fr}}
+
+/* Hero: the PDF's paper bill (replaces the blank "Fax · Itemized bill" sheet), on top of the queue's lower-right corner,
+   below its first row so Nia's cursor target stays clear */
+.scene .hbill{position:absolute;z-index:4;left:calc(50% - 40px);top:166px;width:372px}
+.hb-paper{padding:10px 14px 10px;border-radius:12px;background:var(--bg);border:1px solid var(--line);box-shadow:var(--shadow-l);rotate:2deg;color:var(--ink);font-size:12px;line-height:1.3}
+.hb-top{padding-bottom:6px;margin-bottom:2px;border-bottom:1px solid var(--line)}
+.hb-top b{font-size:12.5px;font-weight:500}
+/* each struck line: name · note beside it · amount */
+.hb-l{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:baseline;column-gap:8px;padding:5px 0;font-family:var(--mono);font-size:11px;color:var(--ink-2)}
+.hb-l b{font-weight:400;font-variant-numeric:tabular-nums}
+.hb-l.x span,.hb-l.x b{text-decoration:line-through;text-decoration-color:var(--ink);text-decoration-thickness:1.5px;color:var(--ink-3)}
+.hb-l i{font-family:var(--f);font-style:normal;font-size:11px;color:var(--blue);white-space:nowrap}
+.hb-tot{display:grid;grid-template-columns:1fr auto;column-gap:10px;row-gap:1px;margin-top:2px;padding-top:6px;border-top:1px solid var(--line);font-family:var(--mono);font-size:12px}
+.hb-tot b{font-weight:500;font-variant-numeric:tabular-nums}
+.hb-tot .eob{color:var(--blue)}
+/* caption under the visual, as in the PDF */
+.hb-cap{display:inline-block;margin:8px 0 0 6px;padding:4px 8px;border-radius:6px;background:var(--bg);border:1px solid var(--line);box-shadow:var(--shadow-s);font:400 10px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.js .scene .hbill{opacity:0;translate:0 80px;transition:opacity 1.56s var(--ease-out) 1.1s,translate 2.08s var(--ease-out) 1.1s}
+.js.loaded .scene .hbill{opacity:1;translate:0 0}
+@media (max-width:900px){.scene .hbill{display:none}}
