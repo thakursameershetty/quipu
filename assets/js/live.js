@@ -222,7 +222,7 @@
   }
   if (links) {
     const anchors = $$('a', links);
-    // the page you are on (e.g. "For members") stays marked; other links are in-page #section anchors
+    // the page you are on (e.g. "Members") stays marked; other links are in-page #section anchors
     const here = anchors.find(a => a.getAttribute('aria-current') === 'page') || null;
     let current = here;
     const sections = anchors.map(a => a.getAttribute('href')).filter(h => /^#[\w-]+$/.test(h)).map(h => $(h)).filter(Boolean);

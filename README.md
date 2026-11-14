@@ -17,7 +17,7 @@ npx serve .
 | URL           | What it is                                                                 |
 |---------------|----------------------------------------------------------------------------|
 | `/`           | The live site: content brief plus meeting changes, the latest version      |
-| `/members/`   | What members get, told from the member's side (linked as "For members")    |
+| `/members/`   | Written to members (patients) directly; linked as "Members"              |
 | `/version2/`  | Draft: the original page in the indigo palette, for comparison             |
 | `/version3/`  | Draft: content brief plus meeting changes, before the latest fixes         |
 | `/version4/`  | Draft: the content brief as written (PDF exact), for comparison            |
